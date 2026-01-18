@@ -1,0 +1,58 @@
+# _data/publications.yml
+
+- category: "Speech LLM Survey & Benchmark"
+  title: "A Survey on Speech Large Language Models for Understanding"
+  authors: "Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu"
+  venue: "IEEE JSTSP (accepted)"
+  year: 2024
+  links:
+    arxiv: "https://arxiv.org/abs/2410.18908"
+
+- category: "Speech LLM Survey & Benchmark"
+  title: "ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models"
+  authors: "B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu"
+  venue: "ICASSP 2026 (accepted)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2510.23558"
+
+- category: "Speech LLM Alignment"
+  title: "TASU: Text-Only Alignment for Speech Understanding"
+  authors: "Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu"
+  venue: "ICASSP 2026 (accepted)"
+  year: 2026
+  links:
+    # 如果你后续有 arXiv / project page 再补
+    # arxiv: ""
+
+- category: "Speech LLM Domain Adaptation"
+  title: "Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning"
+  authors: "Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu"
+  venue: "ASRU 2025 (accepted)"
+  year: 2025
+  links:
+    arxiv: "https://arxiv.org/abs/2506.05671"
+
+- category: "Speech LLM Modular Adaptation"
+  title: "MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR"
+  authors: "Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu"
+  venue: "ICASSP 2026 (accepted)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2508.18998"
+
+- category: "LLM-based ASR Post-processing"
+  title: "Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction"
+  authors: "Y. Fang, B. Cheng, Jing Peng, X. Li, Y. Xi, C. Zhang, G. Zhong"
+  venue: "ASRU 2025 (accepted)"
+  year: 2025
+  links:
+    arxiv: "https://arxiv.org/abs/2505.24347"
+
+- category: "Controllable / Contextual ASR"
+  title: "Joint Decoding Method for Controllable Contextual Speech Recognition Based on Speech LLM"
+  authors: "Y. Fang*, J. Peng*, Y. Xi, X. Li, H. Li, C. Zhang, G. Zhong, K. Yu"
+  venue: "arXiv preprint"
+  year: 2025
+  links:
+    arxiv: "https://arxiv.org/abs/2508.08585"
