@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: home
 title: ""
 permalink: /
 ---
-
-## Short Bio
 
 I am now a Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe)**).
 
