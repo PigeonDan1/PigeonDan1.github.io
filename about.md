@@ -17,20 +17,19 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 
 ## Research Interests
 
-- **Speech Large Language Models (Speech LLMs)** for speech understanding and reasoning  
-- **Speaker-attributed ASR (SA-ASR)** and multi-speaker understanding  
-  (speaker discrimination, implicit speaker selection)  
+Generally, I am focusing on **Speech Large Language Models (Speech LLMs)** for speech understanding and reasoning:
+
+- **Speaker-attributed ASR (SA-ASR)** and multi-speaker understanding   
 - **Multimodal alignment** between speech and text for instruction-following speech systems  
 - **Efficient adaptation** (text-only fine-tuning, lightweight adapters) for low-resource / cross-domain settings  
-- **Alignment & RLHF**: reward modeling and optimization for improving system behavior  
 
 ---
 
 ## Research Experience
 
-My recent work spans both academic labs and industry research, centering on **ASR + LLM integration** and **alignment for speech understanding**:
+My recent work spans both academic labs and industry research:
 
-- **Speech LLMs for Speech Understanding (AISpeech, Shanghai)**  
+- **Speech LLMs for Speech Understanding (AISpeech, Suzhou, Jiangsu)**  
   I work on ASR and multimodal alignment methods that connect speech representations with language model reasoning and instruction following.
 
 - **SA-ASR with Speech LLMs (Shenzhen Research Institute of Big Data, Remote)**  
@@ -76,8 +75,8 @@ My recent work spans both academic labs and industry research, centering on **AS
 
 ---
 
-## Personal
+## Personal Information
 
-I am originally from **Hengyang, Hunan, China**. Outside of research, I enjoy **exploring local food** and **traveling**, and I am also an active fan of sports such as **badminton** and **basketball**.
+I am originally from **Hengyang, Hunan, China**, a  beautiful city. Outside of research, I enjoy **exploring local food** and **traveling**, and I am also an active fan of sports such as **badminton** and **basketball**.
 
 If you are interested in my research directions, **feel free to reach out**—I am happy to discuss potential collaborations.
