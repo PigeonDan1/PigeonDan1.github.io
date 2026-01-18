@@ -34,23 +34,32 @@ footer {
 }
 
 @media (min-width: $md-width) {
+  :root {
+    --sidebar-left-w: 36%;   // 左侧占比：建议 33%~40%，你想更强就继续加
+  }
+
   .content {
     padding-top: var(--spacer-3);
     padding-left: var(--spacer-3);
     padding-right: var(--spacer-3);
-    margin-left: 36%;
+
+    margin-left: var(--sidebar-left-w);
+    width: calc(100% - var(--sidebar-left-w));
   }
 
   .sidebar-left {
     position: fixed;
     top: 0;
     bottom: 0;
+
+    width: var(--sidebar-left-w);
   }
 
   .home-header {
     margin-top: -2em;
   }
 }
+
 
 @media (min-width: $lg-width) {
   .sidebar-right {
@@ -72,6 +81,7 @@ footer {
 
 @media (min-width: $md-width) and (max-width: $lg-width) {
   .content {
-    width: 75%;
+    width: calc(100% - var(--sidebar-left-w));
   }
 }
+
