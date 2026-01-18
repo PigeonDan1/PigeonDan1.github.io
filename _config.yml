@@ -1,11 +1,15 @@
 # Setup
-title: Not Pure Poole
-description: A simple, beautiful, and powerful Jekyll theme for blogs
-url: https://vszhub.github.io
-avatar: /avatar.jpeg
+title: Jing Peng
+description:  >
+  Hi, I am Jing Peng（彭景）. I am now a Ph.D. student at
+  <a href="https://x-lance.sjtu.edu.cn/" target="_blank" rel="noopener">X-LANCE Lab</a>
+  of Shanghai Jiao Tong University, supervised by
+  <a href="https://www.cs.sjtu.edu.cn/en/jiaoshiml/yukai.html" target="_blank" rel="noopener">Prof. Kai Yu</a>.
+url: https://pigeondan1.github.io
+avatar: /life_photo.jpg
 paginate: 5
 permalink: pretty
-cover_image: /bg.jpeg
+cover_image: /moutain.jpg
 
 # Gems
 plugins:
@@ -29,14 +33,13 @@ exclude:
 
 # Optimize Jekyl SEO Tag
 twitter:
-  username: vszhub
+  username: Jing Peng
   card: summary
 logo: logo.png
 social:
-  name: Songzi Vong
+  name: Jing Peng
   links:
-    - https://twitter.com/vszhub
-    - https://github.com/vszhub
+    - https://github.com/PigeonDan1
 google_site_verification: xxxxx
 lang: en
 
