@@ -14,10 +14,10 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 
 Generally, I am focusing on **Speech Large Language Models (Speech LLMs)** for speech understanding and reasoning:
 
-- **Speaker-attributed ASR (SA-ASR)** and multi-speaker understanding   
 - **Multimodal alignment** between speech and text for instruction-following speech systems  
 - **Efficient adaptation** for low-resource / cross-domain settings  
-
+- **Speaker-attributed ASR (SA-ASR)** and multi-speaker understanding
+  
 ---
 
 ## Research Experience
@@ -46,7 +46,8 @@ You can see the full list on **[Publications](/publications/)**.
 
 - **TASU: Text-Only Alignment for Speech Understanding**  
   Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.  
-  *Accepted by ICASSP 2026.*
+  **arXiv:2511.03310***Accepted by ICASSP 2026.*
+  https://arxiv.org/abs/2511.03310
 
 - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**  
   Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.  
