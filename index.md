@@ -46,7 +46,7 @@ You can see the full list on **[Publications](/publications/)**.
 
 - **TASU: Text-Only Alignment for Speech Understanding**  
   Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.  
-  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*
+  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*  
   https://arxiv.org/abs/2511.03310
 
 - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**  
