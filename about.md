@@ -9,9 +9,34 @@ I am **Jing Peng (彭景)**, a Zhiyuan Honor Ph.D. Student at **Shanghai Jiao To
 
 My research focuses on **Speech Large Language Models (Speech LLMs)**, with an emphasis on building **well-aligned speech understanding systems** that are robust to **domain shift** and **multi-speaker conditions**.
 
+---
+
+## Basic Information
+
+- **Date of Birth:** 2003-10-06  
+- **Hometown:** Hengyang, Hunan, China  
+- **Languages:** Mandarin, English  
+
 - **Email:** [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)  
 - **GitHub:** https://github.com/PigeonDan1  
 - **Google Scholar:** https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en  
+
+---
+
+## Education
+
+- **Shanghai Jiao Tong University (SJTU)**, Shanghai, China  
+  **Zhiyuan Honors Ph.D. Program**, X-LANCE Lab, College of Computer Science  
+  *Ph.D. Student*, **Sep 2025 – Present**  
+
+- **Xi'an Jiao Tong University (XJTU)**, Xi'an, China  
+  **B.Eng. in Automation**, minor in Electrical Engineering  
+  Qian Xuesen Honor Class  
+  *Sep 2021 – Jun 2025*  
+
+- **University of California, Berkeley**, Berkeley, USA  
+  **Exchange Student**, Berkeley Global Access (BGA), College of Engineering  
+  *Aug 2023 – Dec 2023*  
 
 ---
 
