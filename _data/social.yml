@@ -4,6 +4,9 @@
 - title: GitHub
   url: https://github.com/PigeonDan1
   icon: fab fa-github
+- title: Google Scholar
+  url: https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en
+  icon: fas fa-graduation-cap
 - title: Resume
   url: /resume/
   icon: far fa-file-pdf

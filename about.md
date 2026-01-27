@@ -5,7 +5,7 @@ title: About me
 
 ## Short Bio
 
-I am **Jing Peng (彭景)**, a Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe)**).
+I am **Jing Peng (彭景)**, a first year Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe)**).
 
 My research focuses on **Speech Large Language Models (Speech LLMs)**, with an emphasis on building **well-aligned speech understanding systems** that are robust to **domain shift** and **multi-speaker conditions**.
 
@@ -16,10 +16,10 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 - **Date of Birth:** 2003-10-06  
 - **Hometown:** Hengyang, Hunan, China  
 - **Languages:** Mandarin, English  
-
-- **Email:** <i class="fas fa-envelope"></i> [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)  
-- **GitHub:** <i class="fab fa-github"></i> https://github.com/PigeonDan1  
-- **Google Scholar:** <i class="fas fa-graduation-cap"></i> https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en  
+- **Email:** [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)
+- **GitHub:** [https://github.com/PigeonDan1](https://github.com/PigeonDan1)
+- **Google Scholar:** [https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en](https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en)
+- **LinkedIn:** [https://www.linkedin.com/in/jing-peng-7ab8682a4/](https://www.linkedin.com/in/jing-peng-7ab8682a4/)
 
 ---
 
