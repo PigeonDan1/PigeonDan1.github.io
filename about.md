@@ -17,9 +17,9 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 - **Hometown:** Hengyang, Hunan, China  
 - **Languages:** Mandarin, English  
 
-- **Email:** [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)  
-- **GitHub:** https://github.com/PigeonDan1  
-- **Google Scholar:** https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en  
+- **Email:** <i class="fas fa-envelope"></i> [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)  
+- **GitHub:** <i class="fab fa-github"></i> https://github.com/PigeonDan1  
+- **Google Scholar:** <i class="fas fa-graduation-cap"></i> https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en  
 
 ---
 
@@ -97,6 +97,12 @@ My recent work spans both academic labs and industry research:
   B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu.  
   **arXiv:2510.23558**. *Accepted by ICASSP 2026.*  
   https://arxiv.org/abs/2510.23558
+
+---
+
+## Resume
+
+Resume page: [View or download my resume](/resume/)
 
 ---
 
