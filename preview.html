@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Preview - Jing Peng</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .lang-switch a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .lang-switch a:hover {
+            text-decoration: underline;
+        }
+        h1 { color: #24292e; border-bottom: 1px solid #e1e4e8; padding-bottom: 10px; }
+        h2 { color: #24292e; margin-top: 30px; border-bottom: 1px solid #eaecef; padding-bottom: 8px; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        hr { border: none; border-top: 1px solid #e1e4e8; margin: 24px 0; }
+        .pub-item { margin-bottom: 15px; }
+        .nav-preview {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .nav-preview ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-preview li { margin: 0; }
+        .category {
+            background: #f1f8ff;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            color: #0366d6;
+        }
+        .preview-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preview-tab {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .preview-tab.active {
+            background: #0366d6;
+            color: white;
+            border-color: #0366d6;
+        }
+        .preview-content { display: none; }
+        .preview-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 Website Preview - Jing Peng</h1>
+        
+        <div class="preview-tabs">
+            <button class="preview-tab active" onclick="showTab('en')">English Version</button>
+            <button class="preview-tab" onclick="showTab('zh')">中文版本</button>
+            <button class="preview-tab" onclick="showTab('pubs')">Publications Page</button>
+        </div>
+
+        <!-- English Version -->
+        <div id="en" class="preview-content active">
+            <div class="nav-preview">
+                <ul>
+                    <li><strong>About me</strong></li>
+                    <li><a href="#">Resume</a></li>
+                    <li><a href="#">中文</a></li>
+                </ul>
+            </div>
+            
+            <div class="lang-switch">
+                <strong>English</strong> | <a href="#">中文</a>
+            </div>
+
+            <p>I am now a Zhiyuan Honor Ph.D. Student at <strong>Shanghai Jiao Tong University (SJTU)</strong>, <strong><a href="https://x-lance.sjtu.edu.cn/">X-LANCE Lab</a></strong>, advised by <strong><a href="https://x-lance.sjtu.edu.cn/~kaiyu/">Prof. Kai Yu</a></strong> (and co-advised by <strong><a href="https://sites.google.com/view/shinjiwatanabe">Prof. Shinji Watanabe</a></strong>).</p>
+
+            <p>My research focuses on <strong>Speech Large Language Models (Speech LLMs)</strong>, with an emphasis on building <strong>well-aligned speech understanding systems</strong> that are robust to <strong>domain shift</strong> and <strong>multi-speaker conditions</strong>.</p>
+
+            <hr>
+
+            <h2>Research Interests</h2>
+            <ul>
+                <li><strong>Multimodal alignment</strong> between speech and text for instruction-following speech systems</li>
+                <li><strong>Efficient adaptation</strong> for low-resource / cross-domain settings</li>
+                <li><strong>Speaker-attributed ASR (SA-ASR)</strong> and multi-speaker understanding</li>
+            </ul>
+
+            <hr>
+
+            <h2>Publications (Selected)</h2>
+            <p><small>* indicates equal contribution.</small></p>
+
+            <div class="pub-item">
+                <strong>G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</strong><br>
+                Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.<br>
+                <em>arXiv:2603.10468</em>. <em>Submitted to Interspeech 2026.</em><br>
+                <a href="https://arxiv.org/abs/2603.10468">arXiv</a>
+            </div>
+
+            <div class="pub-item">
+                <strong>A Survey on Speech Large Language Models for Understanding</strong><br>
+                Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.<br>
+                <em>arXiv:2410.18908</em>. <em>Accepted by IEEE JSTSP.</em><br>
+                <a href="https://arxiv.org/abs/2410.18908">arXiv</a>
+            </div>
+
+            <div class="pub-item">
+                <strong>TASU: Text-Only Alignment for Speech Understanding</strong><br>
+                Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.<br>
+                <em>arXiv:2511.03310</em>. <em>Accepted by ICASSP 2026.</em><br>
+                <a href="https://arxiv.org/abs/2511.03310">arXiv</a>
+            </div>
+
+            <hr>
+
+            <h2>Contact Information</h2>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:jing.peng@sjtu.edu.cn">jing.peng@sjtu.edu.cn</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/PigeonDan1">PigeonDan1</a></li>
+                <li><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=Uo0mj0AAAAAJ">Profile</a></li>
+            </ul>
+        </div>
+
+        <!-- Chinese Version -->
+        <div id="zh" class="preview-content">
+            <div class="nav-preview">
+                <ul>
+                    <li><strong>关于我</strong></li>
+                    <li><a href="#">简历</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            
+            <div class="lang-switch">
+                <a href="#">English</a> | <strong>中文</strong>
+            </div>
+
+            <p>我是 <strong>上海交通大学 (SJTU)</strong> <strong><a href="https://x-lance.sjtu.edu.cn/">X-LANCE Lab</a></strong> 的致远荣誉博士生，导师是 <strong><a href="https://x-lance.sjtu.edu.cn/~kaiyu/">俞凯教授</a></strong>（联合导师是 <strong><a href="https://sites.google.com/view/shinjiwatanabe">Shinji Watanabe 教授</a></strong>）。</p>
+
+            <p>我的研究专注于<strong>语音大语言模型 (Speech LLMs)</strong>，重点是构建对<strong>领域迁移</strong>和<strong>多说话人场景</strong>具有鲁棒性的<strong>良好对齐的语音理解系统</strong>。</p>
+
+            <hr>
+
+            <h2>研究兴趣</h2>
+            <ul>
+                <li>语音和文本之间的<strong>多模态对齐</strong>，用于指令跟随语音系统</li>
+                <li>低资源/跨领域场景的<strong>高效自适应</strong></li>
+                <li><strong>说话人归属 ASR (SA-ASR)</strong> 和多说话人理解</li>
+            </ul>
+
+            <hr>
+
+            <h2>发表论文 (精选)</h2>
+            <p><small>* 表示同等贡献。</small></p>
+
+            <div class="pub-item">
+                <strong>G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</strong><br>
+                Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.<br>
+                <em>arXiv:2603.10468</em>. <em>Submitted to Interspeech 2026.</em><br>
+                <a href="https://arxiv.org/abs/2603.10468">arXiv</a>
+            </div>
+
+            <div class="pub-item">
+                <strong>A Survey on Speech Large Language Models for Understanding</strong><br>
+                Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.<br>
+                <em>arXiv:2410.18908</em>. <em>Accepted by IEEE JSTSP.</em><br>
+                <a href="https://arxiv.org/abs/2410.18908">arXiv</a>
+            </div>
+
+            <div class="pub-item">
+                <strong>TASU: Text-Only Alignment for Speech Understanding</strong><br>
+                Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.<br>
+                <em>arXiv:2511.03310</em>. <em>Accepted by ICASSP 2026.</em><br>
+                <a href="https://arxiv.org/abs/2511.03310">arXiv</a>
+            </div>
+
+            <hr>
+
+            <h2>联系方式</h2>
+            <ul>
+                <li><strong>邮箱:</strong> <a href="mailto:jing.peng@sjtu.edu.cn">jing.peng@sjtu.edu.cn</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/PigeonDan1">PigeonDan1</a></li>
+                <li><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=Uo0mj0AAAAAJ">个人主页</a></li>
+            </ul>
+        </div>
+
+        <!-- Publications Page -->
+        <div id="pubs" class="preview-content">
+            <h1>Publications / 发表论文</h1>
+            <p><small>* indicates equal contribution. / * 表示同等贡献。</small></p>
+
+            <h2>📂 Multi-Speaker Speech Understanding</h2>
+            <div class="pub-item">
+                <strong>G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</strong><br>
+                Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang<br>
+                <em>submitted to Interspeech 2026</em>, 2026<br>
+                <a href="https://arxiv.org/abs/2603.10468">arXiv</a>
+            </div>
+
+            <h2>📂 Speech LLM Survey & Benchmark</h2>
+            <div class="pub-item">
+                <strong>A Survey on Speech Large Language Models for Understanding</strong><br>
+                Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu<br>
+                <em>IEEE JSTSP (accepted)</em>, 2024<br>
+                <a href="https://arxiv.org/abs/2410.18908">arXiv</a>
+            </div>
+            <div class="pub-item">
+                <strong>ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models</strong><br>
+                B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu<br>
+                <em>ICASSP 2026 (accepted)</em>, 2026<br>
+                <a href="https://arxiv.org/abs/2510.23558">arXiv</a>
+            </div>
+
+            <h2>📂 Speech LLM Alignment</h2>
+            <div class="pub-item">
+                <strong>TASU: Text-Only Alignment for Speech Understanding</strong><br>
+                Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu<br>
+                <em>ICASSP 2026 (accepted)</em>, 2026
+            </div>
+
+            <h2>📂 Speech LLM Domain Adaptation</h2>
+            <div class="pub-item">
+                <strong>Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning</strong><br>
+                Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu<br>
+                <em>ASRU 2025 (accepted)</em>, 2025<br>
+                <a href="https://arxiv.org/abs/2506.05671">arXiv</a>
+            </div>
+
+            <h2>📂 Speech LLM Modular Adaptation</h2>
+            <div class="pub-item">
+                <strong>MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR</strong><br>
+                Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu<br>
+                <em>ICASSP 2026 (accepted)</em>, 2026<br>
+                <a href="https://arxiv.org/abs/2508.18998">arXiv</a>
+            </div>
+        </div>
+
+        <hr style="margin-top: 40px;">
+        
+        <h2>📋 File Structure</h2>
+        <pre style="background: #f6f8fa; padding: 15px; border-radius: 6px; overflow-x: auto;">
+PigeonDan1.github.io/
+├── index.md              (English homepage with G-STAR added)
+├── index-zh.md           (Chinese homepage)
+├── about.md              (English about page)
+├── about-zh.md           (Chinese about page)
+├── resume.md             (English resume page)
+├── resume-zh.md          (Chinese resume page)
+├── publications.md       (English publications page)
+├── publications-zh.md    (Chinese publications page)
+├── _data/
+│   ├── navigation.yml    (Added Chinese link)
+│   └── publications.yml  (Added G-STAR paper)
+└── preview.html          (This preview file)
+        </pre>
+
+        <h2>🚀 How to Deploy</h2>
+        <ol>
+            <li>Commit all changes:
+                <pre style="background: #f6f8fa; padding: 10px; border-radius: 4px;">git add .
+git commit -m "Add G-STAR paper and Chinese language support"
+git push origin master</pre>
+            </li>
+            <li>GitHub Pages will automatically build and deploy your site (usually within 1-2 minutes)</li>
+            <li>Visit <strong>https://pigeondan1.github.io</strong> to see the changes</li>
+        </ol>
+
+        <h2>📝 Summary of Changes</h2>
+        <ul>
+            <li>✅ Added new paper: <strong>G-STAR</strong> (arXiv:2603.10468, Submitted to Interspeech 2026)</li>
+            <li>✅ Created Chinese versions of all pages (Home, About, Resume, Publications)</li>
+            <li>✅ Added language switcher (English | 中文) on all pages</li>
+            <li>✅ Added "中文" link in navigation bar</li>
+            <li>✅ G-STAR paper appears in both homepage and publications page under "Multi-Speaker Speech Understanding" category</li>
+        </ul>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.preview-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Remove active from all tabs
+            document.querySelectorAll('.preview-tab').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+            // Activate selected tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

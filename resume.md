@@ -4,6 +4,10 @@ title: Resume
 permalink: /resume/
 ---
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <strong>English</strong> | <a href="/resume/zh/">中文</a>
+</div>
+
 You can view my resume online or download the PDF below.
 
 **Quick links**

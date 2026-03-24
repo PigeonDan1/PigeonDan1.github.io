@@ -3,6 +3,10 @@ layout: page
 title: About me
 ---
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <strong>English</strong> | <a href="/about/zh/">中文</a>
+</div>
+
 ## Short Bio
 
 I am **Jing Peng (彭景)**, a first year Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe)**).

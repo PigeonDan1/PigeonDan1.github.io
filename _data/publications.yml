@@ -1,5 +1,13 @@
 # _data/publications.yml
 
+- category: "Multi-Speaker Speech Understanding"
+  title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
+  authors: "Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
+  venue: "submitted to Interspeech 2026"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2603.10468"
+
 - category: "Speech LLM Survey & Benchmark"
   title: "A Survey on Speech Large Language Models for Understanding"
   authors: "Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu"

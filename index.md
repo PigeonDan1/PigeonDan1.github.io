@@ -2,7 +2,12 @@
 layout: page
 title: ""
 permalink: /
+lang: en
 ---
+
+<div style="text-align: right; margin-bottom: 20px;">
+  <strong>English</strong> | <a href="/zh/">中文</a>
+</div>
 
 I am now a Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe)**).
 
@@ -38,6 +43,11 @@ My recent work spans both academic labs and industry research:
 ## Publications (Selected)
 You can see the full list on **[Publications](/publications/)**.
 > * indicates equal contribution.
+
+- **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**  
+  Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.  
+  **arXiv:2603.10468**. *Submitted to Interspeech 2026.*  
+  https://arxiv.org/abs/2603.10468
 
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  
