@@ -11,7 +11,7 @@ lang: zh
 
 ## 个人简介
 
-我是 **彭景 (Jing Peng)**，**上海交通大学 (SJTU)** **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)** 的一年级致远荣誉博士生，导师是 **[俞凯教授](https://x-lance.sjtu.edu.cn/~kaiyu/)**（联合导师是 **[Shinji Watanabe 教授](https://sites.google.com/view/shinjiwatanabe)**）。
+我是 **彭景 (Jing Peng)**，**上海交通大学 (SJTU)** **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)** 的一年级致远荣誉博士生，导师是 **[俞凯教授](https://x-lance.sjtu.edu.cn/~kaiyu/)**（联合导师是 **[Shinji Watanabe 教授](https://sites.google.com/view/shinjiwatanabe)**），并与 **[王帅教授](https://shuaiwang-nju.github.io/)** 紧密合作。
 
 我的研究专注于**语音大语言模型 (Speech LLMs)**，重点是构建对**领域迁移**和**多说话人场景**具有鲁棒性的**良好对齐的语音理解系统**。
 
