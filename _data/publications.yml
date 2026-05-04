@@ -25,13 +25,20 @@
     arxiv: "https://arxiv.org/abs/2510.23558"
 
 - category: "Speech LLM Alignment"
+  title: "TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs"
+  authors: "Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
+  venue: "submitted to Interspeech 2026"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2604.08384"
+
+- category: "Speech LLM Alignment"
   title: "TASU: Text-Only Alignment for Speech Understanding"
   authors: "Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu"
   venue: "ICASSP 2026 (accepted)"
   year: 2026
   links:
-    # 如果你后续有 arXiv / project page 再补
-    # arxiv: ""
+    arxiv: "https://arxiv.org/abs/2511.03310"
 
 - category: "Speech LLM Domain Adaptation"
   title: "Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning"

@@ -75,6 +75,11 @@ lang: zh
 
 > * 表示同等贡献。
 
+- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
+  Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
+  **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
+  https://arxiv.org/abs/2604.08384
+
 - **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**  
   Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.  
   **arXiv:2603.10468**. *Submitted to Interspeech 2026.*  
@@ -87,7 +92,8 @@ lang: zh
 
 - **TASU: Text-Only Alignment for Speech Understanding**  
   Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.  
-  *Accepted by ICASSP 2026.*
+  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*  
+  https://arxiv.org/abs/2511.03310
 
 - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**  
   Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.  

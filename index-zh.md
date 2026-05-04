@@ -9,6 +9,15 @@ lang: zh
   <a href="/">English</a> | <strong>中文</strong>
 </div>
 
+## 最新动态
+
+- **[2025年10月]** 三篇论文被 **ICASSP 2026** 接收！
+  - **TASU: Text-Only Alignment for Speech Understanding** — *Oral 报告*
+  - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster 展示*
+  - **ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models** — *Oral 报告*
+
+---
+
 我是 **上海交通大学 (SJTU)** **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)** 的致远荣誉博士生，导师是 **[俞凯教授](https://x-lance.sjtu.edu.cn/~kaiyu/)**（联合导师是 **[Shinji Watanabe 教授](https://sites.google.com/view/shinjiwatanabe)**），并与 **[王帅教授](https://shuaiwang-nju.github.io/)** 紧密合作。
 
 我的研究专注于**语音大语言模型 (Speech LLMs)**，重点是构建对**领域迁移**和**多说话人场景**具有鲁棒性的**良好对齐的语音理解系统**。
@@ -44,6 +53,11 @@ lang: zh
 
 完整列表请见 **[发表论文](/publications/)**。
 > * 表示同等贡献。
+
+- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
+  Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
+  **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
+  https://arxiv.org/abs/2604.08384
 
 - **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**  
   Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.  

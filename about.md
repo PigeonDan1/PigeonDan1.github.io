@@ -73,6 +73,11 @@ My recent work spans both academic labs and industry research:
 
 > * indicates equal contribution.
 
+- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
+  Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
+  **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
+  https://arxiv.org/abs/2604.08384
+
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  
   **arXiv:2410.18908**. *Accepted by IEEE JSTSP.*  
@@ -80,7 +85,8 @@ My recent work spans both academic labs and industry research:
 
 - **TASU: Text-Only Alignment for Speech Understanding**  
   Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.  
-  *Accepted by ICASSP 2026.*
+  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*  
+  https://arxiv.org/abs/2511.03310
 
 - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**  
   Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.  
