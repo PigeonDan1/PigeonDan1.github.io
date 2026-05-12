@@ -15,6 +15,11 @@ lang: en
   - **TASU: Text-Only Alignment for Speech Understanding** — *Oral Presentation*
   - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster Presentation*
   - **ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models** — *Oral Presentation*
+- **[Aug 2025]** Two papers accepted to **ASRU 2025**!
+  - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
+  - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
+- **[Jun 2025]** Survey paper published in **IEEE JSTSP**!
+  - **A Survey on Speech Large Language Models for Understanding**
 
 ---
 
@@ -92,4 +97,5 @@ I am so happy to chat and collaborate on the topics above and you can contact me
 - **Email:** [jing.peng@sjtu.edu.cn](mailto:jing.peng@sjtu.edu.cn)
 - **GitHub:** [https://github.com/PigeonDan1](https://github.com/PigeonDan1)
 - **Google Scholar:** [https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en](https://scholar.google.com/citations?user=Uo0mj0AAAAAJ&hl=en)
+- **Semantic Scholar:** [https://www.semanticscholar.org/author/Jing-Peng/2327961941](https://www.semanticscholar.org/author/Jing-Peng/2327961941)
 - **LinkedIn:** [https://www.linkedin.com/in/jing-peng-7ab8682a4/](https://www.linkedin.com/in/jing-peng-7ab8682a4/)
