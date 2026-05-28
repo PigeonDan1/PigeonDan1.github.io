@@ -1,6 +1,6 @@
 # _data/publications.yml
 
-- category: "语音智能体"
+- category: "Audio Agents"
   title: "Audio-Mind: An Auditable Agentic Framework for Audio Understanding"
   authors: "Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
@@ -8,7 +8,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2605.28480"
 
-- category: "多说话人识别"
+- category: "Speaker-Attributed ASR"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
   authors: "Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
@@ -16,7 +16,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2603.10468"
 
-- category: "语音识别"
+- category: "Automatic Speech Recognition"
   title: "TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR"
   authors: "Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu"
   venue: "submitted to EMNLP 2026"
@@ -24,7 +24,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2602.11546"
 
-- category: "语音识别"
+- category: "Automatic Speech Recognition"
   title: "Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction"
   authors: "Y. Fang, B. Cheng, Jing Peng, X. Li, Y. Xi, C. Zhang, G. Zhong"
   venue: "ASRU 2025 (accepted)"
@@ -32,7 +32,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2505.24347"
 
-- category: "语音识别"
+- category: "Automatic Speech Recognition"
   title: "Joint Decoding Method for Controllable Contextual Speech Recognition Based on Speech LLM"
   authors: "Y. Fang*, J. Peng*, Y. Xi, X. Li, H. Li, C. Zhang, G. Zhong, K. Yu"
   venue: "arXiv preprint"
@@ -40,7 +40,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2508.08585"
 
-- category: "多语种识别"
+- category: "Multilingual ASR"
   title: "MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR"
   authors: "Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu"
   venue: "ICASSP 2026 (accepted)"
@@ -48,7 +48,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2508.18998"
 
-- category: "语音大模型综述以及评估"
+- category: "Speech LLM Survey & Benchmark"
   title: "A Survey on Speech Large Language Models for Understanding"
   authors: "Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu"
   venue: "IEEE JSTSP (accepted)"
@@ -56,7 +56,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2410.18908"
 
-- category: "语音大模型综述以及评估"
+- category: "Speech LLM Survey & Benchmark"
   title: "ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models"
   authors: "B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu"
   venue: "ICASSP 2026 (accepted)"
@@ -64,7 +64,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2510.23558"
 
-- category: "语音大模型对齐(tasu系列）"
+- category: "Speech-Text Alignment (TASU Series)"
   title: "TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs"
   authors: "Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
   venue: "submitted to Interspeech 2026"
@@ -72,7 +72,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2604.08384"
 
-- category: "语音大模型对齐(tasu系列）"
+- category: "Speech-Text Alignment (TASU Series)"
   title: "TASU: Text-Only Alignment for Speech Understanding"
   authors: "Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu"
   venue: "ICASSP 2026 (accepted)"
@@ -80,7 +80,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2511.03310"
 
-- category: "语音大模型对齐(tasu系列）"
+- category: "Speech-Text Alignment (TASU Series)"
   title: "Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning"
   authors: "Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu"
   venue: "ASRU 2025 (accepted)"
