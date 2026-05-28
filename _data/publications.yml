@@ -1,12 +1,28 @@
 # _data/publications.yml
 
 - category: "Multi-Speaker Speech Understanding"
+  title: "Audio-Mind: An Auditable Agentic Framework for Audio Understanding"
+  authors: "Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
+  venue: "submitted to EMNLP 2026"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2605.28480"
+
+- category: "Multi-Speaker Speech Understanding"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
   authors: "Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
-  venue: "submitted to Interspeech 2026"
+  venue: "submitted to EMNLP 2026"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2603.10468"
+
+- category: "Speech LLM Architecture"
+  title: "TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR"
+  authors: "Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu"
+  venue: "submitted to EMNLP 2026"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2602.11546"
 
 - category: "Speech LLM Survey & Benchmark"
   title: "A Survey on Speech Large Language Models for Understanding"

@@ -63,10 +63,20 @@ You can see the full list on **[Publications](/publications/)**.
   **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
   https://arxiv.org/abs/2604.08384
 
+- **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
+  Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
+  **arXiv:2605.28480**. *Submitted to EMNLP 2026.*  
+  https://arxiv.org/abs/2605.28480
+
 - **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**  
   Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.  
-  **arXiv:2603.10468**. *Submitted to Interspeech 2026.*  
+  **arXiv:2603.10468**. *Submitted to EMNLP 2026.*  
   https://arxiv.org/abs/2603.10468
+
+- **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**  
+  Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu.  
+  **arXiv:2602.11546**. *Submitted to EMNLP 2026.*  
+  https://arxiv.org/abs/2602.11546
 
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  

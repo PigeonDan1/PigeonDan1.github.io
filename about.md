@@ -74,6 +74,16 @@ My recent work spans both academic labs and industry research:
 
 > * indicates equal contribution.
 
+- **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
+  Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
+  **arXiv:2605.28480**. *Submitted to EMNLP 2026.*  
+  https://arxiv.org/abs/2605.28480
+
+- **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**  
+  Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu.  
+  **arXiv:2602.11546**. *Submitted to EMNLP 2026.*  
+  https://arxiv.org/abs/2602.11546
+
 - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
   Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
   **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
