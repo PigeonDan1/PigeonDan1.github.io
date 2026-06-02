@@ -49,6 +49,14 @@
     arxiv: "https://arxiv.org/abs/2508.18998"
 
 - category: "Speech LLM Survey & Benchmark"
+  title: "A Unified and Reproducible Experimentation Framework for Speech Understanding"
+  authors: "Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu"
+  venue: "submitted to Interspeech 2026"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2605.30899"
+
+- category: "Speech LLM Survey & Benchmark"
   title: "A Survey on Speech Large Language Models for Understanding"
   authors: "Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu"
   venue: "IEEE JSTSP (accepted)"

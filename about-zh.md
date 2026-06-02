@@ -96,6 +96,11 @@ lang: zh
   **arXiv:2603.10468**. *Submitted to EMNLP 2026.*  
   https://arxiv.org/abs/2603.10468
 
+- **A Unified and Reproducible Experimentation Framework for Speech Understanding**  
+  Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
+  **arXiv:2605.30899**. *Submitted to Interspeech 2026.*  
+  https://arxiv.org/abs/2605.30899
+
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  
   **arXiv:2410.18908**. *Accepted by IEEE JSTSP.*  
