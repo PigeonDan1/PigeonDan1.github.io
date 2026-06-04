@@ -25,8 +25,10 @@
 .masthead-title {
   padding: 0;
   margin: 0;
+  font-family: var(--heading-font);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 
   a:hover,
   a:focus {

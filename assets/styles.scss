@@ -165,3 +165,104 @@
     display: none;
   }
 }
+
+/* Fancy typography enhancements */
+
+// Elegant link hover
+a {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+// Beautiful selection highlight
+::selection {
+  background: rgba(34, 139, 230, 0.2);
+  color: inherit;
+}
+
+// Styled horizontal rule
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 2rem 0;
+}
+
+// Fancy blockquote
+blockquote {
+  border-left: 3px solid var(--blue);
+  background: linear-gradient(90deg, rgba(34,139,230,0.04) 0%, transparent 100%);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+}
+
+// Code blocks
+pre, code {
+  font-family: var(--code-font);
+}
+
+code {
+  font-size: 0.88em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: rgba(251, 241, 199, 0.6);
+}
+
+pre {
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+// Navigation fancy underline
+.navigation-item a {
+  position: relative;
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+
+.navigation-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--link-hover-color);
+  transition: width 0.3s ease;
+}
+
+.navigation-item a:hover::after,
+.navigation-item a:focus::after {
+  width: 100%;
+}
+
+// Masthead tagline subtle style
+.masthead-tagline {
+  font-family: var(--body-font);
+  letter-spacing: 0.03em;
+}
+
+// Page title extra style
+.page-title {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+// Publication item fancy hover
+.pub-item {
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.pub-item:hover {
+  background: rgba(0,0,0,0.02);
+  transform: translateX(4px);
+}
+
+// Smooth scroll for the whole page
+html {
+  scroll-behavior: smooth;
+}
