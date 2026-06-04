@@ -51,10 +51,18 @@
 - category: "Speech LLM Survey & Benchmark"
   title: "A Unified and Reproducible Experimentation Framework for Speech Understanding"
   authors: "Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu"
-  venue: "submitted to Interspeech 2026"
+  venue: "Interspeech 2026 (accepted)"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2605.30899"
+
+- category: "Automatic Speech Recognition"
+  title: "RAS: a Reliability Oriented Metric for Automatic Speech Recognition"
+  authors: "W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu"
+  venue: "Interspeech 2026 (accepted)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2604.24278"
 
 - category: "Speech LLM Survey & Benchmark"
   title: "A Survey on Speech Large Language Models for Understanding"
@@ -75,7 +83,7 @@
 - category: "Speech-Text Alignment (TASU Series)"
   title: "TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs"
   authors: "Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
-  venue: "submitted to Interspeech 2026"
+  venue: "Interspeech 2026 (accepted)"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2604.08384"

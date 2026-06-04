@@ -86,13 +86,18 @@ My recent work spans both academic labs and industry research:
 
 - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
   Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
-  **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
+  **arXiv:2604.08384**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2604.08384
 
 - **A Unified and Reproducible Experimentation Framework for Speech Understanding**  
   Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
-  **arXiv:2605.30899**. *Submitted to Interspeech 2026.*  
+  **arXiv:2605.30899**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2605.30899
+
+- **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**  
+  W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu.  
+  **arXiv:2604.24278**. *Accepted by Interspeech 2026.*  
+  https://arxiv.org/abs/2604.24278
 
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  

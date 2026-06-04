@@ -9,16 +9,21 @@ lang: en
   <strong>English</strong> | <a href="/zh/">中文</a>
 </div>
 
-## News
+## News 🎉
 
-- **[Oct 2025]** Three papers accepted to **ICASSP 2026**!
+- 🥳 **[May 2026]** Four papers accepted to **Interspeech 2026**!
+  - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**
+  - **A Unified and Reproducible Experimentation Framework for Speech Understanding**
+  - **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
+  - *One more paper (title to be announced)*
+- 🎊 **[Oct 2025]** Three papers accepted to **ICASSP 2026**!
   - **TASU: Text-Only Alignment for Speech Understanding** — *Oral Presentation*
   - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster Presentation*
   - **ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models** — *Oral Presentation*
-- **[Aug 2025]** Two papers accepted to **ASRU 2025**!
+- 🔥 **[Aug 2025]** Two papers accepted to **ASRU 2025**!
   - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
   - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
-- **[Jun 2025]** Survey paper published in **IEEE JSTSP**!
+- 📖 **[Jun 2025]** Survey paper published in **IEEE JSTSP**!
   - **A Survey on Speech Large Language Models for Understanding**
 
 ---
@@ -60,7 +65,7 @@ You can see the full list on **[Publications](/publications/)**.
 
 - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
   Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
-  **arXiv:2604.08384**. *Submitted to Interspeech 2026.*  
+  **arXiv:2604.08384**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2604.08384
 
 - **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
@@ -80,8 +85,13 @@ You can see the full list on **[Publications](/publications/)**.
 
 - **A Unified and Reproducible Experimentation Framework for Speech Understanding**  
   Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
-  **arXiv:2605.30899**. *Submitted to Interspeech 2026.*  
+  **arXiv:2605.30899**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2605.30899
+
+- **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**  
+  W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu.  
+  **arXiv:2604.24278**. *Accepted by Interspeech 2026.*  
+  https://arxiv.org/abs/2604.24278
 
 - **A Survey on Speech Large Language Models for Understanding**  
   Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  
