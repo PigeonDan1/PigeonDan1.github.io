@@ -23,7 +23,7 @@ lang: zh
 - 🔥 **[2025年8月]** 两篇论文被 **ASRU 2025** 接收！
   - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
   - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
-- 📖 **[2025年6月]** Survey 论文发表于 **IEEE JSTSP**！
+- 📖 **[2025年11月]** Survey 论文发表于 **IEEE JSTSP**！
   - **A Survey on Speech Large Language Models for Understanding**
 
 ---

@@ -23,7 +23,7 @@ lang: en
 - 🔥 **[Aug 2025]** Two papers accepted to **ASRU 2025**!
   - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
   - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
-- 📖 **[Jun 2025]** Survey paper published in **IEEE JSTSP**!
+- 📖 **[Nov 2025]** Survey paper published in **IEEE JSTSP**!
   - **A Survey on Speech Large Language Models for Understanding**
 
 ---
