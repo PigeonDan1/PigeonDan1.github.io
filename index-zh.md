@@ -11,20 +11,52 @@ lang: zh
 
 ## 最新动态 🎉
 
-- 🥳 **[2026年5月]** 四篇论文被 **Interspeech 2026** 接收！
-  - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**
-  - **A Unified and Reproducible Experimentation Framework for Speech Understanding**
-  - **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
-  - *另有一篇论文（标题待定）*
-- 📖 **[2025年11月]** Survey 论文发表于 **IEEE JSTSP**！
-  - **A Survey on Speech Large Language Models for Understanding**
-- 🎊 **[2025年10月]** 三篇论文被 **ICASSP 2026** 接收！
-  - **TASU: Text-Only Alignment for Speech Understanding** — *Oral 报告*
-  - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster 展示*
-  - **ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models** — *Oral 报告*
-- 🔥 **[2025年8月]** 两篇论文被 **ASRU 2025** 接收！
-  - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
-  - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
+<div style="margin-bottom:1rem;padding:0.7rem 1rem;background:linear-gradient(90deg,#fff3bf 0%,#e7f5ff 100%);border-radius:10px;border-left:4px solid #fab005;font-size:0.88rem;">
+  🌟 <strong>故事开始于 2024/5/20</strong> — 我给<a href="https://x-lance.sjtu.edu.cn/~kaiyu/" target="_blank">俞凯教授</a>写的第一封自荐信
+</div>
+
+<div class="news-section">
+  <div class="news-carousel-wrapper">
+    <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarouselZh').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
+    <div class="news-carousel" id="newsCarouselZh">
+      <div class="news-card">
+        <div class="news-card-date">🥳 2026年5月</div>
+        <div class="news-card-title">四篇论文被 <strong>Interspeech 2026</strong> 接收！</div>
+        <ul class="news-card-list">
+          <li>TASU2</li>
+          <li>SURE</li>
+          <li>RAS</li>
+          <li><em>另有一篇（待定）</em></li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">📖 2025年11月</div>
+        <div class="news-card-title">Survey 发表于 <strong>IEEE JSTSP</strong></div>
+        <ul class="news-card-list">
+          <li>A Survey on Speech Large Language Models for Understanding</li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">🎊 2025年10月</div>
+        <div class="news-card-title">三篇论文被 <strong>ICASSP 2026</strong> 接收！</div>
+        <ul class="news-card-list">
+          <li>TASU — <em>Oral</em></li>
+          <li>MOSA — <em>Poster</em></li>
+          <li>ISA-Bench — <em>Oral</em></li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">🔥 2025年8月</div>
+        <div class="news-card-title">两篇论文被 <strong>ASRU 2025</strong> 接收！</div>
+        <ul class="news-card-list">
+          <li>Low-Resource Domain Adaptation</li>
+          <li>Fewer Hallucinations, More Verification</li>
+        </ul>
+      </div>
+    </div>
+    <button class="news-nav news-nav-next" onclick="document.getElementById('newsCarouselZh').scrollBy({left:300,behavior:'smooth'})" aria-label="Next">&#10095;</button>
+  </div>
+</div>
 
 ---
 

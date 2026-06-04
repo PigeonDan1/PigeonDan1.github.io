@@ -11,20 +11,52 @@ lang: en
 
 ## News 🎉
 
-- 🥳 **[May 2026]** Four papers accepted to **Interspeech 2026**!
-  - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**
-  - **A Unified and Reproducible Experimentation Framework for Speech Understanding**
-  - **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
-  - *One more paper (title to be announced)*
-- 📖 **[Nov 2025]** Survey paper published in **IEEE JSTSP**!
-  - **A Survey on Speech Large Language Models for Understanding**
-- 🎊 **[Oct 2025]** Three papers accepted to **ICASSP 2026**!
-  - **TASU: Text-Only Alignment for Speech Understanding** — *Oral Presentation*
-  - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster Presentation*
-  - **ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models** — *Oral Presentation*
-- 🔥 **[Aug 2025]** Two papers accepted to **ASRU 2025**!
-  - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
-  - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
+<div style="margin-bottom:1rem;padding:0.7rem 1rem;background:linear-gradient(90deg,#fff3bf 0%,#e7f5ff 100%);border-radius:10px;border-left:4px solid #fab005;font-size:0.88rem;">
+  🌟 <strong>Story begins at 2024/5/20</strong> — The first self-recommendation letter I wrote to <a href="https://x-lance.sjtu.edu.cn/~kaiyu/" target="_blank">Prof. Kai Yu</a>
+</div>
+
+<div class="news-section">
+  <div class="news-carousel-wrapper">
+    <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
+    <div class="news-carousel" id="newsCarousel">
+      <div class="news-card">
+        <div class="news-card-date">🥳 May 2026</div>
+        <div class="news-card-title">Four papers accepted to <strong>Interspeech 2026</strong>!</div>
+        <ul class="news-card-list">
+          <li>TASU2</li>
+          <li>SURE</li>
+          <li>RAS</li>
+          <li><em>One more (TBA)</em></li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">📖 Nov 2025</div>
+        <div class="news-card-title">Survey published in <strong>IEEE JSTSP</strong></div>
+        <ul class="news-card-list">
+          <li>A Survey on Speech Large Language Models for Understanding</li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">🎊 Oct 2025</div>
+        <div class="news-card-title">Three papers accepted to <strong>ICASSP 2026</strong>!</div>
+        <ul class="news-card-list">
+          <li>TASU — <em>Oral</em></li>
+          <li>MOSA — <em>Poster</em></li>
+          <li>ISA-Bench — <em>Oral</em></li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">🔥 Aug 2025</div>
+        <div class="news-card-title">Two papers accepted to <strong>ASRU 2025</strong>!</div>
+        <ul class="news-card-list">
+          <li>Low-Resource Domain Adaptation</li>
+          <li>Fewer Hallucinations, More Verification</li>
+        </ul>
+      </div>
+    </div>
+    <button class="news-nav news-nav-next" onclick="document.getElementById('newsCarousel').scrollBy({left:300,behavior:'smooth'})" aria-label="Next">&#10095;</button>
+  </div>
+</div>
 
 ---
 
