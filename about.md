@@ -75,22 +75,22 @@ My recent work spans both academic labs and industry research:
 > * indicates equal contribution.
 
 - **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
-  Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
+  Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
   **arXiv:2605.28480**. *Submitted to EMNLP 2026.*  
   https://arxiv.org/abs/2605.28480
 
 - **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**  
-  Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu.  
+  Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu.  
   **arXiv:2602.11546**. *Submitted to EMNLP 2026.*  
   https://arxiv.org/abs/2602.11546
 
 - **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
-  Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
+  Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
   **arXiv:2604.08384**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2604.08384
 
 - **A Unified and Reproducible Experimentation Framework for Speech Understanding**  
-  Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
+  Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
   **arXiv:2605.30899**. *Accepted by Interspeech 2026.*  
   https://arxiv.org/abs/2605.30899
 

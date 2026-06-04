@@ -3,7 +3,7 @@
 # 2026
 - category: "Speech-Text Alignment (TASU Series)"
   title: "TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs"
-  authors: "Jing Peng, C. Wang, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
+  authors: "Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
   venue: "Interspeech 2026 (accepted)"
   year: 2026
   links:
@@ -11,7 +11,7 @@
 
 - category: "Speech LLM Survey & Benchmark"
   title: "A Unified and Reproducible Experimentation Framework for Speech Understanding"
-  authors: "Jing Peng, J. Du, C. Wang, H. Li, Y. Yang, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu"
+  authors: "Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu"
   venue: "Interspeech 2026 (accepted)"
   year: 2026
   links:
@@ -51,7 +51,7 @@
 
 - category: "Audio Agents"
   title: "Audio-Mind: An Auditable Agentic Framework for Audio Understanding"
-  authors: "Y. Wang, Jing Peng, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
+  authors: "Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
   year: 2026
   links:
@@ -59,7 +59,7 @@
 
 - category: "Speaker-Attributed ASR"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
-  authors: "Jing Peng, Z. Chen, H. Li, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
+  authors: "Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
   year: 2026
   links:
@@ -67,7 +67,7 @@
 
 - category: "Automatic Speech Recognition"
   title: "TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR"
-  authors: "Q. She, Jing Peng, Y. Fang, Y. Xi, K. Yu"
+  authors: "Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu"
   venue: "submitted to EMNLP 2026"
   year: 2026
   links:
