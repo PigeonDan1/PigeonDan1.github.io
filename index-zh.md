@@ -58,13 +58,13 @@ lang: zh
   </div>
 </div>
 
----
+<div class="section-spacer"></div>
 
 我是 **上海交通大学 (SJTU)** **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)** 的致远荣誉博士生，导师是 **[俞凯教授](https://x-lance.sjtu.edu.cn/~kaiyu/)**（联合导师是 **[Shinji Watanabe 教授](https://sites.google.com/view/shinjiwatanabe)**），并与 **[王帅教授](https://shuaiwang-nju.github.io/)** 紧密合作。
 
 我的研究专注于**语音大语言模型 (Speech LLMs)**，重点是构建对**领域迁移**和**多说话人场景**具有鲁棒性的**良好对齐的语音理解系统**。
 
----
+<div class="section-spacer"></div>
 
 ## 研究兴趣
 
@@ -73,80 +73,105 @@ lang: zh
 - 语音和文本之间的**多模态对齐**，用于指令跟随语音系统
 - 低资源/跨领域场景的**高效自适应**
 - **说话人归属 ASR (SA-ASR)** 和多说话人理解
-  
----
+
+<div class="section-spacer"></div>
 
 ## 研究经历
 
-我的近期工作跨越学术实验室和工业研究：
+<div class="research-grid">
+  <div class="research-card">
+    <div class="research-card-title">🎙️ 用于语音理解的语音大模型</div>
+    <p class="research-card-desc"><strong>AISpeech</strong>，苏州，江苏<br>我从事 ASR 和多模态对齐方法的研究，将语音表示与语言模型推理和指令跟随连接起来。</p>
+  </div>
+  <div class="research-card">
+    <div class="research-card-title">🗣️ 基于语音大模型的 SA-ASR</div>
+    <p class="research-card-desc"><strong>深圳大数据研究院</strong>，远程<br>我探索基于语音大模型的<strong>说话人归属转录</strong>框架，旨在改善多说话人场景中的<strong>说话人一致性</strong>和<strong>可控性</strong>。</p>
+  </div>
+  <div class="research-card">
+    <div class="research-card-title">👥 Omni/SLM 上的说话人区分</div>
+    <p class="research-card-desc"><strong>小红书 Hi Lab</strong>，上海<br>我研究多说话人理解中的<strong>显式说话人区分</strong>和<strong>隐式说话人选择</strong>策略，关注真实世界条件下的鲁棒说话人身份建模。</p>
+  </div>
+</div>
 
-- **用于语音理解的语音大模型 (AISpeech, 苏州, 江苏)**  
-  我从事 ASR 和多模态对齐方法的研究，将语音表示与语言模型推理和指令跟随连接起来。
-
-- **基于语音大模型的 SA-ASR (深圳大数据研究院, 远程)**  
-  我探索基于语音大模型的**说话人归属转录**框架，旨在改善多说话人场景中的**说话人一致性**和**可控性**。
-
-- **Omni/SLM 上的说话人区分 (小红书, 上海)**  
-  我研究多说话人理解中的**显式说话人区分**和**隐式说话人选择**策略，关注真实世界条件下的鲁棒说话人身份建模。
-
----
+<div class="section-spacer"></div>
 
 ## 发表论文 (精选)
 
 完整列表请见 **[发表论文](/publications/)**。
 > * 表示同等贡献。
 
-- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**  
-  Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.  
-  **arXiv:2604.08384**. *Accepted by Interspeech 2026.*  
+- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**
+  Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.
+  **arXiv:2604.08384**. *Accepted by Interspeech 2026.*
   https://arxiv.org/abs/2604.08384
 
-- **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
-  Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
-  **arXiv:2605.28480**. *Submitted to EMNLP 2026.*  
+- **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**
+  Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.
+  **arXiv:2605.28480**. *Submitted to EMNLP 2026.*
   https://arxiv.org/abs/2605.28480
 
-- **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**  
-  Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.  
-  **arXiv:2603.10468**. *Submitted to EMNLP 2026.*  
+- **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**
+  Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.
+  **arXiv:2603.10468**. *Submitted to EMNLP 2026.*
   https://arxiv.org/abs/2603.10468
 
-- **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**  
-  Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu.  
-  **arXiv:2602.11546**. *Submitted to EMNLP 2026.*  
+<div class="pub-section">
+  <button class="pub-toggle" onclick="
+    const el = document.getElementById('pubMoreZh');
+    const btn = this;
+    if (el.style.maxHeight && el.style.maxHeight !== '0px') {
+      el.style.maxHeight = '0px';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<span class=\'pub-toggle-icon\'>▼</span> 显示其余 7 篇论文';
+    } else {
+      el.style.maxHeight = el.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.innerHTML = '<span class=\'pub-toggle-icon\'>▲</span> 收起';
+    }
+  " aria-expanded="false">
+    <span class="pub-toggle-icon">▼</span> 显示其余 7 篇论文
+  </button>
+  <div id="pubMoreZh" class="pub-collapsible" style="max-height:0px;overflow:hidden;">
+
+- **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**
+  Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu.
+  **arXiv:2602.11546**. *Submitted to EMNLP 2026.*
   https://arxiv.org/abs/2602.11546
 
-- **A Unified and Reproducible Experimentation Framework for Speech Understanding**  
-  Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.  
-  **arXiv:2605.30899**. *Accepted by Interspeech 2026.*  
+- **A Unified and Reproducible Experimentation Framework for Speech Understanding**
+  Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.
+  **arXiv:2605.30899**. *Accepted by Interspeech 2026.*
   https://arxiv.org/abs/2605.30899
 
-- **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**  
-  W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu.  
-  **arXiv:2604.24278**. *Accepted by Interspeech 2026.*  
+- **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
+  W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu.
+  **arXiv:2604.24278**. *Accepted by Interspeech 2026.*
   https://arxiv.org/abs/2604.24278
 
-- **A Survey on Speech Large Language Models for Understanding**  
-  Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.  
-  **arXiv:2410.18908**. *Accepted by IEEE JSTSP.*  
+- **A Survey on Speech Large Language Models for Understanding**
+  Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.
+  **arXiv:2410.18908**. *Accepted by IEEE JSTSP.*
   https://arxiv.org/abs/2410.18908
 
-- **TASU: Text-Only Alignment for Speech Understanding**  
-  Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.  
-  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*  
+- **TASU: Text-Only Alignment for Speech Understanding**
+  Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.
+  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*
   https://arxiv.org/abs/2511.03310
 
-- **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**  
-  Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.  
-  **arXiv:2506.05671**. *Accepted by ASRU 2025.*  
+- **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
+  Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.
+  **arXiv:2506.05671**. *Accepted by ASRU 2025.*
   https://arxiv.org/abs/2506.05671
 
-- **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR**  
-  Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu.  
-  **arXiv:2508.18998**. *Accepted by ICASSP 2026.*  
+- **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR**
+  Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu.
+  **arXiv:2508.18998**. *Accepted by ICASSP 2026.*
   https://arxiv.org/abs/2508.18998
 
----
+  </div>
+</div>
+
+<div class="section-spacer"></div>
 
 ## 联系方式
 

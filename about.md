@@ -13,7 +13,7 @@ I am **Jing Peng (彭景)**, a first year Zhiyuan Honor Ph.D. Student at **Shang
 
 My research focuses on **Speech Large Language Models (Speech LLMs)**, with an emphasis on building **well-aligned speech understanding systems** that are robust to **domain shift** and **multi-speaker conditions**.
 
----
+<div class="section-spacer"></div>
 
 ## Basic Information
 
@@ -26,7 +26,7 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 - **Semantic Scholar:** [https://www.semanticscholar.org/author/Jing-Peng/2327961941](https://www.semanticscholar.org/author/Jing-Peng/2327961941)
 - **LinkedIn:** [https://www.linkedin.com/in/jing-peng-7ab8682a4/](https://www.linkedin.com/in/jing-peng-7ab8682a4/)
 
----
+<div class="section-spacer"></div>
 
 ## Education
 
@@ -43,7 +43,7 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
   **Exchange Student**, Berkeley Global Access (BGA), College of Engineering  
   *Aug 2023 – Dec 2023*  
 
----
+<div class="section-spacer"></div>
 
 ## Research Interests
 
@@ -53,7 +53,7 @@ Generally, I am focusing on **Speech Large Language Models (Speech LLMs)** for s
 - **Multimodal alignment** between speech and text for instruction-following speech systems  
 - **Efficient adaptation** (text-only fine-tuning, lightweight adapters) for low-resource / cross-domain settings  
 
----
+<div class="section-spacer"></div>
 
 ## Research Experience
 
@@ -68,7 +68,7 @@ My recent work spans both academic labs and industry research:
 - **Speaker Discrimination on Omni/SLM (Hi Lab, Xiaohongshu, Shanghai)**  
   I study **explicit speaker discrimination** and **implicit speaker selection** strategies for multi-speaker understanding, with an eye toward robust speaker identity modeling under real-world conditions.
 
----
+<div class="section-spacer"></div>
 
 ## Publications (Selected)
 
@@ -129,13 +129,13 @@ My recent work spans both academic labs and industry research:
   **arXiv:2510.23558**. *Accepted by ICASSP 2026.*  
   https://arxiv.org/abs/2510.23558
 
----
+<div class="section-spacer"></div>
 
 ## Resume
 
 Resume page: [View or download my resume](/resume/)
 
----
+<div class="section-spacer"></div>
 
 ## Personal Information
 

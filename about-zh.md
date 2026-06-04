@@ -15,7 +15,7 @@ lang: zh
 
 我的研究专注于**语音大语言模型 (Speech LLMs)**，重点是构建对**领域迁移**和**多说话人场景**具有鲁棒性的**良好对齐的语音理解系统**。
 
----
+<div class="section-spacer"></div>
 
 ## 基本信息
 
@@ -28,7 +28,7 @@ lang: zh
 - **Semantic Scholar:** [https://www.semanticscholar.org/author/Jing-Peng/2327961941](https://www.semanticscholar.org/author/Jing-Peng/2327961941)
 - **LinkedIn:** [https://www.linkedin.com/in/jing-peng-7ab8682a4/](https://www.linkedin.com/in/jing-peng-7ab8682a4/)
 
----
+<div class="section-spacer"></div>
 
 ## 教育背景
 
@@ -45,7 +45,7 @@ lang: zh
   **交换生**，Berkeley Global Access (BGA)，工程学院  
   *2023年8月 – 2023年12月*  
 
----
+<div class="section-spacer"></div>
 
 ## 研究兴趣
 
@@ -55,7 +55,7 @@ lang: zh
 - 语音和文本之间的**多模态对齐**，用于指令跟随语音系统
 - 低资源/跨领域场景的**高效自适应**（仅文本微调、轻量级适配器）
 
----
+<div class="section-spacer"></div>
 
 ## 研究经历
 
@@ -70,7 +70,7 @@ lang: zh
 - **Omni/SLM 上的说话人区分 (小红书, 上海)**  
   我研究多说话人理解中的**显式说话人区分**和**隐式说话人选择**策略，关注真实世界条件下的鲁棒说话人身份建模。
 
----
+<div class="section-spacer"></div>
 
 ## 发表论文 (精选)
 
@@ -136,13 +136,13 @@ lang: zh
   **arXiv:2510.23558**. *Accepted by ICASSP 2026.*  
   https://arxiv.org/abs/2510.23558
 
----
+<div class="section-spacer"></div>
 
 ## 简历
 
 简历页面: [查看或下载我的简历](/resume/)
 
----
+<div class="section-spacer"></div>
 
 ## 个人信息
 

@@ -266,3 +266,96 @@ pre {
 html {
   scroll-behavior: smooth;
 }
+
+/* Publications Collapsible */
+.pub-section {
+  margin-bottom: 1.5rem;
+}
+
+.pub-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0.35rem 1rem;
+  font-family: var(--body-font);
+  font-size: 0.85rem;
+  color: var(--link-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pub-toggle:hover {
+  background: var(--link-color);
+  color: #fff;
+  border-color: var(--link-color);
+}
+
+.pub-toggle-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.pub-toggle[aria-expanded="true"] .pub-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.pub-collapsible {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.pub-collapsible.collapsed {
+  max-height: 0;
+}
+
+.pub-preview {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.pub-collapsible.collapsed + .pub-preview {
+  opacity: 1;
+}
+
+/* Section spacing without hr */
+.section-spacer {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Research cards */
+.research-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.research-card {
+  padding: 1rem 1.2rem;
+  background: var(--gray-000);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.research-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.research-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--heading-color);
+}
+
+.research-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--gray-600);
+  margin: 0;
+}
