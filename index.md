@@ -16,6 +16,8 @@ lang: en
   - **A Unified and Reproducible Experimentation Framework for Speech Understanding**
   - **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
   - *One more paper (title to be announced)*
+- 📖 **[Nov 2025]** Survey paper published in **IEEE JSTSP**!
+  - **A Survey on Speech Large Language Models for Understanding**
 - 🎊 **[Oct 2025]** Three papers accepted to **ICASSP 2026**!
   - **TASU: Text-Only Alignment for Speech Understanding** — *Oral Presentation*
   - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster Presentation*
@@ -23,8 +25,6 @@ lang: en
 - 🔥 **[Aug 2025]** Two papers accepted to **ASRU 2025**!
   - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
   - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
-- 📖 **[Nov 2025]** Survey paper published in **IEEE JSTSP**!
-  - **A Survey on Speech Large Language Models for Understanding**
 
 ---
 

@@ -16,6 +16,8 @@ lang: zh
   - **A Unified and Reproducible Experimentation Framework for Speech Understanding**
   - **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
   - *另有一篇论文（标题待定）*
+- 📖 **[2025年11月]** Survey 论文发表于 **IEEE JSTSP**！
+  - **A Survey on Speech Large Language Models for Understanding**
 - 🎊 **[2025年10月]** 三篇论文被 **ICASSP 2026** 接收！
   - **TASU: Text-Only Alignment for Speech Understanding** — *Oral 报告*
   - **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR** — *Poster 展示*
@@ -23,8 +25,6 @@ lang: zh
 - 🔥 **[2025年8月]** 两篇论文被 **ASRU 2025** 接收！
   - **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
   - **Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction**
-- 📖 **[2025年11月]** Survey 论文发表于 **IEEE JSTSP**！
-  - **A Survey on Speech Large Language Models for Understanding**
 
 ---
 
