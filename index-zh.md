@@ -97,77 +97,66 @@ lang: zh
 
 ## 发表论文 (精选)
 
-完整列表请见 **[发表论文](/publications/)**。
-> * 表示同等贡献。
+> * 表示同等贡献。<a href="/publications/">查看完整列表 →</a>
 
-- **TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs**
-  Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu.
-  **arXiv:2604.08384**. *Accepted by Interspeech 2026.*
-  https://arxiv.org/abs/2604.08384
-
-- **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**
-  Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.
-  **arXiv:2605.28480**. *Submitted to EMNLP 2026.*
-  https://arxiv.org/abs/2605.28480
-
-- **G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition**
-  Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang.
-  **arXiv:2603.10468**. *Submitted to EMNLP 2026.*
-  https://arxiv.org/abs/2603.10468
-
-<div class="pub-section">
-  <button class="pub-toggle" onclick="
-    const el = document.getElementById('pubMoreZh');
-    const btn = this;
-    if (el.style.maxHeight && el.style.maxHeight !== '0px') {
-      el.style.maxHeight = '0px';
-      btn.setAttribute('aria-expanded', 'false');
-      btn.innerHTML = '<span class=\'pub-toggle-icon\'>▼</span> 显示其余 7 篇论文';
-    } else {
-      el.style.maxHeight = el.scrollHeight + 'px';
-      btn.setAttribute('aria-expanded', 'true');
-      btn.innerHTML = '<span class=\'pub-toggle-icon\'>▲</span> 收起';
-    }
-  " aria-expanded="false">
-    <span class="pub-toggle-icon">▼</span> 显示其余 7 篇论文
-  </button>
-  <div id="pubMoreZh" class="pub-collapsible" style="max-height:0px;overflow:hidden;">
-
-- **TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR**
-  Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu.
-  **arXiv:2602.11546**. *Submitted to EMNLP 2026.*
-  https://arxiv.org/abs/2602.11546
-
-- **A Unified and Reproducible Experimentation Framework for Speech Understanding**
-  Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu.
-  **arXiv:2605.30899**. *Accepted by Interspeech 2026.*
-  https://arxiv.org/abs/2605.30899
-
-- **RAS: a Reliability Oriented Metric for Automatic Speech Recognition**
-  W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu.
-  **arXiv:2604.24278**. *Accepted by Interspeech 2026.*
-  https://arxiv.org/abs/2604.24278
-
-- **A Survey on Speech Large Language Models for Understanding**
-  Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu.
-  **arXiv:2410.18908**. *Accepted by IEEE JSTSP.*
-  https://arxiv.org/abs/2410.18908
-
-- **TASU: Text-Only Alignment for Speech Understanding**
-  Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu.
-  **arXiv:2511.03310**. *Accepted by ICASSP 2026.*
-  https://arxiv.org/abs/2511.03310
-
-- **Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning**
-  Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu.
-  **arXiv:2506.05671**. *Accepted by ASRU 2025.*
-  https://arxiv.org/abs/2506.05671
-
-- **MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR**
-  Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu.
-  **arXiv:2508.18998**. *Accepted by ICASSP 2026.*
-  https://arxiv.org/abs/2508.18998
-
+<div class="pub-scroll-section">
+  <div class="pub-scroll-container">
+    <div class="pub-scroll-wrapper" id="pubScrollZh">
+      <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
+        <div class="pub-card-authors">Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2604.08384 · Accepted by Interspeech 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2605.28480" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">Audio-Mind: An Auditable Agentic Framework for Audio Understanding</div>
+        <div class="pub-card-authors">Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang</div>
+        <div class="pub-card-venue">arXiv:2605.28480 · Submitted to EMNLP 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</div>
+        <div class="pub-card-authors">Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang</div>
+        <div class="pub-card-venue">arXiv:2603.10468 · Submitted to EMNLP 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
+        <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2602.11546 · Submitted to EMNLP 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2605.30899" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">A Unified and Reproducible Experimentation Framework for Speech Understanding</div>
+        <div class="pub-card-authors">Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, et al.</div>
+        <div class="pub-card-venue">arXiv:2605.30899 · Accepted by Interspeech 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2604.24278" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">RAS: a Reliability Oriented Metric for Automatic Speech Recognition</div>
+        <div class="pub-card-authors">W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2604.24278 · Accepted by Interspeech 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2410.18908" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">A Survey on Speech Large Language Models for Understanding</div>
+        <div class="pub-card-authors">Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2410.18908 · Accepted by IEEE JSTSP</div>
+      </a>
+      <a href="https://arxiv.org/abs/2511.03310" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">TASU: Text-Only Alignment for Speech Understanding</div>
+        <div class="pub-card-authors">Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2511.03310 · Accepted by ICASSP 2026</div>
+      </a>
+      <a href="https://arxiv.org/abs/2506.05671" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning</div>
+        <div class="pub-card-authors">Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu</div>
+        <div class="pub-card-venue">arXiv:2506.05671 · Accepted by ASRU 2025</div>
+      </a>
+      <a href="https://arxiv.org/abs/2508.18998" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR</div>
+        <div class="pub-card-authors">Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu</div>
+        <div class="pub-card-venue">arXiv:2508.18998 · Accepted by ICASSP 2026</div>
+      </a>
+    </div>
+    <div class="pub-scroll-nav">
+      <button class="pub-scroll-btn" onclick="document.getElementById('pubScrollZh').scrollBy({top:-150,behavior:'smooth'})" aria-label="向上滑动">▲</button>
+      <button class="pub-scroll-btn" onclick="document.getElementById('pubScrollZh').scrollBy({top:150,behavior:'smooth'})" aria-label="向下滑动">▼</button>
+    </div>
   </div>
 </div>
 

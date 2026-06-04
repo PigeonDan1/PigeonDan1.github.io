@@ -74,7 +74,7 @@ lang: zh
 
 ## 发表论文 (精选)
 
-> * 表示同等贡献。
+> * 表示同等贡献。<a href="/publications/">查看完整列表 →</a>
 
 - **Audio-Mind: An Auditable Agentic Framework for Audio Understanding**  
   Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang.  
