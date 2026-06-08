@@ -26,7 +26,7 @@ lang: zh
           <li>TASU2</li>
           <li>SURE</li>
           <li>RAS</li>
-          <li><em>另有一篇（待定）</em></li>
+          <li>VISA (Agent Track)</li>
         </ul>
       </div>
       <div class="news-card">

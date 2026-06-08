@@ -57,6 +57,14 @@
   links:
     arxiv: "https://arxiv.org/abs/2605.28480"
 
+- category: "Audio Agents"
+  title: "VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track"
+  authors: "W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng"
+  venue: "Interspeech 2026 (accepted)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2606.07264v1"
+
 - category: "Speaker-Attributed ASR"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
   authors: "Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"

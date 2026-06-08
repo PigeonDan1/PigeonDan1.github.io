@@ -155,6 +155,11 @@ lang: zh
         <div class="pub-card-authors">Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang</div>
         <div class="pub-card-venue">arXiv:2605.28480 · Submitted to EMNLP 2026</div>
       </a>
+      <a href="https://arxiv.org/abs/2606.07264v1" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track</div>
+        <div class="pub-card-authors">W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng</div>
+        <div class="pub-card-venue">arXiv:2606.07264v1 · Accepted by Interspeech 2026</div>
+      </a>
       <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
         <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>

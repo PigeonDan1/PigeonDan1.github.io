@@ -26,7 +26,7 @@ lang: en
           <li>TASU2</li>
           <li>SURE</li>
           <li>RAS</li>
-          <li><em>One more (TBA)</em></li>
+          <li>VISA (Agent Track)</li>
         </ul>
       </div>
       <div class="news-card">
