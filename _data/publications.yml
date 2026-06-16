@@ -41,7 +41,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2511.03310"
 
-- category: "Multilingual ASR"
+- category: "Automatic Speech Recognition"
   title: "MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR"
   authors: "Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu"
   venue: "ICASSP 2026 (accepted)"
@@ -73,7 +73,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2606.14790"
 
-- category: "Speaker-Attributed ASR"
+- category: "Automatic Speech Recognition"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
   authors: "Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
