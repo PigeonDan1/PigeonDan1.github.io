@@ -122,43 +122,72 @@ lang: zh
     <div class="subtheme-card">
       <div class="subtheme-title">📊 综述与评测</div>
       <p class="subtheme-desc">构建可复现的实验框架和评测基准，衡量语音理解系统的能力边界与失效模式。</p>
-      <div class="subtheme-papers">代表工作：SURE、ISA-Bench、Survey</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">SURE</span>
+        <span class="paper-tag">ISA-Bench</span>
+        <span class="paper-tag">Survey</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🔗 语音-文本对齐</div>
       <p class="subtheme-desc">通过可控模拟和仅文本自适应等技术，将语音表示与语言模型推理能力对齐。</p>
-      <div class="subtheme-papers">代表工作：TASU、TASU2</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">TASU</span>
+        <span class="paper-tag">TASU2</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🤖 智能体系统</div>
       <p class="subtheme-desc">为语音和音频系统赋予智能体推理、多模态证据融合以及可靠的多智能体协作能力。</p>
-      <div class="subtheme-papers">代表工作：Audio-Mind、VISA、XFlow</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">Audio-Mind</span>
+        <span class="paper-tag">VISA</span>
+        <span class="paper-tag">XFlow</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🌍 多语种与多说话人</div>
       <p class="subtheme-desc">在统一框架下处理多说话人、多语种等复杂真实场景。</p>
-      <div class="subtheme-papers">代表工作：G-STAR、MOSA</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">G-STAR</span>
+        <span class="paper-tag">MOSA</span>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="theme-section">
   <div class="theme-section-title">🎙️ 自动语音识别（传统方向延续）</div>
-  <p style="font-size: 0.88rem; color: var(--gray-600); margin-bottom: 0.75rem;">
-    在语音大模型研究之外，我也持续关注和推进传统 ASR 方向的研究，包括流式识别、纠错与可靠性评估。
-  </p>
-  <div class="asr-list">
-    <div class="asr-item">
-      <strong>流式与非流式 ASR</strong><br>
-      统一的架构设计，例如连接流式与非流式识别的 TC-BiMamba。
+  <p>在语音大模型研究之外，我也持续关注和推进传统 ASR 方向的研究。</p>
+  <div class="subtheme-grid">
+    <div class="subtheme-card">
+      <div class="subtheme-title">🎙️ 流式与非流式 ASR</div>
+      <p class="subtheme-desc">统一的架构设计，例如连接流式与非流式识别的 TC-BiMamba。</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">TC-BiMamba</span>
+      </div>
     </div>
-    <div class="asr-item">
-      <strong>ASR 纠错与可控性</strong><br>
-      基于大语言模型的错误纠正与可控上下文语音识别。
+    <div class="subtheme-card">
+      <div class="subtheme-title">✍️ ASR 纠错与可控性</div>
+      <p class="subtheme-desc">基于大语言模型的错误纠正与可控上下文语音识别。</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">Fewer Hallucinations</span>
+        <span class="paper-tag">Joint Decoding</span>
+      </div>
     </div>
-    <div class="asr-item">
-      <strong>可靠性评估</strong><br>
-      超越词错误率的 ASR 可靠性指标，如 RAS。
+    <div class="subtheme-card">
+      <div class="subtheme-title">📏 可靠性评估</div>
+      <p class="subtheme-desc">超越词错误率的 ASR 可靠性指标，如 RAS。</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">代表工作：</span>
+        <span class="paper-tag">RAS</span>
+      </div>
     </div>
   </div>
 </div>

@@ -120,43 +120,72 @@ My research centers on building robust and practical speech understanding system
     <div class="subtheme-card">
       <div class="subtheme-title">📊 Survey & Benchmark</div>
       <p class="subtheme-desc">Building reproducible experimentation frameworks and benchmarks to measure what speech understanding systems can and cannot do.</p>
-      <div class="subtheme-papers">Representative: SURE, ISA-Bench, Survey</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">SURE</span>
+        <span class="paper-tag">ISA-Bench</span>
+        <span class="paper-tag">Survey</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🔗 Speech-Text Alignment</div>
       <p class="subtheme-desc">Aligning speech representations with language models through controllable simulation and text-only adaptation techniques.</p>
-      <div class="subtheme-papers">Representative: TASU, TASU2</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">TASU</span>
+        <span class="paper-tag">TASU2</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🤖 Agentic Systems</div>
       <p class="subtheme-desc">Equipping speech and audio systems with agentic reasoning, multi-modal evidence, and reliable multi-agent collaboration.</p>
-      <div class="subtheme-papers">Representative: Audio-Mind, VISA, XFlow</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">Audio-Mind</span>
+        <span class="paper-tag">VISA</span>
+        <span class="paper-tag">XFlow</span>
+      </div>
     </div>
     <div class="subtheme-card">
       <div class="subtheme-title">🌍 Multilingual and Multispeaker</div>
       <p class="subtheme-desc">Tackling complex real-world scenarios with multiple speakers and multiple languages under unified frameworks.</p>
-      <div class="subtheme-papers">Representative: G-STAR, MOSA</div>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">G-STAR</span>
+        <span class="paper-tag">MOSA</span>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="theme-section">
   <div class="theme-section-title">🎙️ Automatic Speech Recognition (Traditional)</div>
-  <p style="font-size: 0.88rem; color: var(--gray-600); margin-bottom: 0.75rem;">
-    Alongside Speech LLM research, I continue to work on foundational ASR problems—streaming recognition, error correction, and reliability evaluation.
-  </p>
-  <div class="asr-list">
-    <div class="asr-item">
-      <strong>Streaming & Non-streaming ASR</strong><br>
-      Unified architectures such as TC-BiMamba that bridge streaming and non-streaming recognition.
+  <p>Alongside Speech LLM research, I continue to work on foundational ASR problems.</p>
+  <div class="subtheme-grid">
+    <div class="subtheme-card">
+      <div class="subtheme-title">🎙️ Streaming & Non-streaming ASR</div>
+      <p class="subtheme-desc">Unified architectures such as TC-BiMamba that bridge streaming and non-streaming recognition.</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">TC-BiMamba</span>
+      </div>
     </div>
-    <div class="asr-item">
-      <strong>ASR Error Correction & Controllability</strong><br>
-      LLM-based error correction and controllable contextual speech recognition.
+    <div class="subtheme-card">
+      <div class="subtheme-title">✍️ ASR Error Correction & Controllability</div>
+      <p class="subtheme-desc">LLM-based error correction and controllable contextual speech recognition.</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">Fewer Hallucinations</span>
+        <span class="paper-tag">Joint Decoding</span>
+      </div>
     </div>
-    <div class="asr-item">
-      <strong>Reliability & Evaluation</strong><br>
-      Metrics like RAS that focus on the reliability of ASR outputs beyond simple word-error rates.
+    <div class="subtheme-card">
+      <div class="subtheme-title">📏 Reliability & Evaluation</div>
+      <p class="subtheme-desc">Metrics like RAS that focus on the reliability of ASR outputs beyond simple word-error rates.</p>
+      <div class="subtheme-papers">
+        <span class="paper-label">Representative:</span>
+        <span class="paper-tag">RAS</span>
+      </div>
     </div>
   </div>
 </div>
