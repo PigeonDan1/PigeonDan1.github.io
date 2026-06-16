@@ -49,7 +49,7 @@
   links:
     arxiv: "https://arxiv.org/abs/2508.18998"
 
-- category: "Audio Agents"
+- category: "Agents"
   title: "Audio-Mind: An Auditable Agentic Framework for Audio Understanding"
   authors: "Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
   venue: "submitted to EMNLP 2026"
@@ -57,13 +57,21 @@
   links:
     arxiv: "https://arxiv.org/abs/2605.28480"
 
-- category: "Audio Agents"
+- category: "Agents"
   title: "VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track"
   authors: "W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng"
   venue: "Interspeech 2026 (accepted)"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2606.07264v1"
+
+- category: "Agents"
+  title: "XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows"
+  authors: "H. Li, Jing Peng, Z. Wang, L. Chen, K. Yu"
+  venue: "arXiv preprint"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2606.14790"
 
 - category: "Speaker-Attributed ASR"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
