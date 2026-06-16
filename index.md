@@ -186,7 +186,7 @@ My research centers on building robust and practical speech understanding system
       </a>
       <a href="https://arxiv.org/abs/2606.14790" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows</div>
-        <div class="pub-card-authors">H. Li, Jing Peng, Z. Wang, L. Chen, K. Yu</div>
+        <div class="pub-card-authors">H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu</div>
         <div class="pub-card-venue">arXiv:2606.14790</div>
       </a>
       <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">

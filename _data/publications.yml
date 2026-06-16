@@ -83,7 +83,7 @@
 - theme: "Speech Large Language Models for Understanding"
   sub_theme: "Agentic Systems"
   title: "XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows"
-  authors: "H. Li, Jing Peng, Z. Wang, L. Chen, K. Yu"
+  authors: "H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu"
   venue: "arXiv preprint"
   year: 2026
   links:
