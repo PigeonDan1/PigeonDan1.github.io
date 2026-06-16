@@ -68,11 +68,54 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 
 ## Research Interests
 
-Generally, I am focusing on **Speech Large Language Models (Speech LLMs)** for speech understanding and reasoning:
+My research centers on building robust and practical speech understanding systems, spanning from foundational ASR to modern Speech Large Language Models.
 
-- **Multimodal alignment** between speech and text for instruction-following speech systems
-- **Efficient adaptation** for low-resource / cross-domain settings
-- **Speaker-attributed ASR (SA-ASR)** and multi-speaker understanding
+<div class="theme-section">
+  <div class="theme-section-title">🧠 Speech Large Language Models for Understanding</div>
+  <div class="subtheme-grid">
+    <div class="subtheme-card">
+      <div class="subtheme-title">📊 Survey & Benchmark</div>
+      <p class="subtheme-desc">Building reproducible experimentation frameworks and benchmarks to measure what speech understanding systems can and cannot do.</p>
+      <div class="subtheme-papers">Representative: SURE, ISA-Bench, Survey</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🔗 Speech-Text Alignment</div>
+      <p class="subtheme-desc">Aligning speech representations with language models through controllable simulation and text-only adaptation techniques.</p>
+      <div class="subtheme-papers">Representative: TASU, TASU2</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🤖 Agentic Systems</div>
+      <p class="subtheme-desc">Equipping speech and audio systems with agentic reasoning, multi-modal evidence, and reliable multi-agent collaboration.</p>
+      <div class="subtheme-papers">Representative: Audio-Mind, VISA, XFlow</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🌍 Multilingual and Multispeaker</div>
+      <p class="subtheme-desc">Tackling complex real-world scenarios with multiple speakers and multiple languages under unified frameworks.</p>
+      <div class="subtheme-papers">Representative: G-STAR, MOSA</div>
+    </div>
+  </div>
+</div>
+
+<div class="theme-section">
+  <div class="theme-section-title">🎙️ Automatic Speech Recognition (Traditional)</div>
+  <p style="font-size: 0.88rem; color: var(--gray-600); margin-bottom: 0.75rem;">
+    Alongside Speech LLM research, I continue to work on foundational ASR problems—streaming recognition, error correction, and reliability evaluation.
+  </p>
+  <div class="asr-list">
+    <div class="asr-item">
+      <strong>Streaming & Non-streaming ASR</strong><br>
+      Unified architectures such as TC-BiMamba that bridge streaming and non-streaming recognition.
+    </div>
+    <div class="asr-item">
+      <strong>ASR Error Correction & Controllability</strong><br>
+      LLM-based error correction and controllable contextual speech recognition.
+    </div>
+    <div class="asr-item">
+      <strong>Reliability & Evaluation</strong><br>
+      Metrics like RAS that focus on the reliability of ASR outputs beyond simple word-error rates.
+    </div>
+  </div>
+</div>
 
 <div class="section-spacer"></div>
 

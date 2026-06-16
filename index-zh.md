@@ -68,11 +68,54 @@ lang: zh
 
 ## 研究兴趣
 
-总体而言，我专注于用于语音理解和推理的**语音大语言模型 (Speech LLMs)**：
+我的研究核心是构建鲁棒且实用的语音理解系统，涵盖从基础 ASR 到现代语音大语言模型 (Speech LLMs) 的多个层面。
 
-- 语音和文本之间的**多模态对齐**，用于指令跟随语音系统
-- 低资源/跨领域场景的**高效自适应**
-- **说话人归属 ASR (SA-ASR)** 和多说话人理解
+<div class="theme-section">
+  <div class="theme-section-title">🧠 用于语音理解的大语言模型</div>
+  <div class="subtheme-grid">
+    <div class="subtheme-card">
+      <div class="subtheme-title">📊 综述与评测</div>
+      <p class="subtheme-desc">构建可复现的实验框架和评测基准，衡量语音理解系统的能力边界与失效模式。</p>
+      <div class="subtheme-papers">代表工作：SURE、ISA-Bench、Survey</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🔗 语音-文本对齐</div>
+      <p class="subtheme-desc">通过可控模拟和仅文本自适应等技术，将语音表示与语言模型推理能力对齐。</p>
+      <div class="subtheme-papers">代表工作：TASU、TASU2</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🤖 智能体系统</div>
+      <p class="subtheme-desc">为语音和音频系统赋予智能体推理、多模态证据融合以及可靠的多智能体协作能力。</p>
+      <div class="subtheme-papers">代表工作：Audio-Mind、VISA、XFlow</div>
+    </div>
+    <div class="subtheme-card">
+      <div class="subtheme-title">🌍 多语种与多说话人</div>
+      <p class="subtheme-desc">在统一框架下处理多说话人、多语种等复杂真实场景。</p>
+      <div class="subtheme-papers">代表工作：G-STAR、MOSA</div>
+    </div>
+  </div>
+</div>
+
+<div class="theme-section">
+  <div class="theme-section-title">🎙️ 自动语音识别（传统方向延续）</div>
+  <p style="font-size: 0.88rem; color: var(--gray-600); margin-bottom: 0.75rem;">
+    在语音大模型研究之外，我也持续关注和推进传统 ASR 方向的研究，包括流式识别、纠错与可靠性评估。
+  </p>
+  <div class="asr-list">
+    <div class="asr-item">
+      <strong>流式与非流式 ASR</strong><br>
+      统一的架构设计，例如连接流式与非流式识别的 TC-BiMamba。
+    </div>
+    <div class="asr-item">
+      <strong>ASR 纠错与可控性</strong><br>
+      基于大语言模型的错误纠正与可控上下文语音识别。
+    </div>
+    <div class="asr-item">
+      <strong>可靠性评估</strong><br>
+      超越词错误率的 ASR 可靠性指标，如 RAS。
+    </div>
+  </div>
+</div>
 
 <div class="section-spacer"></div>
 
