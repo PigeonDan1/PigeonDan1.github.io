@@ -89,6 +89,15 @@
   links:
     arxiv: "https://arxiv.org/abs/2606.14790"
 
+- theme: "Speech Large Language Models for Understanding"
+  sub_theme: "Agentic Systems"
+  title: "Externalizing Research Synthesis and Validation in AI Scientists through a Research Harness"
+  authors: "Z. Wang, H. Li, Z. Yang, Z. Hu, S. Zuo, Y. Zhang, D. Ma, D. Luo, C. Wang, Jing Peng, T. Huang, S. Guo, H. Wang, Z. Zhu, S. Han, Y. Cao, K. Yu, L. Chen"
+  venue: "arXiv preprint"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2606.18874"
+
 ## Sub-theme 1.4: Multilingual and Multispeaker
 - theme: "Speech Large Language Models for Understanding"
   sub_theme: "Multilingual and Multispeaker"
