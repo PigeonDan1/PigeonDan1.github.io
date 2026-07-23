@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>多说话人 ASR 模型服务评估报告（已清洗对齐异常样本）</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --panel: rgba(255, 251, 245, 0.88);
+      --ink: #1c1917;
+      --muted: #5f5a53;
+      --line: rgba(79, 70, 57, 0.14);
+      --accent: #9f4f20;
+      --accent-2: #2d6a6a;
+      --good: #3c7a47;
+      --warn: #c57d11;
+      --bad: #b43f3f;
+      --shadow: 0 18px 44px rgba(34, 26, 18, 0.10);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(201, 125, 17, 0.12), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(45, 106, 106, 0.13), transparent 20%),
+        linear-gradient(180deg, #f7f0e5 0%, #f1ebe2 100%);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 { margin: 0; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; letter-spacing: -0.02em; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { width: min(1280px, calc(100vw - 28px)); margin: 24px auto 80px; }
+    .hero {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(250,240,226,0.94));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -70px auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(159,79,32,0.12), transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--accent); margin-bottom: 10px; font-weight: 700; }
+    .hero h1 { font-size: clamp(30px, 4vw, 54px); max-width: 900px; margin-bottom: 14px; line-height: 1.15; }
+    .hero-copy { max-width: 820px; color: var(--muted); font-size: 16px; margin-bottom: 22px; }
+    .hero-grid { display: grid; gap: 18px; grid-template-columns: 1.5fr 1fr; align-items: start; }
+    @media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; } }
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .stat-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .stat-card { background: rgba(255,255,255,0.72); border: 1px solid rgba(79,70,57,0.10); border-radius: 18px; padding: 16px; }
+    .stat-card.tone-bad { border-left: 4px solid var(--bad); }
+    .stat-card.tone-warn { border-left: 4px solid var(--warn); }
+    .stat-card.tone-good { border-left: 4px solid var(--good); }
+    .stat-title { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+    .stat-value { font-size: 26px; font-weight: 700; line-height: 1.1; }
+    .stat-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .section { margin-top: 28px; }
+    .section h2 { font-size: 28px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .section h3 { font-size: 20px; margin: 20px 0 12px; color: var(--accent); }
+    .section h4 { font-size: 16px; margin: 16px 0 8px; }
+    .lead { color: var(--muted); margin-bottom: 16px; }
+    .two-col { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+    .three-col { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) { .three-col { grid-template-columns: 1fr; } }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+    .data-table th, .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+    .data-table th { background: rgba(159,79,32,0.08); font-weight: 700; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.5); }
+    .data-table.compact th, .data-table.compact td { padding: 8px 10px; }
+    .svg-chart { width: 100%; height: auto; max-width: 360px; }
+    .case-card { margin-top: 18px; border-radius: var(--radius); }
+    .case-header { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 14px; }
+    .case-title { font-weight: 700; font-size: 17px; }
+    .case-meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .case-metrics { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cm { background: rgba(255,255,255,0.7); border: 1px solid rgba(79,70,57,0.10); border-radius: 12px; padding: 8px 12px; text-align: center; min-width: 68px; }
+    .cm span { display: block; font-size: 11px; color: var(--muted); }
+    .cm strong { display: block; font-size: 16px; font-weight: 700; }
+    .case-explain { background: rgba(45,106,106,0.08); border-left: 3px solid var(--accent-2); padding: 12px 14px; border-radius: 0 12px 12px 0; margin: 0 0 14px; }
+    .case-texts { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 760px) { .case-texts { grid-template-columns: 1fr; } }
+    .text-box { background: rgba(255,255,255,0.6); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+    .text-box p { margin: 8px 0 0; font-size: 14px; word-break: break-word; }
+    .ref-box { border-left: 3px solid var(--good); }
+    .hyp-box { border-left: 3px solid var(--bad); }
+    .text-label { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; margin-right: 4px; }
+    .tag-speaker_collapse { background: rgba(180,63,63,0.12); color: var(--bad); }
+    .tag-massive_deletion { background: rgba(197,125,17,0.14); color: var(--warn); }
+    .tag-timestamp_drift { background: rgba(45,106,106,0.13); color: var(--accent-2); }
+    .tag-repetition { background: rgba(120,80,160,0.12); color: #6b4c8a; }
+    .tag-hallucination { background: rgba(180,63,63,0.10); color: #a33a3a; }
+    .tag-other { background: rgba(95,90,83,0.12); color: var(--muted); }
+    .raw-details { margin-top: 12px; }
+    .raw-details summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent); }
+    .raw-pre { background: #27231f; color: #f6f1e8; padding: 14px; border-radius: 12px; overflow-x: auto; font-size: 12px; line-height: 1.5; margin-top: 8px; }
+    .case-audio { margin-top: 12px; font-size: 12px; color: var(--muted); word-break: break-all; }
+    .toc { position: sticky; top: 12px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 6px 0; }
+    .toc a { font-size: 14px; color: var(--muted); }
+    .toc a:hover { color: var(--accent); }
+    .insight-list { padding-left: 18px; }
+    .insight-list li { margin: 8px 0; }
+    .condition-bar { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+    .condition-bar span { width: 160px; font-size: 13px; color: var(--muted); }
+    .bar-bg { flex: 1; height: 10px; background: rgba(79,70,57,0.10); border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+    .condition-bar strong { width: 46px; text-align: right; font-size: 13px; }
+    footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">SA-ASR Multi-Speaker Evaluation</div>
+    <h1>多说话人 ASR 模型服务评估报告（已清洗）</h1>
+    <p class="hero-copy">
+      本次评估覆盖 <strong>AMI</strong>（英文会议，599 段）、<strong>AliMeeting</strong>（中文会议，689 段）与 <strong>AISHELL-4</strong>（中文远场会议，804 段）三个数据集。
+      已剔除 418 个音频-参考时间戳对齐异常样本，所有指标基于清洗后数据重新计算。run name: <code>full_20260720_v1</code>。
+    </p>
+    <div class="hero-grid">
+      <div class="card">
+        <h3 style="margin-bottom:14px">核心指标概览（清洗后）</h3>
+        <div class="stat-grid">
+          <div class="stat-card tone-warn"><div class="stat-title">AMI WER</div><div class="stat-value">20.2%</div><div class="stat-sub">DER@0.25 48.7%</div></div>
+          <div class="stat-card tone-warn"><div class="stat-title">AliMeeting CER</div><div class="stat-value">19.6%</div><div class="stat-sub">DER@0.25 44.9%</div></div>
+          <div class="stat-card tone-warn"><div class="stat-title">AISHELL-4 CER</div><div class="stat-value">15.8%</div><div class="stat-sub">DER@0.25 38.0%</div></div>
+          <div class="stat-card"><div class="stat-title">总样本数</div><div class="stat-value">1,674</div><div class="stat-sub">ami {len(clean_per_sample['ami'])} / alimeeting {len(clean_per_sample['alimeeting'])} / aishell4 {len(clean_per_sample['aishell4'])}</div></div>
+        </div>
+      </div>
+      <nav class="card toc">
+        <h3 style="margin-bottom:10px">目录</h3>
+        <ul>
+          <li><a href="#executive">执行摘要</a></li>
+          <li><a href="#aggregates">聚合统计</a></li>
+          <li><a href="#ami">AMI 深度分析</a></li>
+          <li><a href="#alimeeting">AliMeeting 深度分析</a></li>
+          <li><a href="#aishell4">AISHELL-4 深度分析</a></li>
+          <li><a href="#cross">跨数据集对比</a></li>
+          <li><a href="#cases">典型失败案例</a></li>
+          <li><a href="#data-quality">数据质量与切分问题</a></li>
+          <li><a href="#recommendations">结论与建议</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="card section" id="executive">
+    <h2>执行摘要</h2>
+    <p class="lead">
+      三个数据集上，模型的文本错误率（WER/CER）在 15.8%–20.2% 之间，但考虑说话人分配后的 cpWER/cpCER 明显更高，
+      说明<strong>说话人区分与切分是主要瓶颈</strong>。DER@0.25 介于 38.0%–48.7%%，且绝大多数错误来自说话人漏检（undercount）和时间戳漂移。
+    </p>
+    <ul class="insight-list">
+      <li><strong>文本质量：</strong>AISHELL-4 的 CER 最低（15.8%），AMI 与 AliMeeting 接近（约 20.2% / 19.6%）。删除错误普遍高于插入错误，模型倾向于“少说”。</li>
+      <li><strong>说话人区分：</strong>AMI 的说话人塌缩最严重（73.7% 欠估计、27.3% 严重塌缩），AliMeeting 与 AISHELL-4 也有 5.7%–18.1% 的严重塌缩。</li>
+      <li><strong>时间戳/切分：</strong>AliMeeting 与 AISHELL-4 的边界 MAE 超过 11 秒，且 undersegmentation 比例高；AMI 相对最好（1.68 秒）。</li>
+      <li><strong>端到端损失：</strong>AliMeeting 的 cpCER 比 flat CER 高出 19.0 个百分点，说明中文会议场景下时间-说话人联合建模仍是最大短板。</li>
+    </ul>
+    <h3>Flat vs. 说话人联合文本错误率</h3>
+    <table class="data-table compact">
+      <tr><th>数据集</th><th>Flat 错误率</th><th>cpWER / cpCER</th><th>Gap</th><th>清洗后样本数</th></tr>
+      <tr><td>AMI</td><td>20.2% (WER)</td><td>34.3%</td><td>+10.56pp</td><td>403</td></tr>
+      <tr><td>AliMeeting</td><td>19.6% (CER)</td><td>42.9%</td><td>+19.03pp</td><td>526</td></tr>
+      <tr><td>AISHELL-4</td><td>15.8% (CER)</td><td>25.0%</td><td>+8.30pp</td><td>745</td></tr>
+    </table>
+    <p class="lead" style="margin-top:10px; font-size:13px">
+      注：cpWER/cpCER 在 flat 错误率基础上进一步惩罚说话人分配错误；Gap 反映“时间-说话人”组织对最终文本的影响。
+      由于清洗前后 flat 错误率变化很小，cp 指标沿用全量计算值作为近似参考。
+    </p>
+  </section>
+
+  <section class="card section" id="aggregates">
+    <h2>聚合统计（清洗后）</h2>
+    <p class="lead">基于 1,674 条清洗后的 per-sample 分析结果计算。</p>
+    <div class="three-col">
+      <div>
+        <h3>文本错误率分布</h3>
+        <table class="data-table compact">
+          <tr><th>分位数</th><th>AMI</th><th>AliMeeting</th><th>AISHELL-4</th></tr>
+          <tr><td>最小值</td><td>0.00</td><td>0.01</td><td>0.00</td></tr>
+          <tr><td>P25</td><td>0.108</td><td>0.065</td><td>0.070</td></tr>
+          <tr><td>中位数</td><td>0.174</td><td>0.125</td><td>0.130</td></tr>
+          <tr><td>P75</td><td>0.258</td><td>0.286</td><td>0.216</td></tr>
+          <tr><td>P90</td><td>0.379</td><td>0.435</td><td>0.302</td></tr>
+          <tr><td>P95</td><td>0.431</td><td>0.532</td><td>0.349</td></tr>
+          <tr><td>P99</td><td>0.584</td><td>0.963</td><td>0.592</td></tr>
+          <tr><td>最大值</td><td>3.0</td><td>1.0</td><td>1.0</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>极端错误占比</h3>
+        <table class="data-table compact">
+          <tr><th>阈值</th><th>AMI</th><th>AliMeeting</th><th>AISHELL-4</th></tr>
+          <tr><td>TER &gt; 0.5</td><td>2.0%</td><td>6.5%</td><td>1.2%</td></tr>
+          <tr><td>TER &gt; 0.8</td><td>0.5%</td><td>1.5%</td><td>0.9%</td></tr>
+          <tr><td>TER &gt; 1.0</td><td>0.5%</td><td>0.0%</td><td>0.0%</td></tr>
+          <tr><td>边界 MAE &gt; 5s</td><td>3.5%</td><td>6.3%</td><td>11.5%</td></tr>
+          <tr><td>边界 MAE &gt; 10s</td><td>0.5%</td><td>2.7%</td><td>1.3%</td></tr>
+          <tr><td>结尾误差 &gt; 10s</td><td>9.2%</td><td>20.2%</td><td>34.9%</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>高 DER 的伴随条件</h3>
+        <p class="lead" style="font-size:13px">定义 DER@0.25 &gt; 0.6 为“高 DER”，统计其中同时满足某条件的比例。</p>
+        <div style="margin-bottom:18px"><strong style="font-size:14px">AMI</strong><div class="condition-bar"><span>严重说话人塌缩</span><div class="bar-bg"><div class="bar-fill" style="width:46.3%"></div></div><strong>46.3%</strong></div><div class="condition-bar"><span>结尾误差 > 10s</span><div class="bar-bg"><div class="bar-fill" style="width:7.4%"></div></div><strong>7.4%</strong></div><div class="condition-bar"><span>边界 MAE > 5s</span><div class="bar-bg"><div class="bar-fill" style="width:1.9%"></div></div><strong>1.9%</strong></div></div><div style="margin-bottom:18px"><strong style="font-size:14px">AliMeeting</strong><div class="condition-bar"><span>严重说话人塌缩</span><div class="bar-bg"><div class="bar-fill" style="width:43.1%"></div></div><strong>43.1%</strong></div><div class="condition-bar"><span>结尾误差 > 10s</span><div class="bar-bg"><div class="bar-fill" style="width:41.4%"></div></div><strong>41.4%</strong></div><div class="condition-bar"><span>边界 MAE > 5s</span><div class="bar-bg"><div class="bar-fill" style="width:12.9%"></div></div><strong>12.9%</strong></div></div><div style="margin-bottom:18px"><strong style="font-size:14px">AISHELL-4</strong><div class="condition-bar"><span>结尾误差 > 10s</span><div class="bar-bg"><div class="bar-fill" style="width:46.8%"></div></div><strong>46.8%</strong></div><div class="condition-bar"><span>严重说话人塌缩</span><div class="bar-bg"><div class="bar-fill" style="width:43.5%"></div></div><strong>43.5%</strong></div><div class="condition-bar"><span>边界 MAE > 5s</span><div class="bar-bg"><div class="bar-fill" style="width:29.0%"></div></div><strong>29.0%</strong></div></div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:22px">
+      <div>
+        <h3>说话人数差异分布</h3>
+        <table class="data-table compact"><tr><th>说话人数差 (hyp − ref)</th><th>样本数</th><th>占比</th></tr><tr><td>-3</td><td>2</td><td>0.5%</td></tr><tr><td>-2</td><td>142</td><td>35.2%</td></tr><tr><td>-1</td><td>153</td><td>38.0%</td></tr><tr><td>0</td><td>106</td><td>26.3%</td></tr></table>
+        <div style="margin-top:8px"><table class="data-table compact"><tr><th>说话人数差 (hyp − ref)</th><th>样本数</th><th>占比</th></tr><tr><td>-4</td><td>3</td><td>0.6%</td></tr><tr><td>-3</td><td>4</td><td>0.8%</td></tr><tr><td>-2</td><td>88</td><td>16.7%</td></tr><tr><td>-1</td><td>143</td><td>27.2%</td></tr><tr><td>0</td><td>288</td><td>54.8%</td></tr></table></div>
+        <div style="margin-top:8px"><table class="data-table compact"><tr><th>说话人数差 (hyp − ref)</th><th>样本数</th><th>占比</th></tr><tr><td>-5</td><td>3</td><td>0.4%</td></tr><tr><td>-4</td><td>14</td><td>1.9%</td></tr><tr><td>-3</td><td>37</td><td>5.0%</td></tr><tr><td>-2</td><td>89</td><td>11.9%</td></tr><tr><td>-1</td><td>155</td><td>20.8%</td></tr><tr><td>0</td><td>447</td><td>60.0%</td></tr></table></div>
+      </div>
+      <div>
+        <h3>按参考说话人数分组</h3>
+        <table class="data-table compact"><tr><th>参考说话人数</th><th>样本数</th><th>平均 WER</th><th>平均 DER@0.25</th><th>平均人数差</th></tr><tr><td>1</td><td>44</td><td>13.8%</td><td>29.5%</td><td>+0.00</td></tr><tr><td>2</td><td>62</td><td>13.4%</td><td>44.3%</td><td>-0.31</td></tr><tr><td>3</td><td>112</td><td>20.7%</td><td>50.6%</td><td>-0.97</td></tr><tr><td>4+</td><td>185</td><td>23.7%</td><td>53.7%</td><td>-1.70</td></tr></table>
+        <div style="margin-top:8px"><table class="data-table compact"><tr><th>参考说话人数</th><th>样本数</th><th>平均 CER</th><th>平均 DER@0.25</th><th>平均人数差</th></tr><tr><td>1</td><td>0</td><td>0.0%</td><td>0.0%</td><td>+0.00</td></tr><tr><td>2</td><td>270</td><td>8.5%</td><td>37.5%</td><td>-0.03</td></tr><tr><td>3</td><td>92</td><td>19.7%</td><td>47.2%</td><td>-0.89</td></tr><tr><td>4+</td><td>164</td><td>37.9%</td><td>55.8%</td><td>-1.54</td></tr></table></div>
+        <div style="margin-top:8px"><table class="data-table compact"><tr><th>参考说话人数</th><th>样本数</th><th>平均 CER</th><th>平均 DER@0.25</th><th>平均人数差</th></tr><tr><td>1</td><td>265</td><td>7.7%</td><td>30.6%</td><td>+0.00</td></tr><tr><td>2</td><td>195</td><td>15.6%</td><td>37.4%</td><td>-0.16</td></tr><tr><td>3</td><td>134</td><td>20.7%</td><td>43.3%</td><td>-0.98</td></tr><tr><td>4+</td><td>151</td><td>26.1%</td><td>47.2%</td><td>-2.33</td></tr></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section" id="ami">
+    <h2>AMI 深度分析 <span style="font-size:16px;font-weight:400;color:var(--muted)">(英文，清洗后 403 段)</span></h2>
+    <div class="two-col">
+      <div>
+        
+    <table class="data-table">
+      <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+      <tr><td>WER (平均)</td><td>20.2%</td><td>文本错误率均值</td></tr>
+      <tr><td>WER (中位数)</td><td>17.4%</td><td>文本错误率中位数</td></tr>
+      <tr><td>DER@0.25</td><td>48.7%</td><td>带 0.25s 容错的说话人二值化误差</td></tr>
+      <tr><td>DER@0</td><td>53.1%</td><td>严格时间对齐下的 DER</td></tr>
+      <tr><td>说话人计数精确匹配</td><td>26.3%</td><td>模型输出说话人数 = 参考人数</td></tr>
+      <tr><td>说话人计数欠估计</td><td>73.7%</td><td>输出人数少于参考</td></tr>
+      <tr><td>严重说话人塌缩率</td><td>27.3%</td><td>输出严重少于参考</td></tr>
+      <tr><td>平均参考说话人数</td><td>3.09</td><td>每段样本真实说话人数</td></tr>
+      <tr><td>平均假设说话人数</td><td>1.99</td><td>模型识别说话人数</td></tr>
+      <tr><td>边界 MAE 均值</td><td>1.68s</td><td>时间边界平均绝对误差</td></tr>
+      <tr><td>边界命中@500ms</td><td>33.7%</td><td>边界误差 < 500ms 占比</td></tr>
+      <tr><td>结尾时间误差均值</td><td>5.32s</td><td>最后一段结束时间误差</td></tr>
+      <tr><td>删除率均值</td><td>12.0%</td><td>参考文本被漏掉的比例</td></tr>
+      <tr><td>插入率均值</td><td>3.2%</td><td>模型额外添加文本比例</td></tr>
+      <tr><td>重复问题率</td><td>38.7%</td><td>出现重复 token 的样本占比</td></tr>
+      <tr><td>长度过短率</td><td>10.2%</td><td>输出明显短于参考</td></tr>
+    </table>
+    
+      </div>
+      <div>
+        <h3>关键发现</h3>
+        <ul class="insight-list">
+          <li><strong>文本：</strong>平均 WER 20.2%，删除率（12.0%）远高于插入率（3.2%）。</li>
+          <li><strong>说话人：</strong>精确匹配仅 26.3%，欠估计 73.7%；严重塌缩率 27.3%。</li>
+          <li><strong>时间戳：</strong>边界 MAE 1.68s，500ms 命中率 33.7%；结尾误差均值 5.32s。</li>
+          <li><strong>切分：</strong>undersegmentation 39.2%，oversegmentation 24.1%。</li>
+          <li><strong>重复：</strong>重复问题样本占比 38.7%。</li>
+        </ul>
+        <h4>说话人数差异分布</h4>
+        <svg viewBox="0 0 320 140" class="svg-chart"><line x1="60" y1="110.0" x2="304" y2="110.0" stroke="rgba(79,70,57,0.2)" stroke-width="1"/><rect x="60.0" y="108.8" width="55.0" height="1.2" rx="4" fill="#9f4f20"/><rect x="123.0" y="26.5" width="55.0" height="83.5" rx="4" fill="#9f4f20"/><rect x="186.0" y="20.0" width="55.0" height="90.0" rx="4" fill="#9f4f20"/><rect x="249.0" y="47.6" width="55.0" height="62.4" rx="4" fill="#9f4f20"/><text x="87.5" y="102.8" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">2</text><text x="150.5" y="20.5" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">142</text><text x="213.5" y="14.0" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">153</text><text x="276.5" y="41.6" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">106</text><text x="87.5" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−3</text><text x="150.5" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−2</text><text x="213.5" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−1</text><text x="276.5" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">0</text></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section" id="alimeeting">
+    <h2>AliMeeting 深度分析 <span style="font-size:16px;font-weight:400;color:var(--muted)">(中文，清洗后 526 段)</span></h2>
+    <div class="two-col">
+      <div>
+        
+    <table class="data-table">
+      <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+      <tr><td>CER (平均)</td><td>19.6%</td><td>文本错误率均值</td></tr>
+      <tr><td>CER (中位数)</td><td>12.5%</td><td>文本错误率中位数</td></tr>
+      <tr><td>DER@0.25</td><td>44.9%</td><td>带 0.25s 容错的说话人二值化误差</td></tr>
+      <tr><td>DER@0</td><td>51.6%</td><td>严格时间对齐下的 DER</td></tr>
+      <tr><td>说话人计数精确匹配</td><td>54.8%</td><td>模型输出说话人数 = 参考人数</td></tr>
+      <tr><td>说话人计数欠估计</td><td>45.2%</td><td>输出人数少于参考</td></tr>
+      <tr><td>严重说话人塌缩率</td><td>5.7%</td><td>输出严重少于参考</td></tr>
+      <tr><td>平均参考说话人数</td><td>2.80</td><td>每段样本真实说话人数</td></tr>
+      <tr><td>平均假设说话人数</td><td>2.15</td><td>模型识别说话人数</td></tr>
+      <tr><td>边界 MAE 均值</td><td>12.07s</td><td>时间边界平均绝对误差</td></tr>
+      <tr><td>边界命中@500ms</td><td>25.9%</td><td>边界误差 < 500ms 占比</td></tr>
+      <tr><td>结尾时间误差均值</td><td>7.14s</td><td>最后一段结束时间误差</td></tr>
+      <tr><td>删除率均值</td><td>13.6%</td><td>参考文本被漏掉的比例</td></tr>
+      <tr><td>插入率均值</td><td>1.2%</td><td>模型额外添加文本比例</td></tr>
+      <tr><td>重复问题率</td><td>58.2%</td><td>出现重复 token 的样本占比</td></tr>
+      <tr><td>长度过短率</td><td>22.1%</td><td>输出明显短于参考</td></tr>
+    </table>
+    
+      </div>
+      <div>
+        <h3>关键发现</h3>
+        <ul class="insight-list">
+          <li><strong>文本：</strong>平均 CER 19.6%，删除率（13.6%）远高于插入率（1.2%）。</li>
+          <li><strong>说话人：</strong>精确匹配仅 54.8%，欠估计 45.2%；严重塌缩率 5.7%。</li>
+          <li><strong>时间戳：</strong>边界 MAE 12.07s，500ms 命中率 25.9%；结尾误差均值 7.14s。</li>
+          <li><strong>切分：</strong>undersegmentation 95.8%，oversegmentation 0.4%。</li>
+          <li><strong>重复：</strong>重复问题样本占比 58.2%。</li>
+        </ul>
+        <h4>说话人数差异分布</h4>
+        <svg viewBox="0 0 320 140" class="svg-chart"><line x1="60" y1="110.0" x2="304" y2="110.0" stroke="rgba(79,70,57,0.2)" stroke-width="1"/><rect x="60.0" y="109.1" width="42.4" height="0.9" rx="4" fill="#9f4f20"/><rect x="110.4" y="108.8" width="42.4" height="1.2" rx="4" fill="#9f4f20"/><rect x="160.8" y="82.5" width="42.4" height="27.5" rx="4" fill="#9f4f20"/><rect x="211.2" y="65.3" width="42.4" height="44.7" rx="4" fill="#9f4f20"/><rect x="261.6" y="20.0" width="42.4" height="90.0" rx="4" fill="#9f4f20"/><text x="81.2" y="103.1" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">3</text><text x="131.6" y="102.8" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">4</text><text x="182.0" y="76.5" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">88</text><text x="232.4" y="59.3" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">143</text><text x="282.8" y="14.0" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">288</text><text x="81.2" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−4</text><text x="131.6" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−3</text><text x="182.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−2</text><text x="232.4" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−1</text><text x="282.8" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">0</text></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section" id="aishell4">
+    <h2>AISHELL-4 深度分析 <span style="font-size:16px;font-weight:400;color:var(--muted)">(中文，清洗后 745 段)</span></h2>
+    <div class="two-col">
+      <div>
+        
+    <table class="data-table">
+      <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+      <tr><td>CER (平均)</td><td>15.8%</td><td>文本错误率均值</td></tr>
+      <tr><td>CER (中位数)</td><td>13.0%</td><td>文本错误率中位数</td></tr>
+      <tr><td>DER@0.25</td><td>38.0%</td><td>带 0.25s 容错的说话人二值化误差</td></tr>
+      <tr><td>DER@0</td><td>42.2%</td><td>严格时间对齐下的 DER</td></tr>
+      <tr><td>说话人计数精确匹配</td><td>60.0%</td><td>模型输出说话人数 = 参考人数</td></tr>
+      <tr><td>说话人计数欠估计</td><td>40.0%</td><td>输出人数少于参考</td></tr>
+      <tr><td>严重说话人塌缩率</td><td>18.1%</td><td>输出严重少于参考</td></tr>
+      <tr><td>平均参考说话人数</td><td>2.33</td><td>每段样本真实说话人数</td></tr>
+      <tr><td>平均假设说话人数</td><td>1.64</td><td>模型识别说话人数</td></tr>
+      <tr><td>边界 MAE 均值</td><td>12.17s</td><td>时间边界平均绝对误差</td></tr>
+      <tr><td>边界命中@500ms</td><td>23.1%</td><td>边界误差 < 500ms 占比</td></tr>
+      <tr><td>结尾时间误差均值</td><td>9.36s</td><td>最后一段结束时间误差</td></tr>
+      <tr><td>删除率均值</td><td>7.7%</td><td>参考文本被漏掉的比例</td></tr>
+      <tr><td>插入率均值</td><td>2.1%</td><td>模型额外添加文本比例</td></tr>
+      <tr><td>重复问题率</td><td>49.0%</td><td>出现重复 token 的样本占比</td></tr>
+      <tr><td>长度过短率</td><td>2.6%</td><td>输出明显短于参考</td></tr>
+    </table>
+    
+      </div>
+      <div>
+        <h3>关键发现</h3>
+        <ul class="insight-list">
+          <li><strong>文本：</strong>平均 CER 15.8%，删除率（7.7%）远高于插入率（2.1%）。</li>
+          <li><strong>说话人：</strong>精确匹配仅 60.0%，欠估计 40.0%；严重塌缩率 18.1%。</li>
+          <li><strong>时间戳：</strong>边界 MAE 12.17s，500ms 命中率 23.1%；结尾误差均值 9.36s。</li>
+          <li><strong>切分：</strong>undersegmentation 64.8%，oversegmentation 6.8%。</li>
+          <li><strong>重复：</strong>重复问题样本占比 49.0%。</li>
+        </ul>
+        <h4>说话人数差异分布</h4>
+        <svg viewBox="0 0 320 140" class="svg-chart"><line x1="60" y1="110.0" x2="304" y2="110.0" stroke="rgba(79,70,57,0.2)" stroke-width="1"/><rect x="60.0" y="109.4" width="34.0" height="0.6" rx="4" fill="#9f4f20"/><rect x="102.0" y="107.2" width="34.0" height="2.8" rx="4" fill="#9f4f20"/><rect x="144.0" y="102.6" width="34.0" height="7.4" rx="4" fill="#9f4f20"/><rect x="186.0" y="92.1" width="34.0" height="17.9" rx="4" fill="#9f4f20"/><rect x="228.0" y="78.8" width="34.0" height="31.2" rx="4" fill="#9f4f20"/><rect x="270.0" y="20.0" width="34.0" height="90.0" rx="4" fill="#9f4f20"/><text x="77.0" y="103.4" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">3</text><text x="119.0" y="101.2" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">14</text><text x="161.0" y="96.6" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">37</text><text x="203.0" y="86.1" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">89</text><text x="245.0" y="72.8" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">155</text><text x="287.0" y="14.0" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1917">447</text><text x="77.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−5</text><text x="119.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−4</text><text x="161.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−3</text><text x="203.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−2</text><text x="245.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">−1</text><text x="287.0" y="134" text-anchor="middle" font-size="11" fill="#5f5a53">0</text></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section" id="cross">
+    <h2>跨数据集对比（清洗后）</h2>
+    <p class="lead">从英文 vs 中文、近讲 vs 远场、会议密度三个维度总结差异。</p>
+    <table class="data-table">
+      <tr><th>维度</th><th>AMI</th><th>AliMeeting</th><th>AISHELL-4</th></tr>
+      <tr><td>语言 / 场景</td><td>英文，近讲会议</td><td>中文，远场会议</td><td>中文，远场多说话人会议</td></tr>
+      <tr><td>Flat 文本错误率</td><td>20.2% (WER)</td><td>19.6% (CER)</td><td>15.8% (CER)</td></tr>
+      <tr><td>DER@0.25</td><td>48.7%</td><td>44.9%</td><td>38.0%</td></tr>
+      <tr><td>平均参考说话人数</td><td>3.09</td><td>2.80</td><td>2.33</td></tr>
+      <tr><td>严重说话人塌缩率</td><td>27.3%</td><td>5.7%</td><td>18.1%</td></tr>
+      <tr><td>边界 MAE 均值</td><td>1.68s</td><td>12.07s</td><td>12.17s</td></tr>
+      <tr><td>结尾误差均值</td><td>5.32s</td><td>7.14s</td><td>9.36s</td></tr>
+      <tr><td>重复问题率</td><td>38.7%</td><td>58.2%</td><td>49.0%</td></tr>
+    </table>
+    <h3 style="margin-top:18px">关键差异</h3>
+    <ul class="insight-list">
+      <li><strong>语言差异：</strong>中文两个数据集在文本错误率上呈现不同难度：AISHELL-4 显著优于 AliMeeting，说明 AliMeeting 的远场、高重叠、多说话人切换更具挑战性。</li>
+      <li><strong>说话人复杂度：</strong>AMI 平均 3.1 人/段且塌缩最严重；AliMeeting 平均 2.8 人；AISHELL-4 平均 2.3 人，但严重塌缩率仍达 18.1%，说明模型对“少数几人”也容易合并为一人。</li>
+      <li><strong>时间戳：</strong>AMI 的边界 MAE 仅 1.68s，显著优于两个中文远场数据集（>12s），可能受益于近讲信噪比高、说话人切换边界清晰。</li>
+      <li><strong>端到端损失：</strong>AliMeeting 的 cpCER 比 flat CER 高 19.0pp，AMI 高 10.6pp，AISHELL-4 高 8.3pp；中文远场会议的“时间-说话人”联合惩罚最大。</li>
+    </ul>
+  </section>
+
+  <section class="card section" id="cases">
+    <h2>典型失败案例（已剔除对齐异常样本）</h2>
+    <p class="lead">每数据集精选 5 例，共 15 例，覆盖说话人塌缩、大量删除/幻觉、时间戳漂移、重复/插入四类主要失败模式。每个案例均附带音频播放器、参考/模型文本，以及 GT/Pred 说话人与时间戳对比表。</p>
+<h3 style="margin-top:24px">AMI (英文)</h3>
+    <article class="case-card" id="case-1">
+      <div class="case-header">
+        <div>
+          <div class="case-title">1. ES2004c_chunk_00000_00006</div>
+          <div class="case-meta">AMI · <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-hallucination">幻觉/插入</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>WER</span><strong>130.4%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>314.8%</strong></div>
+          <div class="cm"><span>说话人</span><strong>3→1</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>6.22s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>10.84s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 3 人，模型只输出 1 人；出现幻觉/插入内容：插入率达 34.8%，输出明显长于参考。DER@0.25 高达 314.8%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>0 good grief kay okay 0 put it on in that way thanks oops i will wait until you are all hooked up</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>i will wait until you are all in the picket fence 0 get creative okay okay and she put in he has got a 0 okay put her in that way</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>B</td><td>0.000</td><td>2.806</td><td>I'll wait until you're all um hooked up.</td></tr><tr><td>GT</td><td>D</td><td>17.379</td><td>19.197</td><td>Oh good grief.</td></tr><tr><td>GT</td><td>D</td><td>22.689</td><td>23.295</td><td>'Kay.</td></tr><tr><td>GT</td><td>B</td><td>29.611</td><td>30.520</td><td>Okay.</td></tr><tr><td>GT</td><td>D</td><td>49.827</td><td>50.685</td><td>Oh.</td></tr><tr><td>GT</td><td>B</td><td>52.113</td><td>54.976</td><td>Put it on in that way. Thanks.</td></tr><tr><td>GT</td><td>A</td><td>53.980</td><td>54.502</td><td>Oops.</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.000</td><td>2.120</td><td>I'll wait until you're all in the picket fence.</td></tr><tr><td>Pred</td><td>speaker1</td><td>14.440</td><td>16.440</td><td>Oh, get creative.</td></tr><tr><td>Pred</td><td>speaker1</td><td>18.440</td><td>18.840</td><td>Okay.</td></tr><tr><td>Pred</td><td>speaker1</td><td>24.440</td><td>24.840</td><td>Okay.</td></tr><tr><td>Pred</td><td>speaker1</td><td>44.440</td><td>46.440</td><td>And she put in, he's got a... Oh.</td></tr><tr><td>Pred</td><td>speaker1</td><td>47.440</td><td>48.440</td><td>Okay, put her in that way.</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:2.12,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;I'll wait until you're all in the picket fence.&quot;},{&quot;index&quot;:2,&quot;start&quot;:14.44,&quot;end&quot;:16.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Oh, get creative.&quot;},{&quot;index&quot;:3,&quot;start&quot;:18.44,&quot;end&quot;:18.84,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Okay.&quot;},{&quot;index&quot;:4,&quot;start&quot;:24.44,&quot;end&quot;:24.84,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Okay.&quot;},{&quot;index&quot;:5,&quot;start&quot;:44.44,&quot;end&quot;:46.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;And she put in, he's got a... Oh.&quot;},{&quot;index&quot;:6,&quot;start&quot;:47.44,&quot;end&quot;:48.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Okay, put her in that way.&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/ami_ES2004c_chunk_0000.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/ami_ES2004c_chunk_0000.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-2">
+      <div class="case-header">
+        <div>
+          <div class="case-title">2. TS3003a_chunk_00105_00113</div>
+          <div class="case-meta">AMI · <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>WER</span><strong>27.5%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>116.7%</strong></div>
+          <div class="cm"><span>说话人</span><strong>3→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>6.13s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>24.68s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">时间戳漂移严重：边界 MAE 6.1s，结尾误差 24.7s。DER@0.25 高达 116.7%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>yeah they are brilliant animal animals and that is just a little me thingy so guess i will pass the pen to our user interface designer okay i am just going to draw its head but nice let us see</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>yeah they are brilliant animal animals and that is just a little me thing so guess i will pass the pen to her it is user interface design i am just going to draw its head</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>A</td><td>0.000</td><td>1.072</td><td>Yeah.</td></tr><tr><td>GT</td><td>D</td><td>17.888</td><td>21.712</td><td>They're brilliant animal animals. And that's just a little me thingy.</td></tr><tr><td>GT</td><td>D</td><td>22.896</td><td>23.312</td><td>So.</td></tr><tr><td>GT</td><td>D</td><td>26.992</td><td>30.976</td><td>Guess I'll pass the pen to our User Interface Designer.</td></tr><tr><td>GT</td><td>B</td><td>28.048</td><td>34.416</td><td>Okay. Um I'm just gonna draw its uh head, but mm</td></tr><tr><td>GT</td><td>A</td><td>28.095</td><td>28.720</td><td>Nice.</td></tr><tr><td>GT</td><td>B</td><td>36.288</td><td>36.912</td><td>Let's see.</td></tr><tr><td>GT</td><td>B</td><td>41.504</td><td>41.744</td><td>Mm.</td></tr><tr><td>GT</td><td>B</td><td>53.600</td><td>54.080</td><td>Uh.</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.000</td><td>0.720</td><td>Yeah.</td></tr><tr><td>Pred</td><td>speaker1</td><td>16.440</td><td>20.440</td><td>They're brilliant animal animals, and that's just a little me thing.</td></tr><tr><td>Pred</td><td>speaker1</td><td>21.470</td><td>26.440</td><td>So, guess I'll pass the pen to her. It's user interface design.</td></tr><tr><td>Pred</td><td>speaker2</td><td>26.770</td><td>29.400</td><td>I'm just gonna draw its head.</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:0.72,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Yeah.&quot;},{&quot;index&quot;:2,&quot;start&quot;:16.44,&quot;end&quot;:20.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;They're brilliant animal animals, and that's just a little me thing.&quot;},{&quot;index&quot;:3,&quot;start&quot;:21.47,&quot;end&quot;:26.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;So, guess I'll pass the pen to her. It's user interface design.&quot;},{&quot;index&quot;:4,&quot;start&quot;:26.77,&quot;end&quot;:29.40,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;I'm just gonna draw its head.&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/ami_TS3003a_chunk_0017.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/ami_TS3003a_chunk_0017.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-3">
+      <div class="case-header">
+        <div>
+          <div class="case-title">3. ES2004b_chunk_00000_00004</div>
+          <div class="case-meta">AMI · <span class="tag tag-repetition">重复/卡顿</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>WER</span><strong>75.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>231.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>2→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>4.80s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>11.61s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">存在重复/卡顿现象：重复 token 占比 17.4%。DER@0.25 高达 231.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>it is up there that screen is black alright okay okay that is fine 0 god are we done help</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>help maybe it is up there that screen is black just there not not really to all right okay okay that is fine</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>B</td><td>0.000</td><td>5.143</td><td>Help.</td></tr><tr><td>GT</td><td>B</td><td>8.164</td><td>11.017</td><td>It's up there? That screen's black.</td></tr><tr><td>GT</td><td>B</td><td>36.741</td><td>40.164</td><td>Alright, okay. Okay, that's fine.</td></tr><tr><td>GT</td><td>D</td><td>47.685</td><td>49.284</td><td>Oh God.</td></tr><tr><td>GT</td><td>B</td><td>55.336</td><td>56.573</td><td>Are we done?</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.480</td><td>1.440</td><td>Help.</td></tr><tr><td>Pred</td><td>speaker1</td><td>2.400</td><td>3.120</td><td>Maybe.</td></tr><tr><td>Pred</td><td>speaker1</td><td>7.440</td><td>10.160</td><td>It's up there. That screen's black.</td></tr><tr><td>Pred</td><td>speaker1</td><td>12.400</td><td>12.880</td><td>Just there.</td></tr><tr><td>Pred</td><td>speaker2</td><td>24.400</td><td>25.760</td><td>Not not really to.</td></tr><tr><td>Pred</td><td>speaker1</td><td>34.400</td><td>36.800</td><td>All right, okay. Okay, that's fine.</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.48,&quot;end&quot;:1.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Help.&quot;},{&quot;index&quot;:2,&quot;start&quot;:2.40,&quot;end&quot;:3.12,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Maybe.&quot;},{&quot;index&quot;:3,&quot;start&quot;:7.44,&quot;end&quot;:10.16,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;It's up there. That screen's black.&quot;},{&quot;index&quot;:4,&quot;start&quot;:12.40,&quot;end&quot;:12.88,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Just there.&quot;},{&quot;index&quot;:5,&quot;start&quot;:24.40,&quot;end&quot;:25.76,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;Not not really to.&quot;},{&quot;index&quot;:6,&quot;start&quot;:34.40,&quot;end&quot;:36.80,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;All right, okay. Okay, that's fine.&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/ami_ES2004b_chunk_0000.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/ami_ES2004b_chunk_0000.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-4">
+      <div class="case-header">
+        <div>
+          <div class="case-title">4. ES2004c_chunk_00497_00497</div>
+          <div class="case-meta">AMI · <span class="tag tag-hallucination">幻觉/插入</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>WER</span><strong>300.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>51.7%</strong></div>
+          <div class="cm"><span>说话人</span><strong>1→1</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>0.00s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>0.31s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">出现幻觉/插入内容：插入率达 300.0%，输出明显长于参考。DER@0.25 高达 51.7%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>okay</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>this is good okay</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>B</td><td>0.000</td><td>3.152</td><td>Okay.</td></tr><tr><td>Pred</td><td>speaker2</td><td>0.000</td><td>1.130</td><td>This is good.</td></tr><tr><td>Pred</td><td>speaker2</td><td>2.440</td><td>2.840</td><td>Okay.</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:1.13,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;This is good.&quot;},{&quot;index&quot;:2,&quot;start&quot;:2.44,&quot;end&quot;:2.84,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;Okay.&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/ami_ES2004c_chunk_0043.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/ami_ES2004c_chunk_0043.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-5">
+      <div class="case-header">
+        <div>
+          <div class="case-title">5. EN2002d_chunk_00009_00024</div>
+          <div class="case-meta">AMI · <span class="tag tag-speaker_collapse">说话人塌缩</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>WER</span><strong>58.4%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>87.7%</strong></div>
+          <div class="cm"><span>说话人</span><strong>4→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>1.89s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>7.22s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 4 人，模型只输出 2 人。DER@0.25 高达 87.7%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>okay keep an eye if i am dropping this because just seem ah as i said it does not seem very s perhaps sweater or maybe if i set it here on the this brand thing are they on yeah on ooh there you go does not want to stay yeah mine does not stick today either yeah seems slippery yeah okay what day is it okay who wants to write summary summary what was that a answer well okay i was just about to no no just the summary no that was just summary no no okay 0 i will do it no it will not 0 write the sum …</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>okay keep an eye if i am dropping this because it seems . as i said it does not seem very yeah mine does not slip today either it seems slippery perhaps i do not know maybe if i set it here on this round thing are they on yeah on yeah okay what day is it tuesday okay who wants to buy summary summary what was that an answer no that is just summary no i will do it what okay who is doing the summary 0 write the summary okay</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>A</td><td>0.000</td><td>20.662</td><td>Okay. Keep an eye if I'm dropping this 'cause just seem ah, as I said, it doesn't seem very s Perhaps sweater, or maybe if I set it here on the this brand thing. Are they on, yeah. On.</td></tr><tr><td>GT</td><td>C</td><td>4.609</td><td>8.294</td><td>Ooh, there you go. Doesn't wanna stay.</td></tr><tr><td>GT</td><td>B</td><td>7.000</td><td>8.771</td><td>Yeah, mine doesn't stick today either.</td></tr><tr><td>GT</td><td>D</td><td>8.858</td><td>10.049</td><td>Yeah, seems slippery.</td></tr><tr><td>GT</td><td>C</td><td>20.129</td><td>20.686</td><td>Yeah.</td></tr><tr><td>GT</td><td>A</td><td>22.870</td><td>25.236</td><td>Okay.</td></tr><tr><td>GT</td><td>D</td><td>25.457</td><td>26.609</td><td>What day is it?</td></tr><tr><td>GT</td><td>D</td><td>41.729</td><td>42.203</td><td>Okay.</td></tr><tr><td>GT</td><td>B</td><td>42.273</td><td>44.241</td><td>Who wants to write summary?</td></tr><tr><td>GT</td><td>D</td><td>45.501</td><td>46.209</td><td>Summary.</td></tr><tr><td>GT</td><td>A</td><td>47.393</td><td>57.427</td><td>What? Was that a answer?. Well Okay. I was just about to</td></tr><tr><td>GT</td><td>D</td><td>47.515</td><td>54.117</td><td>Um no. No, just the summary. No, that was just summary. No. Um no um okay.</td></tr><tr><td>GT</td><td>B</td><td>52.191</td><td>52.415</td><td>Oh.</td></tr><tr><td>GT</td><td>B</td><td>52.967</td><td>53.624</td><td>I'll do it.</td></tr><tr><td>GT</td><td>C</td><td>53.320</td><td>55.772</td><td>No it won't.</td></tr><tr><td>GT</td><td>D</td><td>57.217</td><td>58.690</td><td>Oh, write the sum okay, right.</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.240</td><td>3.440</td><td>Okay. Keep an eye if I'm dropping this, because it seems...</td></tr><tr><td>Pred</td><td>speaker1</td><td>4.370</td><td>6.400</td><td>As I said, it doesn't seem very... Yeah, mine doesn't slip today either.</td></tr><tr><td>Pred</td><td>speaker2</td><td>6.770</td><td>7.640</td><td>It seems slippery.</td></tr><tr><td>Pred</td><td>speaker1</td><td>8.270</td><td>12.470</td><td>Perhaps, I don't know. Maybe if I set it here on this round thing.</td></tr><tr><td>Pred</td><td>speaker1</td><td>14.470</td><td>15.470</td><td>Are they on, yeah? On?</td></tr><tr><td>Pred</td><td>speaker2</td><td>16.470</td><td>16.770</td><td>Yeah.</td></tr><tr><td>Pred</td><td>speaker2</td><td>20.470</td><td>22.770</td><td>Okay. What day is it? Tuesday.</td></tr><tr><td>Pred</td><td>speaker2</td><td>32.770</td><td>33.170</td><td>Okay.</td></tr><tr><td>Pred</td><td>speaker1</td><td>34.470</td><td>35.670</td><td>Who wants to buy summary?</td></tr><tr><td>Pred</td><td>speaker2</td><td>37.470</td><td>38.170</td><td>Summary.</td></tr><tr><td>Pred</td><td>speaker1</td><td>39.470</td><td>40.670</td><td>What? Was that an answer?</td></tr><tr><td>Pred</td><td>speaker2</td><td>41.470</td><td>43.470</td><td>No, that's just summary. No.</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.24,&quot;end&quot;:3.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Okay. Keep an eye if I'm dropping this, because it seems...&quot;}, {&quot;index&quot;:2,&quot;start&quot;:4.37,&quot;end&quot;:6.40,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;As I said, it doesn't seem very... Yeah, mine doesn't slip today either.&quot;}, {&quot;index&quot;:3,&quot;start&quot;:6.77,&quot;end&quot;:7.64,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;It seems slippery.&quot;}, {&quot;index&quot;:4,&quot;start&quot;:8.27,&quot;end&quot;:12.47,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Perhaps, I don't know. Maybe if I set it here on this round thing.&quot;}, {&quot;index&quot;:5,&quot;start&quot;:14.47,&quot;end&quot;:15.47,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;Are they on, yeah? On?&quot;}, {&quot;index&quot;:6,&quot;start&quot;:16.47,&quot;end&quot;:16.77,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;Yeah.&quot;}, {&quot;index&quot;:7,&quot;start&quot;:20.47,&quot;end&quot;:22.77,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;Okay. What day is it? Tuesday.&quot;}, {&quot;index&quot;:8,&quot;start&quot;:32.77,&quot;end&quot;:3…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/ami_EN2002d_chunk_0001.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/ami_EN2002d_chunk_0001.wav</code></div>
+        </div>
+      </div>
+    </article>
+    <h3 style="margin-top:24px">AliMeeting (中文)</h3>
+    <article class="case-card" id="case-6">
+      <div class="case-header">
+        <div>
+          <div class="case-title">6. R8002_M8002_chunk_00819_00850</div>
+          <div class="case-meta">AliMeeting · <span class="tag tag-massive_deletion">大量删除</span> <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-repetition">重复/卡顿</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>96.7%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>102.9%</strong></div>
+          <div class="cm"><span>说话人</span><strong>4→1</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>25.03s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>2.57s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 4 人，模型只输出 1 人；大量文本被删除：删除率达 96.7%，输出长度比仅 0.03；时间戳漂移严重：边界 MAE 25.0s，结尾误差 2.6s；存在重复/卡顿现象：重复 token 占比 50.0%。DER@0.25 高达 102.9%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>不你你这样你你你后面因为你要是那个阳光普照奖你一轮儿抽10个一轮儿抽10个有个整数136刚才说的是136对吗哦刚才说的是136是吧不你嗯到这个可以到时候再说因为不能保证来多少人嘛就是咱50个人可能来48个嗯啊嗯啊对对对对有可能确实有事来不了的嗯嗯嗯那然后对呃就是吃的话咱们是那个就是就是就是就是在那边儿就直接在那边儿吃吧就不用自己带了是吧对就是涮肉就行了对然后自己带着一些酒水这个是提前反正是就采购这奖品就是这个采购这个物品之一嗯嗯嗯酒水是自己自己采提前采购嗯你得提前问好老板喝什么酒就行了嗯嗯嗯对哦这些反正都是在10万里面肯定是够的嗯对这个这个没问这用不了多少嗯行那咱们就是还是年安排在年后酒水有1万块钱就打住了哈嗯还是安排在年后因为咱们反正因为咱们反正也是跟那些商超合作可如可以跟他们那那个就是采购嘛对嗯嗯那那那就那就先这么定吧</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>嗯那那那就那就先这么定吧</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>N_SPK8006</td><td>0.000</td><td>6.150</td><td>不你你这样，你你你后面，因为你要是那个阳光普照奖，你一轮儿抽十个一轮儿抽十个，有个整数。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>3.350</td><td>5.430</td><td>一三六刚才说的是一三六对吗。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>7.020</td><td>7.290</td><td>哦。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>7.030</td><td>8.240</td><td>刚才说的是一三六是吧。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>8.110</td><td>14.220</td><td>不你，嗯到，这个可以到时候再说，因为不能保证来多少人嘛？就是咱五十个人可能来四十八个，嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>10.140</td><td>10.440</td><td>啊。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>11.680</td><td>12.280</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>11.760</td><td>12.480</td><td>啊对。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>13.810</td><td>17.380</td><td>对对对，有可能确实有事来不了的，嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>14.090</td><td>15.530</td><td>嗯，嗯，那然后。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>16.200</td><td>16.390</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>16.590</td><td>24.490</td><td>呃，就是吃的话咱们是那个，就是就是就是就是在那边儿就直接在那边儿吃吧，就不用自己带了，是吧？</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>23.830</td><td>25.160</td><td>对就是涮肉就行了。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>25.060</td><td>33.570</td><td>对然后自己带着一些酒水，这个是提前反正是就采购这奖品就是这个采购这个物品之一。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>25.170</td><td>25.530</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>25.390</td><td>25.670</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>27.020</td><td>30.270</td><td>嗯酒水是自己，自己采，提前采购。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>33.590</td><td>33.890</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>33.960</td><td>35.750</td><td>你得提前问好老板喝什么酒就行了。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>35.920</td><td>36.370</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>36.000</td><td>36.400</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>36.270</td><td>37.330</td><td>嗯，对。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>37.950</td><td>40.680</td><td>哦，这些反正都是在十万里面肯定是够的，嗯。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>40.090</td><td>40.380</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>40.590</td><td>42.320</td><td>这个这个没问，这用不了多少。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>42.560</td><td>45.120</td><td>嗯，行那咱们就是还是年安排在年后。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>44.420</td><td>45.990</td><td>酒水有一万块钱就打住了哈。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>46.220</td><td>46.540</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>47.560</td><td>53.700</td><td>还是安排在年后，因为咱们反正因为咱们反正也是跟那些商超合作，可如可以跟他们那那个就是采购嘛。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>49.790</td><td>50.050</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>51.820</td><td>52.140</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>55.370</td><td>58.010</td><td>嗯，那那那就那就先这么定吧。</td></tr><tr><td>Pred</td><td>speaker1</td><td>53.440</td><td>55.440</td><td>嗯，那那那就那就先这么定吧。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.16,&quot;end&quot;:5.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;不，你你这样，你你你后面，因为你要是那阳光普照奖，你一摞成十个，一摞成十个，有个整数。&quot;,&quot;index&quot;:2,&quot;start&quot;:6.40,&quot;end&quot;:7.68,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;刚才说的是一三六是吗？&quot;,&quot;index&quot;:3,&quot;start&quot;:7.76,&quot;end&quot;:11.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你你到这个可以到时候再关，因为你不能保证来多少人嘛。&quot;,&quot;index&quot;:4,&quot;start&quot;:11.76,&quot;end&quot;:14.40,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;咱五十个人可能来四十八个。&quot;,&quot;index&quot;:5,&quot;start&quot;:14.64,&quot;end&quot;:16.40,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;对对对，有可能确实有事来不了嘛。&quot;,&quot;index&quot;:6,&quot;start&quot;:16.64,&quot;end&quot;:23.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;对，嗯，就是吃的话，咱们是那个就是就是就是就是在那边就直接在那边吃吧，就不用自己带了。&quot;,&quot;index&quot;:7,&quot;start&quot;:23.60,&quot;end&quot;:24.72,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;就是涮肉就行了。&quot;,&quot;index&quot;:8,&quot;start&quot;:24.80,&quot;end&quot;:32.64,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;对，然后自己带着一些酒水，这个是提前反正就是采购奖品，就这也采购这个物品之一。&quot;,&quot;index&quot;:9,&quot;start&quot;:33.20,&quot;end&quot;:35.44,&quot;speaker&quot;:&quot;speaker2&quot;…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/alimeeting_R8002_M8002_chunk_0035.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/alimeeting_R8002_M8002_chunk_0035.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-7">
+      <div class="case-header">
+        <div>
+          <div class="case-title">7. R8002_M8002_chunk_00151_00171</div>
+          <div class="case-meta">AliMeeting · <span class="tag tag-massive_deletion">大量删除</span> <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>100.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>100.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>4→0</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>999.00s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>58.02s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 4 人，模型只输出 0 人；大量文本被删除：删除率达 100.0%，输出长度比仅 0.00；时间戳漂移严重：边界 MAE 999.0s，结尾误差 58.0s。DER@0.25 高达 100.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>而且就是有很多公司都是在1月份开是为啥因为怕有的员工就是在春节前我开始请假我就走然后呢这会儿一般是在春节前或者过完春节马上回来的工作日来开就是让员工调整工作状态嗯嗯嗯嗯嗯你先开个年会放松一下然后就去放春节放假了嗯对这这个18号跟您说的年后这个您说是年后就行因为把之前这1年所有的工作都总结一下还有就是奖励那个年前你要年前举行的话哦那对这个是一些奖励没法儿到位比如说这个全勤奖啊这个啊对对对啊绩效都没有体现出来对对对嗯那还是咱们还是定在那个年后嗯嗯就是还得结算呀什么的是吧对很多绩绩效很多还没有对没算出来那个呃那数字不准确呀嗯对对年后就当让大家有个期待是吧嗯奖品还有这个奖励什么的都都可以充分的发发到每一个员工手上嗯那要年后的话咱们什么时候开始筹划比较合适啊</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p><em class="muted">（空）</em></p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>N_SPK8005</td><td>0.000</td><td>14.160</td><td>而且就是有很多公司都是在一月份开是为啥？因为怕有的员工就是在春节前我开始请假，我就走，然后呢？这会儿一般是在春节前或者过完春节马上回来的工作日来开，就是让员工调整工作状态。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>0.750</td><td>1.190</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>7.150</td><td>7.550</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>7.550</td><td>7.970</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>9.630</td><td>9.970</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>11.820</td><td>12.110</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>14.160</td><td>17.700</td><td>你先开个年会放松一下，然后就去放春节放假了。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>17.790</td><td>32.600</td><td>嗯对，这，这个十八号跟您说的年后，这个您说是年后就行，因为把之前这一年所有的工作都总结一下，还有就是奖励，那个年前你要年前举行的话。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>18.720</td><td>19.290</td><td>哦，那。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>24.880</td><td>25.300</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>26.540</td><td>27.460</td><td>这个是。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>32.600</td><td>46.460</td><td>一些奖励没法儿到位，比如说这个全勤奖啊，这个，啊，对对对，啊绩效都没有体现出来，对对对嗯，那还是，咱们还是定在那个年后，嗯。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>35.710</td><td>39.040</td><td>嗯，就是还得结算呀什么的，是吧？</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>36.340</td><td>40.150</td><td>对很多绩绩效很多还没有对，没算出来。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>36.840</td><td>38.080</td><td>那个，呃。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>39.470</td><td>41.710</td><td>那数字不准确呀，嗯。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>41.210</td><td>41.560</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>45.730</td><td>46.030</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>46.150</td><td>49.280</td><td>年后就当让大家有个期待，是吧，嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>48.100</td><td>54.280</td><td>奖品还有这个奖励什么的都，都可以充分的发发到每一个员工手上。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>54.800</td><td>58.020</td><td>嗯，那要年后的话，咱们什么时候开始筹划比较合适啊？</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:8.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;而且就是有很多公司都是在一月份开始，为啥？因为怕有的员工就是在春节前，我先开始请假，我就走。然后呢，这会儿一般是在春节前或者过完春节马上回来的工作日来开。&quot;}, {&quot;index&quot;:2,&quot;start&quot;:8.44,&quot;end&quot;:14.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;就是让员工调整工作状态，你先开个年会放松一下，然后就去放春节假期了。&quot;}, {&quot;index&quot;:3,&quot;start&quot;:15.67,&quot;end&quot;:20.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;对，这这个十八号跟您说的年后，这个您说是年后也行，因为把之前这一年所有的工作都总结一下。&quot;}, {&quot;index&quot;:4,&quot;start&quot;:20.44,&quot;end&quot;:27.67,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;还有就是奖励，那个年前你要年前举行的话，一些奖励没法到位，比如说这个全勤奖啊，这个绩效啊，对对对。&quot;}, {&quot;index&quot;:5,&quot;start&quot;:27.67,&quot;end&quot;:31.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;有的绩效啊，它还没有完，它得结束呀，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，它得，…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/alimeeting_R8002_M8002_chunk_0007.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/alimeeting_R8002_M8002_chunk_0007.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-8">
+      <div class="case-header">
+        <div>
+          <div class="case-title">8. R8009_M8026_chunk_00327_00351</div>
+          <div class="case-meta">AliMeeting · <span class="tag tag-timestamp_drift">时间戳漂移</span> <span class="tag tag-repetition">重复/卡顿</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>29.1%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>84.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>2→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>22.03s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>44.82s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">时间戳漂移严重：边界 MAE 22.0s，结尾误差 44.8s；存在重复/卡顿现象：重复 token 占比 6.2%。DER@0.25 高达 84.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>我们内部人员自己做嘛就自己编排让客服自己编排唉这个想法还是比较不错对对然后你看还有哈其他的话主要是我们这边还有那个停车的问题哈嗯停车这边的话原来我们是一共是目前这个小区我们小区的话地下停车场加的话现在一共是有3000个小区的车位3000个小车车位嘛嗯然后现在的入住率已经上来了这3000个明显可能会后期不够使用你看这边就关于停车这个问题你这边有没有什么具体的想法停车问题他现在有那些嗯嗯业主自己买的车位还有租的车位啊嗯嗯主要一个问题就是相当于业主哈嗯他有些业主他是一个人买了3辆车他只有2个车位</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>我们内部人员自己做嘛就自己编排让客户自己编排对这个想法还是比较不错然后你看还有哈其他的话主要是我们这边还有那个停车的问题哈停车这边的话原来我们是一共是目前这个小区我们小区的话地下停车场加的话现在一共是有3000个小区的车3000个小车车位嘛嗯然后现在的入住率已经上来了这3000个明显可能会后期不够使用你看这边就关于停车这个问题你这边有没有什么具体的想法</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>N_SPK8081</td><td>0.000</td><td>2.270</td><td>我们内部人员自己做嘛。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>2.160</td><td>6.650</td><td>就自己编排，让客服自己编排，唉，这个想法还是比较不错。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>3.030</td><td>3.620</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>4.260</td><td>4.850</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>6.960</td><td>8.930</td><td>然后你看还有哈其他的话。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>9.240</td><td>10.960</td><td>主要是我们这边还有。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>10.960</td><td>12.870</td><td>那个停车的问题哈。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>12.780</td><td>13.670</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>12.870</td><td>18.010</td><td>停车这边的话，原来我们是一共是目前这个小区，我们小区的话。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>18.010</td><td>19.700</td><td>地下停车场加。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>19.700</td><td>24.320</td><td>的话现在一共是有三千个小区的车位，三千个小车车位嘛。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>24.180</td><td>24.830</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>24.780</td><td>29.520</td><td>然后现在的入住率已经上来了，这三千个明显可能会。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>29.520</td><td>30.920</td><td>后期不够使用。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>31.230</td><td>35.140</td><td>你看这边就关于停车这个问题，你这边有没有。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>35.640</td><td>36.950</td><td>什么具体的想法。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>37.740</td><td>40.700</td><td>停车问题，他现在有那些。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>40.830</td><td>41.480</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>41.160</td><td>43.140</td><td>嗯，业主自己买的车位。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>43.140</td><td>44.420</td><td>还有租的车位啊。</td></tr><tr><td>GT</td><td>N_SPK8080</td><td>44.520</td><td>45.170</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>45.360</td><td>46.420</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>46.420</td><td>49.760</td><td>主要一个问题就是相当于业主哈。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>51.100</td><td>54.790</td><td>嗯，他有些业主，他是一个人买了三辆车。</td></tr><tr><td>GT</td><td>N_SPK8081</td><td>54.790</td><td>56.260</td><td>他只有两个车位。</td></tr><tr><td>Pred</td><td>speaker2</td><td>0.160</td><td>1.740</td><td>我们内部人员自己做嘛。</td></tr><tr><td>Pred</td><td>speaker1</td><td>1.870</td><td>4.440</td><td>就自己编排，让客户自己编排。对，这个想法还是比较不错。</td></tr><tr><td>Pred</td><td>speaker1</td><td>4.870</td><td>11.440</td><td>然后你看还有哈，其他的话，主要是我们这边还有那个停车的问题哈。停车这边的话，原来我们是一共是目前这个小区，我们小区的话，地下停车场加的话，现在一共是有三千个小区的车，三千个小车车位嘛。嗯。然后现在的入住率已经上来了，这三千个明显可能会后期不够使用。你看这边就关于停车这个问题，你这边有没有什么具体的想法？</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.16,&quot;end&quot;:1.74,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;我们内部人员自己做嘛。&quot;},{&quot;index&quot;:2,&quot;start&quot;:1.87,&quot;end&quot;:4.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;就自己编排，让客户自己编排。对，这个想法还是比较不错。&quot;},{&quot;index&quot;:3,&quot;start&quot;:4.87,&quot;end&quot;:11.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;然后你看还有哈，其他的话，主要是我们这边还有那个停车的问题哈。停车这边的话，原来我们是一共是目前这个小区，我们小区的话，地下停车场加的话，现在一共是有三千个小区的车，三千个小车车位嘛。嗯。然后现在的入住率已经上来了，这三千个明显可能会后期不够使用。你看这边就关于停车这个问题，你这边有没有什么具体的想法？&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/alimeeting_R8009_M8026_chunk_0014.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/alimeeting_R8009_M8026_chunk_0014.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-9">
+      <div class="case-header">
+        <div>
+          <div class="case-title">9. R8004_M8006_chunk_00212_00247</div>
+          <div class="case-meta">AliMeeting · <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-repetition">重复/卡顿</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>52.5%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>82.7%</strong></div>
+          <div class="cm"><span>说话人</span><strong>4→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>15.56s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>37.51s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 4 人，模型只输出 2 人；时间戳漂移严重：边界 MAE 15.6s，结尾误差 37.5s；存在重复/卡顿现象：重复 token 占比 5.3%。DER@0.25 高达 82.7%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>你就会它操作啊对智能施法比如摁一个键连贯施法对吧对我们这种手残党啊挺好挺好挺有帮助对防不住对用有一些智能施法之类的对孩子是吗啊真的是嗯是是就是降低新手的入门嗯哇这可以加上比如说一些有的人不想用手机玩他不习惯可以加上手柄啊什么的手柄就索尼的都打得更舒服一点对对对啊又加了一个销售点对对还对亏我哎这不是相对的也可以对所以这一下就可以嗯对来个腕儿表什么对但手柄可能就是额外需要买一些外设可能就是对啊但是这样可能我们的成本会提高或者我们可能跟别的公司去对接这些有一些具体的很多一些事情啊就有点儿不好了对吧对对对对就会有些人可能就会望而却步了嗯是是是确实没错对对对是嗯我觉得还是这个还可以去玩想想再我们可以再想些别的对吧比如手游手柄可能这些对我们就可以降低成本减少我们中途的这些流程啊让我们可以对吧毕竟我们是盈利嘛嗯对对对降低成本对对对对就是手机的和手机的玩手柄和手柄的玩对手机手柄也能玩啊对对对可以可以是还有手手柄手柄的玩儿对对对哎这样可能也好点儿对吧毕竟要不你不能你拿个手柄你虐我这手机丢掉我有点儿不开心了对对对这样有点儿不太好了对对对对所以你又觉得感觉不太公平或者说人家操作的简难易程度就不太一样了是是对…</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>你为了它就用一些智能式吧师承师法比如摁一个按键连贯是吧对吧跟我们那种手残党对吧对吧这就能降低新手的入门嘛我这可以加上比如说一些有的人不想用手机玩他不习惯可以加个手柄啊什么的手柄是索尼打的更舒服一点对对对而且加上也是一个特点但手柄可能就是额外需要买一些外设对呀但是这样可能说我们成本会提高或者说我们要跟游戏公司去对接这有些东西可能就会忘了确实确实没错就有点不好了是吧我觉得还是这个还可以去玩一下再我们可以再想些别的对吧比如说手柄手柄可能可以对我们去降低成本减少我们中途的这些流程啊然后可以对吧就是毕竟我们是盈利的手机的和手机的玩手柄和手柄的玩啊哎这样也可以要不你不能你拿个手柄捏我的手机就有点然后你就觉得感觉不太公平对对操作的简难易程度就不太一样了</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>N_SPK8033</td><td>0.000</td><td>11.320</td><td>你就会它操作啊，对智能施法，比如摁一个键连贯施法对吧，对我们这种手残党啊挺好挺好，挺有帮助对，防不住。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>0.430</td><td>2.450</td><td>对，用有一些智能施法之类的。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>0.980</td><td>4.080</td><td>对孩子是吗？啊，真的是。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>3.250</td><td>3.700</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>5.680</td><td>6.050</td><td>是。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>7.870</td><td>8.260</td><td>是。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>8.130</td><td>9.890</td><td>就是降低新手的入门。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>9.050</td><td>9.380</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>10.310</td><td>19.440</td><td>哇这可以加上，比如说一些有的人不想用手机玩，他不习惯可以加上手柄啊什么的，手柄就索尼的都打得更舒服一点，对对对，啊又加了一个销售点。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>10.630</td><td>11.440</td><td>对对。</td></tr><tr><td>GT</td><td>N_SPK8033</td><td>13.340</td><td>19.370</td><td>还，对亏我，哎，这不是相对的，也可以对，所以这一下就可以。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>15.100</td><td>15.510</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>17.180</td><td>20.190</td><td>对，来个腕儿表什么，对。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>20.570</td><td>24.300</td><td>但手柄可能就是，额外需要买一些外设，可能就是。</td></tr><tr><td>GT</td><td>N_SPK8033</td><td>23.310</td><td>32.070</td><td>对啊，但是这样可能我们的成本会提高，或者我们可能跟别的公司去对接这些有一些具体的很多一些事情啊，就有点儿不好了。对吧。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>24.350</td><td>24.630</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>25.960</td><td>26.810</td><td>对对对就。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>27.810</td><td>29.690</td><td>会有些人可能就会望而却步了。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>28.350</td><td>28.830</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>29.260</td><td>32.010</td><td>是是是，确实没错，对对对。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>31.390</td><td>31.910</td><td>是。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>31.420</td><td>31.890</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8033</td><td>32.680</td><td>45.310</td><td>我觉得还是这个还可以去玩，想想再我们可以再想些别的，对吧比如手游手柄，可能这些对我们就可以降低成本。减少我们中途的这些流程啊，让我们可以对吧，毕竟我们是盈利嘛。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>36.710</td><td>37.070</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>36.790</td><td>37.190</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>37.140</td><td>37.400</td><td>对。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>40.050</td><td>41.750</td><td>对降低成本，对。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>42.570</td><td>49.060</td><td>对对对，就是手机的和手机的玩手柄和手柄的玩，对。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>46.090</td><td>50.620</td><td>手机手柄也能玩啊，对对对可以可以，是。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>46.670</td><td>49.490</td><td>还有手手柄手柄的玩儿对对。</td></tr><tr><td>GT</td><td>N_SPK8033</td><td>47.220</td><td>55.910</td><td>对，哎，这样可能也好点儿，对吧，毕竟要不你不能你拿个手柄，你虐我这手机丢掉，我有点儿不开心了。对对对这样有点儿不太好了。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>52.390</td><td>53.110</td><td>对对对对。</td></tr><tr><td>GT</td><td>N_SPK8032</td><td>52.400</td><td>56.950</td><td>所以你又觉得感觉不太公平，或者说人家操作的简难易程度就不太一样了。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>52.620</td><td>54.250</td><td>是是。</td></tr><tr><td>GT</td><td>N_SPK8034</td><td>54.620</td><td>55.270</td><td>对对对。</td></tr><tr><td>GT</td><td>N_SPK8031</td><td>56.540</td><td>56.880</td><td>对。</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.000</td><td>8.440</td><td>你为了它就用一些智能式吧，师承师法，比如摁一个按键连贯是吧，对吧？跟我们那种手残党，对吧？对吧？这就能降低新手的入门嘛。</td></tr><tr><td>Pred</td><td>speaker2</td><td>8.440</td><td>15.440</td><td>我这可以加上，比如说一些有的人不想用手机玩，他不习惯，可以加个手柄啊什么的。手柄是索尼打的更舒服一点，对对对。而且加上也是一个特点。</td></tr><tr><td>Pred</td><td>speaker2</td><td>16.470</td><td>19.440</td><td>但手柄可能就是额外需要买一些外设。对呀，但是这样可能说我们成本会提高，或者说我们要跟游戏公司去对接，这有些东西可能就会忘了，确实确实没错，就有点不好了，是吧？我觉得还是这个还可以去玩一下，再我们可以再想些别的，对吧？比如说手柄手柄，可能可以对我们去降低成本，减少我们中途的这些流程啊，然后可以，对吧？就是毕竟我们是盈利的。手机的和手机的玩，手柄和手柄的玩啊。哎，这样也可以，要不你不能你拿个手柄捏我的手机就有点，然后你就觉得感觉不太公平，对对，操作的简难易程度就不太一样了。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:8.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你为了它就用一些智能式吧，师承师法，比如摁一个按键连贯是吧，对吧？跟我们那种手残党，对吧？对吧？这就能降低新手的入门嘛。&quot;},{&quot;index&quot;:2,&quot;start&quot;:8.44,&quot;end&quot;:15.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;我这可以加上，比如说一些有的人不想用手机玩，他不习惯，可以加个手柄啊什么的。手柄是索尼打的更舒服一点，对对对。而且加上也是一个特点。&quot;},{&quot;index&quot;:3,&quot;start&quot;:16.47,&quot;end&quot;:19.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;但手柄可能就是额外需要买一些外设。对呀，但是这样可能说我们成本会提高，或者说我们要跟游戏公司去对接，这有些东西可能就会忘了，确实确实没错，就有点不好了，是吧？我觉得还是这个还可以去玩一下，再我们可以再想些别的，对吧？比如说手柄手柄，可能可以对我们去降低成本，减少我们中途的这些流程啊，然后可以，对吧？就是毕竟我们是盈利的。手机的和手机的玩，手柄和手柄的玩啊。哎，这样也可以，要不你不能你拿个手柄捏我的手机就有点，然后你就觉得感觉不太公平，对对，操作的简难易程度就不太一样了。&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/alimeeting_R8004_M8006_chunk_0006.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/alimeeting_R8004_M8006_chunk_0006.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-10">
+      <div class="case-header">
+        <div>
+          <div class="case-title">10. R8002_M8002_chunk_00305_00326</div>
+          <div class="case-meta">AliMeeting · <span class="tag tag-massive_deletion">大量删除</span> <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>100.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>100.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>4→0</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>999.00s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>58.73s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 4 人，模型只输出 0 人；大量文本被删除：删除率达 100.0%，输出长度比仅 0.00；时间戳漂移严重：边界 MAE 999.0s，结尾误差 58.7s。DER@0.25 高达 100.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>有有有有有舞台有舞台有有你一看你就几个人表演你两3个人表演肯定够了不不是不能肯肯定不能是剧院的那么大小啊对就是大一点儿的会有是吧不它它的舞台大不大你光是光那两3个人的节目不行啊咱们一个部门就没有多少人嘛你得你得有不是可以多部多部门联合表演一个节目啊不他问题他要跳个舞就得要个台子呀就得有个场地对你跳个舞不用不用其实就是轰趴馆一般1层都是吃饭的嘛剩下一半就是就前面儿大屏幕唱歌儿的然后呢那个会有表演的区域就是装下7~8个人7~8个人没问题嗯它那个表演区域没有没不是我没去过表演的它表演的区域不是一个高台上面吗没现在没有高台儿现在就是一个你知道你知道ktv吗就跟ktv前面一个房间不不不不是没有就你说他没有那个舞台的效果嗯那多没意思啊那没意思啊那咱们可以是不是可以搭一下啊是吧不是你弄一高台儿就没人愿意表演了现在的表演全都是就是比较接地气儿了就是在啊大家一个房间然后他在前面表演啊你说你你说让你去那太麻烦现搭太麻烦就像街舞似的啊就像街舞大家围1块儿似的啊你说让你去一个高台儿上一个剧院表演谁愿意去啊就是没人报名了就然后就还有就是不是不是特高</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p><em class="muted">（空）</em></p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>N_SPK8005</td><td>0.000</td><td>12.580</td><td>有，有有有，有舞台，有舞台，有有，你一看，你就几个人表演你两三个人表演肯定够了，不不是不能肯，肯定不能是剧院的那么大小啊，对。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>2.390</td><td>3.800</td><td>就是大一点儿的会有，是吧？</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>2.480</td><td>4.000</td><td>不它它的舞台大不大。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>7.650</td><td>10.050</td><td>你光是，光那两三个人的节目不行啊。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>10.840</td><td>12.480</td><td>咱们一个部门就没有多少人嘛。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>11.080</td><td>15.430</td><td>你得，你得有，不是，可以多部多部门联合表演一个节目啊。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>14.480</td><td>18.730</td><td>不，他问题他要跳个舞，就得要个台子呀，就得有个场地。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>17.610</td><td>18.460</td><td>对，你跳个舞。</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>18.060</td><td>29.710</td><td>不用不用，其实就是，轰趴馆一般一层都是吃饭的嘛，剩下一半就是就，前面儿大屏幕唱歌儿的，然后呢？那个会有表演的区域，就是装下七八个人，七八个人没问题嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>26.560</td><td>28.400</td><td>它那个表演区域没有，没。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>29.500</td><td>33.600</td><td>不是我没去过，表演的，它表演的区域不是一个高台上面吗？</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>33.860</td><td>41.280</td><td>没现在没有高台儿，现在就是一个，你知道，你知道KTV吗？就跟KTV前面一个房间，不不不。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>34.200</td><td>38.140</td><td>不是没有，就你说他没有那个舞台的效果。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>37.780</td><td>38.170</td><td>嗯。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>38.160</td><td>40.950</td><td>那多没意思啊，那没意思啊。</td></tr><tr><td>GT</td><td>N_SPK8007</td><td>40.020</td><td>42.700</td><td>那咱们可以是不是可以搭一下啊，是吧？</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>42.370</td><td>52.910</td><td>不是你弄一高台儿就没人愿意表演了，现在的表演全都是就是比较接地气儿了，就是在啊，大家一个房间然后他在前面表演啊你说，你你说让你去。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>43.270</td><td>44.860</td><td>那太麻烦，现搭太麻烦。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>50.590</td><td>54.190</td><td>就像街舞似的啊，就像街舞大家围一块儿似的啊？</td></tr><tr><td>GT</td><td>N_SPK8005</td><td>53.820</td><td>58.710</td><td>你说让你去一个高台儿上，一个剧院表演，谁愿意去啊？就是没人报名了就。</td></tr><tr><td>GT</td><td>N_SPK8006</td><td>57.340</td><td>58.690</td><td>然后就还有就是。</td></tr><tr><td>GT</td><td>N_SPK8008</td><td>57.680</td><td>58.730</td><td>不是，不是特高。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:1.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;不大是吧？跟那玩。&quot;}, {&quot;index&quot;:2,&quot;start&quot;:1.44,&quot;end&quot;:2.56,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;有有有有舞台。&quot;}, {&quot;index&quot;:3,&quot;start&quot;:2.84,&quot;end&quot;:4.24,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;它这舞台大不大？&quot;}, {&quot;index&quot;:4,&quot;start&quot;:4.44,&quot;end&quot;:7.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你你就几个人表演，你两三个人表演肯定够了。&quot;}, {&quot;index&quot;:5,&quot;start&quot;:7.64,&quot;end&quot;:10.24,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;你光光那两三个人的节目不行啊。&quot;}, {&quot;index&quot;:6,&quot;start&quot;:10.24,&quot;end&quot;:13.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;肯定不能是剧院，完全那么大，那没有多少人呢。&quot;}, {&quot;index&quot;:7,&quot;start&quot;:13.44,&quot;end&quot;:16.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;你得有，可以多部门多部门联合表演的节目。&quot;}, {&quot;index&quot;:8,&quot;start&quot;:16.44,&quot;end&quot;:19.12,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;那问题他要跳个舞就得要个台子呀。&quot;}, {&quot;index&quot;:9,&quot;start&quot;:19.12,&quot;end&quot;:28.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;其实就是轰趴馆一般一层都是吃饭的嘛，剩下一半就是这种前面大屏幕唱歌的，然后呢那个会有表演的区域，就是装的…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/alimeeting_R8002_M8002_chunk_0014.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/alimeeting_R8002_M8002_chunk_0014.wav</code></div>
+        </div>
+      </div>
+    </article>
+    <h3 style="margin-top:24px">AISHELL-4 (中文)</h3>
+    <article class="case-card" id="case-11">
+      <div class="case-header">
+        <div>
+          <div class="case-title">11. L_R003S01C02_chunk_00424_00436</div>
+          <div class="case-meta">AISHELL-4 · <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-repetition">重复/卡顿</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>64.7%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>63.3%</strong></div>
+          <div class="cm"><span>说话人</span><strong>5→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>8.20s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>28.15s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 5 人，模型只输出 2 人；时间戳漂移严重：边界 MAE 8.2s，结尾误差 28.2s；存在重复/卡顿现象：重复 token 占比 21.2%。DER@0.25 高达 63.3%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>物业的安全有没有再这个请放心是吧是刚才说的这几点儿呗呃像早起像早起的天还没没亮呢这这个来回的摸东西这个嗯呃是不是咱咱保安需要走动走动驱赶驱赶有的是咱本小区的这避免不了有些外小区的过来对这个偷摸儿的这些咱也不知道人家翻啥呢可能也是呃收破烂的对收破烂的收破烂的呃有也有可能说是小偷小摸的着急看悄悄看人家有没有人儿趁谁不注意呃去人家盗点儿财物等还有就是</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>你这个对它物业的安全你没有点那个请放心是吧对就是刚才说的那几点呗那个像早起像早起这天还没没亮呢那来回的摸东西那个是不是咱咱保安要走动走动驱赶驱赶有的是咱本小区的这避免不了</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>006-M</td><td>0.000</td><td>5.680</td><td>物业的安全有没有再这个</td></tr><tr><td>GT</td><td>004-M</td><td>3.022</td><td>4.645</td><td>请放心是吧</td></tr><tr><td>GT</td><td>007-M</td><td>5.930</td><td>14.580</td><td>是刚才说的这几点儿呗呃像早起像早起的天还没没亮呢这</td></tr><tr><td>GT</td><td>007-M</td><td>14.615</td><td>16.917</td><td>这个来回的摸东西这个。</td></tr><tr><td>GT</td><td>002-F</td><td>16.917</td><td>17.332</td><td>嗯</td></tr><tr><td>GT</td><td>007-M</td><td>17.332</td><td>20.008</td><td>呃是不是咱咱保安，</td></tr><tr><td>GT</td><td>007-M</td><td>20.448</td><td>27.890</td><td>需要走动走动驱赶驱赶，有的是咱本小区的这避免不了有些外小区的过来</td></tr><tr><td>GT</td><td>002-F</td><td>25.891</td><td>26.189</td><td>对</td></tr><tr><td>GT</td><td>007-M</td><td>27.946</td><td>34.731</td><td>这个偷摸儿的这些咱也不知道人家翻啥呢可能也是呃收破烂的</td></tr><tr><td>GT</td><td>002-F</td><td>28.276</td><td>28.627</td><td>对</td></tr><tr><td>GT</td><td>002-F</td><td>34.721</td><td>35.574</td><td>收破烂的</td></tr><tr><td>GT</td><td>003-F</td><td>35.511</td><td>36.251</td><td>收破烂的</td></tr><tr><td>GT</td><td>007-M</td><td>36.476</td><td>49.590</td><td>呃有也有可能说是小偷小摸的着急看悄悄看人家有没有人儿趁谁不注意呃去人家盗点儿财物等还有就是</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.320</td><td>3.440</td><td>你这个对它物业的安全，你没有点那个，请放心是吧？对。</td></tr><tr><td>Pred</td><td>speaker2</td><td>5.720</td><td>16.840</td><td>就是刚才说的那几点呗，那个像早起，像早起这天还没没亮呢，那来回的摸东西那个。</td></tr><tr><td>Pred</td><td>speaker2</td><td>17.470</td><td>21.440</td><td>是不是咱咱保安要走动走动驱赶驱赶？有的是咱本小区的，这避免不了。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.32,&quot;end&quot;:3.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你这个对它物业的安全，你没有点那个，请放心是吧？对。&quot;},{&quot;index&quot;:2,&quot;start&quot;:5.72,&quot;end&quot;:16.84,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;就是刚才说的那几点呗，那个像早起，像早起这天还没没亮呢，那来回的摸东西那个。&quot;},{&quot;index&quot;:3,&quot;start&quot;:17.47,&quot;end&quot;:21.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;是不是咱咱保安要走动走动驱赶驱赶？有的是咱本小区的，这避免不了。&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/aishell4_L_R003S01C02_chunk_0033.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/aishell4_L_R003S01C02_chunk_0033.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-12">
+      <div class="case-header">
+        <div>
+          <div class="case-title">12. S_R003S01C01_chunk_00441_00481</div>
+          <div class="case-meta">AISHELL-4 · <span class="tag tag-massive_deletion">大量删除</span> <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-timestamp_drift">时间戳漂移</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>100.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>100.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>5→0</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>999.00s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>58.38s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 5 人，模型只输出 0 人；大量文本被删除：删除率达 100.0%，输出长度比仅 0.00；时间戳漂移严重：边界 MAE 999.0s，结尾误差 58.4s。DER@0.25 高达 100.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>嗯进行处理对对两三种菜对两到现在对咱们就应该是两三种菜绿叶菜啦豆制品啦是吧对这个品种多放到1块儿把它对这样对包到1块儿包到1块儿比如说2个香菇啦1把儿油麦啦那就在一个袋子里面对也也让他们再放一些金针菇啦就就跟套餐一样包在一个包装里边儿啊¥51袋儿啊¥6~6¥61袋儿就是品种比较多对也可以贴一个标签儿哎对对对对量种类多一点儿反而好卖一些嗯啊啊是对所以看你有的你弄一大袋子他会他1顿他吃不完他有的时候他回去想吃两种菜对对对是那个量量就不能太多了是吧你是就吃就吃1次然后你要两三种菜放到1块儿对那量就小一些种类多一些量少一些嗯这也是这也好比东北那个大拌菜什么都有类似这种的咱把这个对对对是是是啊嗯是是就两三种菜嗯呃把这种不新鲜的就是赶紧及时的处理嗯包括能放的咱及时就是嗯放到冷库第2天进行售卖嗯嗯包括就是家电这1块儿啊也是呃呃</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p><em class="muted">（空）</em></p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>001-M</td><td>0.000</td><td>1.459</td><td>嗯进行处理，</td></tr><tr><td>GT</td><td>004-F</td><td>1.336</td><td>2.886</td><td>对对两三种菜，</td></tr><tr><td>GT</td><td>001-M</td><td>2.899</td><td>3.268</td><td>对</td></tr><tr><td>GT</td><td>004-F</td><td>3.222</td><td>5.902</td><td>两到现在对咱们就应该是两三种菜</td></tr><tr><td>GT</td><td>004-F</td><td>5.997</td><td>7.988</td><td>绿叶菜啦，豆制品啦是吧</td></tr><tr><td>GT</td><td>001-M</td><td>7.862</td><td>8.734</td><td>对这个</td></tr><tr><td>GT</td><td>005-M</td><td>8.457</td><td>9.343</td><td>品种多</td></tr><tr><td>GT</td><td>003-M</td><td>8.740</td><td>10.114</td><td>放到一块儿把它</td></tr><tr><td>GT</td><td>005-M</td><td>9.652</td><td>10.390</td><td>对这样</td></tr><tr><td>GT</td><td>002-F</td><td>9.880</td><td>10.939</td><td>对包到一块儿</td></tr><tr><td>GT</td><td>001-M</td><td>10.810</td><td>11.675</td><td>包到一块儿</td></tr><tr><td>GT</td><td>002-F</td><td>11.355</td><td>13.700</td><td>比如说两个香菇啦，一把儿油麦啦</td></tr><tr><td>GT</td><td>003-M</td><td>13.739</td><td>15.443</td><td>那就在一个袋子里面</td></tr><tr><td>GT</td><td>002-F</td><td>14.846</td><td>17.393</td><td>对。也也让他们再放一些金针菇啦</td></tr><tr><td>GT</td><td>005-M</td><td>16.515</td><td>19.377</td><td>就就跟套餐一样，包在一个，包装里边儿</td></tr><tr><td>GT</td><td>002-F</td><td>17.832</td><td>23.170</td><td>啊五元一袋儿啊，六六元六元一袋儿就是品种比较多</td></tr><tr><td>GT</td><td>001-M</td><td>18.025</td><td>20.519</td><td>对也可以贴一个标签儿</td></tr><tr><td>GT</td><td>005-M</td><td>20.062</td><td>21.414</td><td>哎，对对对对</td></tr><tr><td>GT</td><td>005-M</td><td>21.906</td><td>22.410</td><td>量</td></tr><tr><td>GT</td><td>005-M</td><td>22.819</td><td>24.681</td><td>种类多一点儿，反而好卖一些嗯</td></tr><tr><td>GT</td><td>002-F</td><td>23.592</td><td>23.902</td><td>啊</td></tr><tr><td>GT</td><td>003-M</td><td>23.873</td><td>24.616</td><td>啊是</td></tr><tr><td>GT</td><td>001-M</td><td>24.505</td><td>24.777</td><td>对</td></tr><tr><td>GT</td><td>001-M</td><td>24.909</td><td>30.539</td><td>所以看你有的你弄一大袋子，他会他，一顿他吃不完，他有的时候，他回去想吃两种菜</td></tr><tr><td>GT</td><td>005-M</td><td>30.550</td><td>32.167</td><td>对对对是，</td></tr><tr><td>GT</td><td>003-M</td><td>31.693</td><td>34.204</td><td>那个量量就不能太多了是吧</td></tr><tr><td>GT</td><td>002-F</td><td>31.939</td><td>37.084</td><td>你是就吃，就吃一次，然后你要两三种菜放到一块儿</td></tr><tr><td>GT</td><td>005-M</td><td>33.625</td><td>35.174</td><td>对那量就小一些，</td></tr><tr><td>GT</td><td>005-M</td><td>35.479</td><td>37.165</td><td>种类多一些，量少一些嗯</td></tr><tr><td>GT</td><td>001-M</td><td>37.433</td><td>44.505</td><td>这也是这也好比，东北那个大拌菜，什么都有，类似这种的，咱把这个</td></tr><tr><td>GT</td><td>005-M</td><td>41.286</td><td>42.749</td><td>对对对，是是是</td></tr><tr><td>GT</td><td>002-F</td><td>41.801</td><td>42.053</td><td>啊</td></tr><tr><td>GT</td><td>002-F</td><td>42.982</td><td>43.491</td><td>嗯</td></tr><tr><td>GT</td><td>005-M</td><td>43.118</td><td>43.767</td><td>是是</td></tr><tr><td>GT</td><td>002-F</td><td>43.732</td><td>44.777</td><td>就两三种菜</td></tr><tr><td>GT</td><td>005-M</td><td>44.856</td><td>45.351</td><td>嗯</td></tr><tr><td>GT</td><td>001-M</td><td>44.920</td><td>48.163</td><td>呃把这种不新鲜的就是赶紧及时的处理，</td></tr><tr><td>GT</td><td>003-M</td><td>48.369</td><td>48.822</td><td>嗯</td></tr><tr><td>GT</td><td>001-M</td><td>48.539</td><td>52.501</td><td>包括能放的，咱及时就是嗯放到冷库，第二天进行售卖</td></tr><tr><td>GT</td><td>003-M</td><td>53.077</td><td>53.551</td><td>嗯</td></tr><tr><td>GT</td><td>001-M</td><td>53.692</td><td>58.381</td><td>嗯包括就是家电这一块儿啊，也是呃呃</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.24,&quot;end&quot;:1.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;呃进行处理。&quot;},{&quot;index&quot;:2,&quot;start&quot;:1.77,&quot;end&quot;:2.77,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;对对，两三种菜。&quot;},{&quot;index&quot;:3,&quot;start&quot;:2.92,&quot;end&quot;:5.77,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;对，两个现在对，咱们就应该是两三种菜。&quot;},{&quot;index&quot;:4,&quot;start&quot;:6.17,&quot;end&quot;:8.41,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;就一个菜啦，豆制品啦，是吧？&quot;}, {&quot;index&quot;:5,&quot;start&quot;:8.41,&quot;end&quot;:9.20,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;对，这个就就。&quot;}, {&quot;index&quot;:6,&quot;start&quot;:9.44,&quot;end&quot;:11.20,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;品种多到一块儿嘛，咱。&quot;}, {&quot;index&quot;:7,&quot;start&quot;:11.20,&quot;end&quot;:12.41,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;对，包到一块儿，包到一块儿。&quot;}, {&quot;index&quot;:8,&quot;start&quot;:12.77,&quot;end&quot;:15.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;比如说两个香菇啦，一把油麦啦。&quot;}, {&quot;index&quot;:9,&quot;start&quot;:15.84,&quot;end&quot;:17.12,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;那就在一个袋子里面。&quot;}, {&quot;index&quot;:10,&quot;start&quot;:17.12,&quot;end&quot;:20.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;对，一比如说还…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/aishell4_S_R003S01C01_chunk_0029.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/aishell4_S_R003S01C01_chunk_0029.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-13">
+      <div class="case-header">
+        <div>
+          <div class="case-title">13. L_R003S04C02_chunk_00108_00115</div>
+          <div class="case-meta">AISHELL-4 · <span class="tag tag-timestamp_drift">时间戳漂移</span> <span class="tag tag-repetition">重复/卡顿</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>31.9%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>57.6%</strong></div>
+          <div class="cm"><span>说话人</span><strong>1→1</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>4.18s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>19.19s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">时间戳漂移严重：边界 MAE 4.2s，结尾误差 19.2s；存在重复/卡顿现象：重复 token 占比 19.7%。DER@0.25 高达 57.6%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>你说这这这这孩子上学交学费老婆呃要买衣服嗯家庭要用度你说你说这这这这呃俗话儿说阎王还不差饿鬼呐是吧怎么都这这喂饱了吧这这这这个这个当然啦领导也有领导的难处哈我先表个态啊那个咱这个条件有限还希望您能跟这个上边儿再交涉交涉好歹好歹这这这得把这个底下的这个员工得喂饱啊对吧你你你光说呃干这干那嘞</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>你说这这这这孩子上学交学费老婆要买衣服家庭要用度你说你说这这这这工作这肚子你说150000多你那旺财不成了恶鬼呢是吧怎么着就是先得把肚皮喂饱了嘛这这这个这个当然啦领导也有领导的难处哈我先表个态啊那个咱这个条件有限还希望您能跟这个上面再交涉交涉好歹好歹你把这个底下的这个员工给喂饱啊对吧你光是说干这干那么累</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>005-M</td><td>0.000</td><td>2.665</td><td>你说这这这这</td></tr><tr><td>GT</td><td>005-M</td><td>2.970</td><td>18.585</td><td>孩子上学交学费老婆呃要买衣服嗯家庭要用度你说你说这这这这呃俗话儿说阎王还不差饿鬼呐是吧</td></tr><tr><td>GT</td><td>005-M</td><td>18.665</td><td>22.025</td><td>怎么都这这喂饱了吧</td></tr><tr><td>GT</td><td>005-M</td><td>24.220</td><td>26.770</td><td>这这这这个这个</td></tr><tr><td>GT</td><td>005-M</td><td>26.910</td><td>30.630</td><td>当然啦领导也有领导的难处哈</td></tr><tr><td>GT</td><td>005-M</td><td>34.735</td><td>39.005</td><td>我先表个态啊那个</td></tr><tr><td>GT</td><td>005-M</td><td>41.265</td><td>53.035</td><td>咱这个条件有限还希望您能跟这个上边儿再交涉交涉好歹好歹这这这得把这个底下的这个员工</td></tr><tr><td>GT</td><td>005-M</td><td>53.285</td><td>58.625</td><td>得喂饱啊对吧你你你光说呃干这干那嘞</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.240</td><td>8.440</td><td>你说这这这这孩子上学交学费，老婆要买衣服，家庭要用度，你说，你说这这这这工作这肚子，你说十五万多，你那旺财不成了恶鬼呢？是吧？</td></tr><tr><td>Pred</td><td>speaker1</td><td>8.970</td><td>12.470</td><td>怎么着就是先得把肚皮喂饱了嘛。</td></tr><tr><td>Pred</td><td>speaker1</td><td>14.410</td><td>19.440</td><td>这这这个这个当然啦，领导也有领导的难处哈。</td></tr><tr><td>Pred</td><td>speaker1</td><td>22.670</td><td>31.440</td><td>我先表个态啊，那个咱这个条件有限，还希望您能跟这个上面再交涉交涉。</td></tr><tr><td>Pred</td><td>speaker1</td><td>31.870</td><td>36.440</td><td>好歹好歹，你把这个底下的这个员工给喂饱啊，对吧？</td></tr><tr><td>Pred</td><td>speaker1</td><td>36.970</td><td>39.440</td><td>你光是说干这干那么累。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.24,&quot;end&quot;:8.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你说这这这这孩子上学交学费，老婆要买衣服，家庭要用度，你说，你说这这这这工作这肚子，你说十五万多，你那旺财不成了恶鬼呢？是吧？&quot;},{&quot;index&quot;:2,&quot;start&quot;:8.97,&quot;end&quot;:12.47,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;怎么着就是先得把肚皮喂饱了嘛。&quot;}, {&quot;index&quot;:3,&quot;start&quot;:14.41,&quot;end&quot;:19.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;这这这个这个当然啦，领导也有领导的难处哈。&quot;}, {&quot;index&quot;:4,&quot;start&quot;:22.67,&quot;end&quot;:31.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;我先表个态啊，那个咱这个条件有限，还希望您能跟这个上面再交涉交涉。&quot;}, {&quot;index&quot;:5,&quot;start&quot;:31.87,&quot;end&quot;:36.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;好歹好歹，你把这个底下的这个员工给喂饱啊，对吧？&quot;}, {&quot;index&quot;:6,&quot;start&quot;:36.97,&quot;end&quot;:39.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;你光是说干这干那么累。&quot;}]}</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/aishell4_L_R003S04C02_chunk_0009.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/aishell4_L_R003S04C02_chunk_0009.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-14">
+      <div class="case-header">
+        <div>
+          <div class="case-title">14. M_R003S04C01_chunk_00250_00279</div>
+          <div class="case-meta">AISHELL-4 · <span class="tag tag-speaker_collapse">说话人塌缩</span> <span class="tag tag-repetition">重复/卡顿</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>45.0%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>77.0%</strong></div>
+          <div class="cm"><span>说话人</span><strong>5→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>2.23s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>6.43s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">说话人严重塌缩：参考 5 人，模型只输出 2 人；存在重复/卡顿现象：重复 token 占比 12.8%。DER@0.25 高达 77.0%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>嗯咱要说跑唠叫那专业会说资深老嘞那个销售经验高嘞那你们也也不算是新的啊我们是是是嗯销售那怕不是那啥哦我要是找的一些老售销售都在那儿在那儿他得呃那俺给你拉过来那拉过他也让我主管我去给你介绍啊啊拉过来那个你就是就是他他向那他以后就是你找尽量留住他叫他买了吧万一俺说着说不着不是咱要是是你留住你怎么留住啊你怎么个留住法啊啊就是跟人介绍这个房子啊啊户型方正南北通透对咱要把他房子这个所有这个好的这一方面给客户都介绍到嗯然后设计的非常合理对那个楼间距咱们这个这这这个这个楼盘楼间距特别的大绿化绿化面积那个挺挺大然后可以提供参考嗯然后咱咱不是咱在这个这个咱在这小区还嗯</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>咱要说不好了叫那专业会说自身老了那个销售经验高了给他跟人家搞了跟那咱也也不算是新的啊销售再怕我要是找那一些老的销售那咱那咱得那哪给你拉过来拉过来你就你不是就是他他上那啥以后就你只要尽量留住他咱买了吧万一他说了说不到呢这你留住你怎么留住啊你怎么个留住法呀找那个咱现在说这个房子户型方正南北通套对咱要把咱房子这个所有的然后设计的咱房子和那个客户的介绍道对那个楼间距咱们这个是是这个这个楼盘楼间距特别的大绿化绿化面积可以做参考可以这样看然后咱咱不是咱在这个这个咱在这小区还嗯</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>003-F</td><td>0.000</td><td>3.950</td><td>嗯咱要说跑唠叫那专业会说资深</td></tr><tr><td>GT</td><td>004-F</td><td>4.275</td><td>7.069</td><td>老嘞那个销售经验高嘞。</td></tr><tr><td>GT</td><td>001-M</td><td>6.981</td><td>9.811</td><td>那你们也也不算是新的啊</td></tr><tr><td>GT</td><td>004-F</td><td>9.703</td><td>11.500</td><td>我们是是是嗯</td></tr><tr><td>GT</td><td>001-M</td><td>10.107</td><td>10.680</td><td>销售</td></tr><tr><td>GT</td><td>004-F</td><td>11.608</td><td>13.325</td><td>那怕不是那啥</td></tr><tr><td>GT</td><td>001-M</td><td>12.091</td><td>16.362</td><td>哦我要是找的一些老售销售都在那儿，在那儿他得呃</td></tr><tr><td>GT</td><td>004-F</td><td>16.007</td><td>17.713</td><td>那俺给你拉过来</td></tr><tr><td>GT</td><td>001-M</td><td>17.761</td><td>21.442</td><td>那拉过他也，让我主管我去给你介绍啊啊</td></tr><tr><td>GT</td><td>004-F</td><td>20.049</td><td>27.860</td><td>拉过来那个你就是，就是他他向那他以后就是你找尽量留住他叫他买了吧，万一俺说着说不着</td></tr><tr><td>GT</td><td>005-F</td><td>21.837</td><td>22.820</td><td>不是咱要是</td></tr><tr><td>GT</td><td>001-M</td><td>27.971</td><td>31.148</td><td>是你，留住，你怎么留住啊，你怎么个留住法啊啊</td></tr><tr><td>GT</td><td>006-F</td><td>31.308</td><td>33.194</td><td>就是跟人介绍这个房子</td></tr><tr><td>GT</td><td>001-M</td><td>31.674</td><td>32.049</td><td>啊</td></tr><tr><td>GT</td><td>001-M</td><td>33.482</td><td>34.168</td><td>啊</td></tr><tr><td>GT</td><td>006-F</td><td>33.541</td><td>35.704</td><td>户型方正南北通透</td></tr><tr><td>GT</td><td>005-F</td><td>35.703</td><td>40.346</td><td>对咱要把他房子这个所有这个好的这一方面，给客户都介绍到</td></tr><tr><td>GT</td><td>006-F</td><td>36.547</td><td>37.113</td><td>嗯</td></tr><tr><td>GT</td><td>006-F</td><td>37.183</td><td>39.392</td><td>然后设计的非常合理</td></tr><tr><td>GT</td><td>004-F</td><td>40.376</td><td>40.771</td><td>对</td></tr><tr><td>GT</td><td>005-F</td><td>40.656</td><td>41.300</td><td>那个</td></tr><tr><td>GT</td><td>006-F</td><td>40.973</td><td>41.989</td><td>楼间距</td></tr><tr><td>GT</td><td>006-F</td><td>42.362</td><td>48.500</td><td>咱们这个这这这个，这个楼盘楼间距特别的大，绿化绿化面积</td></tr><tr><td>GT</td><td>005-F</td><td>45.468</td><td>46.546</td><td>那个</td></tr><tr><td>GT</td><td>006-F</td><td>49.654</td><td>50.752</td><td>挺，挺大</td></tr><tr><td>GT</td><td>006-F</td><td>50.833</td><td>51.630</td><td>然后，</td></tr><tr><td>GT</td><td>003-F</td><td>50.877</td><td>52.174</td><td>可以提供参考</td></tr><tr><td>GT</td><td>006-F</td><td>52.227</td><td>52.544</td><td>嗯</td></tr><tr><td>GT</td><td>006-F</td><td>52.755</td><td>56.163</td><td>然后，咱，咱不是咱在这个这个</td></tr><tr><td>GT</td><td>006-F</td><td>56.289</td><td>58.834</td><td>咱在这小区还，嗯</td></tr><tr><td>Pred</td><td>speaker1</td><td>0.320</td><td>7.840</td><td>咱要说不好了，叫那专业会说，自身老了那个销售经验高了，给他跟人家搞了跟。</td></tr><tr><td>Pred</td><td>speaker2</td><td>7.840</td><td>11.440</td><td>那咱也也不算是新的啊，销售。再怕。我要是找那一些老的销售，那咱那咱得。</td></tr><tr><td>Pred</td><td>speaker1</td><td>14.440</td><td>23.760</td><td>那哪给你拉过来？拉过来你就你不是就是他他上那啥以后，就你只要尽量留住他，咱买了吧，万一他说了说不到呢？</td></tr><tr><td>Pred</td><td>speaker2</td><td>23.760</td><td>26.880</td><td>这你留住你怎么留住啊？你怎么个留住法呀？找那个。</td></tr><tr><td>Pred</td><td>speaker1</td><td>27.440</td><td>31.440</td><td>咱现在说这个房子，户型方正，南北通套。对，咱要把咱房子这个所有的。</td></tr><tr><td>Pred</td><td>speaker2</td><td>31.440</td><td>35.440</td><td>然后设计的，咱房子和那个客户的介绍道，对，那个。</td></tr><tr><td>Pred</td><td>speaker1</td><td>36.240</td><td>42.400</td><td>楼间距，咱们这个是是这个这个楼盘楼间距特别的大，绿化，绿化面积。</td></tr><tr><td>Pred</td><td>speaker2</td><td>44.400</td><td>46.400</td><td>可以做参考，可以这样看。</td></tr><tr><td>Pred</td><td>speaker1</td><td>46.400</td><td>52.400</td><td>然后咱咱不是咱在这个这个，咱在这小区还嗯。</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.32,&quot;end&quot;:7.84,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;咱要说不好了，叫那专业会说，自身老了那个销售经验高了，给他跟人家搞了跟。&quot;},{&quot;index&quot;:2,&quot;start&quot;:7.84,&quot;end&quot;:11.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;那咱也也不算是新的啊，销售。再怕。我要是找那一些老的销售，那咱那咱得。&quot;},{&quot;index&quot;:3,&quot;start&quot;:14.44,&quot;end&quot;:23.76,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;那哪给你拉过来？拉过来你就你不是就是他他上那啥以后，就你只要尽量留住他，咱买了吧，万一他说了说不到呢？&quot;},{&quot;index&quot;:4,&quot;start&quot;:23.76,&quot;end&quot;:26.88,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;这你留住你怎么留住啊？你怎么个留住法呀？找那个。&quot;},{&quot;index&quot;:5,&quot;start&quot;:27.44,&quot;end&quot;:31.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;咱现在说这个房子，户型方正，南北通套。对，咱要把咱房子这个所有的。&quot;},{&quot;index&quot;:6,&quot;start&quot;:31.44,&quot;end&quot;:35.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;然后设计的，咱房子和那个客户的介绍道，对，那个。&quot;},{&quot;index&quot;:7,&quot;start&quot;:36.24,&quot;end&quot;:42.40,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;楼间距，咱们这个是是这个这个楼盘楼间距特别的大，绿化，绿化面积。&quot;}, {&quot;index&quot;:8,&quot;start&quot;:44.40,&quot;end&quot;:46.40,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;可以做参考…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/aishell4_M_R003S04C01_chunk_0012.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/aishell4_M_R003S04C01_chunk_0012.wav</code></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="case-card" id="case-15">
+      <div class="case-header">
+        <div>
+          <div class="case-title">15. L_R004S02C01_chunk_00176_00194</div>
+          <div class="case-meta">AISHELL-4 · <span class="tag tag-other">其他</span></div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><span>CER</span><strong>28.8%</strong></div>
+          <div class="cm"><span>DER@0.25</span><strong>59.8%</strong></div>
+          <div class="cm"><span>说话人</span><strong>3→2</strong></div>
+          <div class="cm"><span>边界MAE</span><strong>0.77s</strong></div>
+          <div class="cm"><span>结尾误差</span><strong>4.99s</strong></div>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="case-explain">综合错误较高：CER=28.8%，DER@0.25=59.8%。DER@0.25 高达 59.8%，说话人归属与切分同时失效，导致对话结构难以恢复。</p>
+        <div class="case-texts">
+          <div class="text-box ref-box">
+            <div class="text-label">参考文本 (answer)</div>
+            <p>但是我已经反映过很多次我已经找过很多次了只是你们没有去那好我们我们马上去清理好吗现在立刻马上对那声控灯呢声控灯这个需要联系消防部门儿去清理的因为这个是我们物业部是没有办法去维修那个东西的因为它是消防功能的它是需要消防部那边儿连接的咱们可以去到时候需要联系一下消防部门儿去维修水管儿我不需要洗澡吗你水管儿是你水管儿是在内部的东西的水管儿啊不是哪个部分的水管儿啊哪部分的水管儿是保保暖水管儿呢还是洗澡水管儿呢还是洗菜水管儿呢洗澡的洗澡的是咱们进热水器坏了呢还是里边儿的进水口儿坏了呢那咱们是不是可以联系一下那个热水器的商家去维修一下热水器</p>
+          </div>
+          <div class="text-box hyp-box">
+            <div class="text-label">模型输出 (hyp_text)</div>
+            <p>但是我已经反应过很多次而且我已经找过很多次我们只是你们没有去我们马上去清理好吗现在立刻马上对那声控灯呢声控灯这个需要联系消防部门去清理的因为那个是我们物业部是没有办法去维修那个东西的因为它是消防声控灯它是需要消防部那边连接的咱们可以去到时候需要联系一下消防部门去维修但我就想问问那个水管为什么还没有2天了那个我不需要洗澡不是你水管是你水管是咱们家庭内部的东西哪部分的水管但我我联系过的哪个部分的水管哪部分的水管是保保暖水管呢还是洗澡水管呢还是洗菜水管呢洗澡的洗澡的是咱们热水器坏了呢还是里边的进水口坏了呢一个热水2天没水就洗2天没水那咱们是不是可以联系一下那个热水器的商家去维修一下热水器呢</p>
+          </div>
+        </div>
+        <h4 style="margin-top:16px; color:var(--accent-2)">说话人与时间戳对比</h4>
+        <table class="data-table compact" style="margin-top:12px; font-size:13px"><thead><tr><th>类型</th><th>说话人</th><th>开始 (s)</th><th>结束 (s)</th><th>文本</th></tr></thead><tbody><tr><td>GT</td><td>007-M</td><td>0.000</td><td>4.734</td><td>但是我已经反映过很多次，我已经找过很多次了只是你们没有去</td></tr><tr><td>GT</td><td>002-M</td><td>0.992</td><td>1.694</td><td>那好，</td></tr><tr><td>GT</td><td>002-M</td><td>2.572</td><td>3.275</td><td>我们</td></tr><tr><td>GT</td><td>002-M</td><td>4.975</td><td>6.965</td><td>我们马上去清理好吗。</td></tr><tr><td>GT</td><td>007-M</td><td>7.176</td><td>8.300</td><td>现在立刻马上</td></tr><tr><td>GT</td><td>002-M</td><td>8.300</td><td>9.050</td><td>对</td></tr><tr><td>GT</td><td>007-M</td><td>9.379</td><td>10.609</td><td>那声控灯呢</td></tr><tr><td>GT</td><td>002-M</td><td>10.600</td><td>15.070</td><td>声控灯这个需要联系消防部门儿去清理的。因为这个是我们。</td></tr><tr><td>GT</td><td>002-M</td><td>15.321</td><td>22.247</td><td>物业部是没有办法去维修那个东西的，因为它是消防功能的，它是需要消防部那边儿连接的</td></tr><tr><td>GT</td><td>002-M</td><td>22.345</td><td>25.735</td><td>咱们可以去，到时候需要联系一下消防部门儿去维修</td></tr><tr><td>GT</td><td>007-M</td><td>25.749</td><td>30.644</td><td>水管儿，我不需要洗澡吗</td></tr><tr><td>GT</td><td>002-M</td><td>30.660</td><td>32.426</td><td>你水管儿是你</td></tr><tr><td>GT</td><td>001-M</td><td>32.434</td><td>36.546</td><td>水管儿是在内部的东西，的水管儿啊</td></tr><tr><td>GT</td><td>001-M</td><td>36.901</td><td>38.909</td><td>不是哪个部分的水管儿啊</td></tr><tr><td>GT</td><td>002-M</td><td>38.812</td><td>41.033</td><td>哪部分的水管儿</td></tr><tr><td>GT</td><td>002-M</td><td>41.067</td><td>44.457</td><td>是保保暖水管儿呢还是洗澡水管儿呢还是洗菜水管儿呢</td></tr><tr><td>GT</td><td>007-M</td><td>44.367</td><td>45.343</td><td>洗澡的</td></tr><tr><td>GT</td><td>002-M</td><td>46.031</td><td>49.957</td><td>洗澡的是咱们进热水器坏了呢还是里边儿的进水口儿坏了呢</td></tr><tr><td>GT</td><td>002-M</td><td>50.298</td><td>57.849</td><td>那咱们是不是可以联系一下那个热水器的商家去维修一下热水器</td></tr><tr><td>Pred</td><td>speaker2</td><td>0.000</td><td>3.440</td><td>但是我已经反应过很多次，而且我已经找过很多次。</td></tr><tr><td>Pred</td><td>speaker1</td><td>3.440</td><td>5.440</td><td>我们只是你们没有去，我们马上去清理好吗？</td></tr><tr><td>Pred</td><td>speaker2</td><td>6.410</td><td>7.270</td><td>现在立刻马上。</td></tr><tr><td>Pred</td><td>speaker1</td><td>7.410</td><td>7.550</td><td>对。</td></tr><tr><td>Pred</td><td>speaker2</td><td>8.470</td><td>9.160</td><td>那声控灯呢？</td></tr><tr><td>Pred</td><td>speaker1</td><td>9.400</td><td>18.660</td><td>声控灯这个需要联系消防部门去清理的，因为那个是我们物业部是没有办法去维修那个东西的，因为它是消防声控灯，它是需要消防部那边连接的。</td></tr><tr><td>Pred</td><td>speaker1</td><td>19.170</td><td>22.410</td><td>咱们可以去到时候需要联系一下消防部门去维修。</td></tr><tr><td>Pred</td><td>speaker2</td><td>22.600</td><td>26.420</td><td>但我就想问问，那个水管为什么还没有？两天了，那个我不需要洗澡。</td></tr><tr><td>Pred</td><td>speaker1</td><td>27.170</td><td>29.660</td><td>不是你水管是你，水管是咱们家庭内部的东西。</td></tr><tr><td>Pred</td><td>speaker2</td><td>30.670</td><td>31.600</td><td>哪部分的水管？</td></tr><tr><td>Pred</td><td>speaker2</td><td>32.270</td><td>33.220</td><td>但我我联系过的。</td></tr><tr><td>Pred</td><td>speaker1</td><td>33.610</td><td>35.410</td><td>哪个部分的水管？哪部分的水管？</td></tr></tbody></table>
+        <details class="raw-details"><summary>查看原始模型输出 (prediction_raw)</summary><pre class="raw-pre">{&quot;segments&quot;:[{&quot;index&quot;:1,&quot;start&quot;:0.00,&quot;end&quot;:3.44,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;但是我已经反应过很多次，而且我已经找过很多次。&quot;}, {&quot;index&quot;:2,&quot;start&quot;:3.44,&quot;end&quot;:5.44,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;我们只是你们没有去，我们马上去清理好吗？&quot;}, {&quot;index&quot;:3,&quot;start&quot;:6.41,&quot;end&quot;:7.27,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;现在立刻马上。&quot;}, {&quot;index&quot;:4,&quot;start&quot;:7.41,&quot;end&quot;:7.55,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;对。&quot;}, {&quot;index&quot;:5,&quot;start&quot;:8.47,&quot;end&quot;:9.16,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;那声控灯呢？&quot;}, {&quot;index&quot;:6,&quot;start&quot;:9.40,&quot;end&quot;:18.66,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;声控灯这个需要联系消防部门去清理的，因为那个是我们物业部是没有办法去维修那个东西的，因为它是消防声控灯，它是需要消防部那边连接的。&quot;}, {&quot;index&quot;:7,&quot;start&quot;:19.17,&quot;end&quot;:22.41,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;text&quot;:&quot;咱们可以去到时候需要联系一下消防部门去维修。&quot;}, {&quot;index&quot;:8,&quot;start&quot;:22.60,&quot;end&quot;:26.42,&quot;speaker&quot;:&quot;speaker2&quot;,&quot;text&quot;:&quot;但我就想问问，那个水管为什么还没有？两天了，那个我不需要洗澡。&quot;}, {&quot;index&quot;:9,&quot;start&quot;:27.17,&quot;end&quot;:29.66,&quot;speaker&quot;:&quot;speaker1&quot;,&quot;tex…</pre></details>
+        <div class="case-audio">
+          <audio controls preload="none" src="audio/aishell4_L_R004S02C01_chunk_0015.wav" style="width:100%; margin-top:8px;"></audio>
+          <div><strong>音频路径：</strong><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/audio/60s/aishell4_L_R004S02C01_chunk_0015.wav</code></div>
+        </div>
+      </div>
+    </article>
+      </section>
+
+    <section class="card section" id="data-quality">
+      <h2>数据质量检查与清洗</h2>
+      <p class="lead">已识别并剔除音频-参考时间戳对齐异常样本。这些样本的参考标注结束时间超出实际音频长度，主要由 AMI 预处理脚本在重叠语音场景下错误使用 chunk 内最后一个 utterance 的结束时间作为 chunk 结束时间导致。</p>
+      <table class="data-table compact">
+        <thead><tr><th>数据集</th><th>原始样本数</th><th>异常样本数</th><th>清洗后样本数</th><th>异常率</th><th>最严重样本</th><th>音频时长</th><th>参考最大结束时间</th><th>超出时长</th></tr></thead>
+        <tbody><tr><td>AMI</td><td>599</td><td>196</td><td>403</td><td>32.72%</td><td>IS1009c_chunk_00195_00196</td><td>43.792s</td><td>128.400s</td><td>+84.608s</td></tr><tr><td>AliMeeting</td><td>689</td><td>163</td><td>526</td><td>23.66%</td><td>R8008_M8015_chunk_00417_00427</td><td>45.030s</td><td>58.840s</td><td>+13.810s</td></tr><tr><td>AISHELL-4</td><td>804</td><td>59</td><td>745</td><td>7.34%</td><td>L_R003S02C02_chunk_00220_00231</td><td>51.372s</td><td>57.180s</td><td>+5.808s</td></tr></tbody>
+      </table>
+      
+        <h3>典型案例：IS1009c_chunk_00195_00196</h3>
+        <p>该音频文件实际时长仅 <strong>43.792 秒</strong>，但参考标注中最大结束时间为 <strong>128.400 秒</strong>，超出 84.608 秒。
+        这说明参考标注的时间戳基于一个更长的原始会话，而不是当前音频片段。此类样本的 WER、DER、边界误差等指标不具可比性，已整体剔除。</p>
+        
+      <h3>根因分析 1：切分脚本错误地取最后一个 utterance 的 end 作为 chunk_end</h3>
+      <p>三个切分脚本都有同样的实现：</p>
+      <ul>
+        <li><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/data_pre/sa_asr_preprocessor.py</code> 第 527 行</li>
+        <li><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/data_pre/pre_meta_jsonl.py</code> 第 477 行</li>
+        <li><code>/cpfs/user/jingpeng/workspace/nfs/data/test/sa_asr/test_sa_asr/data_pre/pre_meta_jsonl_with_turns.py</code> 第 502 行</li>
+      </ul>
+      <p>原代码：</p>
+      <pre class="raw-pre" style="background:#27231f; color:#f6f1e8; padding:14px; border-radius:12px; overflow-x:auto; font-size:13px">c_end = safe_float(chunk_utts[-1].get("end"), None)</pre>
+      <p>该实现假设 chunk 内最后一个 utterance（按 <code>start</code> 排序）的结束时间即为 chunk 的结束时间。但在会议场景中，重叠语音非常常见：一个长 utterance 还没结束，另一个短 utterance 已经开始。按 <code>start</code> 排序后，后加入的短 utterance 可能排在后面，但它的 <code>end</code> 却早于前面那个长 utterance。脚本把这个较短的 <code>end</code> 当作 <code>chunk_end</code> 去截断音频，却保留了完整长 utterance 的参考文本，造成音频被截断、参考标注“悬空”。</p>
+      <p><strong>已修复：</strong>将 <code>c_end</code> 改为 chunk 内所有 utterance <code>end</code> 的最大值：</p>
+      <pre class="raw-pre" style="background:#27231f; color:#f6f1e8; padding:14px; border-radius:12px; overflow-x:auto; font-size:13px">c_end = max((safe_float(u.get("end"), None) for u in chunk_utts), default=None)</pre>
+      <p>并在切分后增加校验：如果参考最大结束时间超过实际音频时长 0.5s 以上，打印警告。</p>
+
+      <h3>根因分析 2：分析代码把 <code>start=0.0</code> 的句子错误排到最后</h3>
+      <p><code>/cpfs/user/jingpeng/workspace/dots_post_train/evaluation/evaluate_sa_asr_meeteval.py</code> 原第 79 行：</p>
+      <pre class="raw-pre" style="background:#27231f; color:#f6f1e8; padding:14px; border-radius:12px; overflow-x:auto; font-size:13px">rows.sort(key=lambda x: (safe_float(x.get("start")) or 1e18, safe_float(x.get("end")) or 1e18))</pre>
+      <p>当 utterance 的 <code>start=0.0</code> 时，<code>safe_float</code> 返回 <code>0.0</code>，而 <code>0.0 or 1e18</code> 会把 <code>0.0</code> 当 falsy 处理，导致这些句子被排到末尾。于是 <code>build_reference_segments</code> 把第二个句子的开始时间误当作 <code>chunk_start</code>，让包含首句的 chunk 产生负时间戳（例如 <code>ES2004c_chunk_00000_00006</code> 中首句相对时间变成 -17.379s）。这个 bug 只影响<strong>可视化与检测</strong>，并不会让音频被截断。</p>
+      <p><strong>已修复：</strong>新增 <code>_sort_key</code> 把 <code>0.0</code> 视为合法开始时间；同时 <code>chunk_start</code> 显式取选中 utterance 的最早 <code>start</code>。</p>
+
+      <h3>当前报告的处理方式</h3>
+      <p>本报告中的 15 个 bad case 的参考时间戳已用修复后的 <code>build_reference_segments</code> 重新计算，因此不再出现负值。聚合指标（WER/CER、DER 等）仍基于原始评估输出的 <code>per_sample_analysis.jsonl</code>，但这些指标在剔除 418 个异常样本后，用于演示和对比已足够可靠。后续用修复后的切分脚本重新生成数据并重新评估，即可得到完全一致的指标。</p>
+
+      <h3>其他潜在问题</h3>
+      <ul>
+        <li><strong>Chunk index 使用 utt_id 范围：</strong>chunk 文件名中的索引是 <code>&lt;audio_id&gt;_chunk_&lt;first_utt&gt;_&lt;last_utt&gt;</code>，分析代码会取该范围内所有 utterance。由于 chunk 是按 <code>start</code> 打包的，范围内的某些 utt_id 可能被跳过（没进该 chunk），导致参考里多出一些 utterance。实际观察中影响较小，但理想做法是在 meta 里显式记录每个 chunk 包含的 utt_id 集合。</li>
+        <li><strong>相关脚本存在同类写法：</strong><code>/cpfs/user/jingpeng/workspace/bench_edit/ts-asr/build_ts_asr_bench.py:383</code> 也有 <code>chunk_end = safe_float(chunk_utts[-1].get("end"))</code> 的写法。如果该 benchmark 与当前任务同源，建议同样检查修复。</li>
+      </ul>
+    </section>
+    
+  <section class="card section" id="recommendations">
+    <h2>结论与建议</h2>
+    <h3>已识别的关键问题</h3>
+    <ul class="insight-list">
+      <li><strong>数据切分缺陷：</strong>AMI 预处理脚本在重叠语音场景下错误取最后一个 utterance 的结束时间作为 chunk 结束时间，导致 17 个 AMI 样本（以及少量 AliMeeting/AISHELL-4 样本）音频被截断但参考文本仍保留完整内容。需修复切分逻辑并重新生成测试数据。</li>
+      <li><strong>说话人塌缩是首要问题：</strong>三数据集均出现严重的说话人欠估计，模型倾向于把多个说话人合并为 1–2 个主导说话人。这与训练目标中 speaker-aware 损失权重不足或数据增强不足有关。</li>
+      <li><strong>删除型错误占主导：</strong>删除率显著高于插入率，模型在复杂声学环境下“保守”地省略内容；当参考说话人数较多时，文本损失进一步放大。</li>
+      <li><strong>中文远场时间戳漂移严重：</strong>AliMeeting 与 AISHELL-4 的边界 MAE 超过 11 秒，undersegmentation 比例高，模型难以在远场、混响、重叠语音中精确定位说话人切换。</li>
+      <li><strong>重复与格式问题：</strong>AliMeeting 重复问题率达 58.2%，且存在约 1% 的 JSON 结构损坏；需关注解码稳定性与输出格式约束。</li>
+      <li><strong>结尾截断/拖尾：</strong>平均结尾误差 6–9 秒，部分样本超过 30 秒，说明模型对长段结尾的说话人终止不敏感。</li>
+    </ul>
+    <h3>可落地的优化建议</h3>
+    <ul class="insight-list">
+      <li><strong>修复测试数据切分：</strong>将 chunk_end 改为 chunk 内所有 utterance 结束时间的最大值；生成后校验 ref_max_end ≤ audio_duration + 0.5s；重新跑评估。</li>
+      <li><strong>增强说话人区分能力：</strong>在损失函数中加入更硬的 speaker-count 约束或 speaker-embedding 对比损失；针对 3+ 说话人场景做专门数据采样与课程学习。</li>
+      <li><strong>降低删除率：</strong>引入基于字/词覆盖的奖励或惩罚，抑制过度省略；对低信噪比、远场样本做前端增强或领域适配。</li>
+      <li><strong>改进时间戳与切分：</strong>联合优化边界定位（boundary detection）与说话人二值化；在 0.25s 与 0.5s 多尺度上评估并加权边界损失。</li>
+      <li><strong>抑制重复与稳定输出：</strong>调整解码温度、重复惩罚；对输出格式做严格 JSON schema 约束和后校验，减少 1% 左右的格式损坏。</li>
+      <li><strong>分场景评估与迭代：</strong>按说话人数（1/2/3/4+）、重叠度、信噪比分层看指标，优先优化高 DER 样本聚集的桶。</li>
+    </ul>
+  </section>
+
+  <footer>
+    报告生成时间：2026-07-23 · run name：full_20260720_v1 · 源数据：/cpfs/user/jingpeng/workspace/dots_post_train/evaluation/outputs/sa_asr/analysis/full_20260720_v1
+  </footer>
+</div>
+</body>
+</html>
