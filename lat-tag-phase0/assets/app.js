@@ -16,22 +16,68 @@ const labels = {
   language: { zh: "中文", en: "English" },
   eventType: { speech: "Speech", mixed: "Mixed", non_speech: "Non-speech" },
   difficulty: { easy: "Easy", medium: "Medium", hard: "Hard" },
-  reviewStatus: {
-    model_disagrees_with_accepted_review: "模型与人工冲突",
-    needs_human_confirmation: "需要人工确认",
-    pilot_recommendation: "稳定建议",
+  acousticStatus: {
+    acoustically_consistent: "声学一致",
+    boundary_shift_candidate: "边界移动候选",
+    excluded_non_acoustic: "非声学排除",
+    needs_human_review: "待人工复核",
+    new_acoustic_candidate: "新声学候选",
+    target_not_verified: "目标未验证",
+  },
+  eligibility: {
+    eligible: "声学目标",
+    excluded_lexical: "排除：依赖词义",
+    excluded_narrative: "排除：叙事推断",
+    excluded_not_audible: "排除：不可直接听见",
+    excluded_ambiguous: "排除：声学定义不明确",
+  },
+  soundFamily: {
+    music_instrument: "音乐 / 乐器",
+    nonverbal_vocal: "非语言人声",
+    environmental_mechanical: "环境 / 机械",
+    transient_signal: "瞬态 / 信号",
+    ambience_soundscape: "环境声景",
+    composite_acoustic: "复合声学事件",
+    none: "非声学",
+  },
+  temporalForm: {
+    transient: "瞬态",
+    continuous: "持续",
+    intermittent: "间歇",
+    transition: "转折",
+    composite: "复合",
+    none: "无",
+  },
+  evidencePolicy: {
+    continuous_window_gemini_clap: "固定窗 + Gemini 粗边界 + CLAP 覆盖",
+    intermittent_window_clap: "固定窗 + CLAP 局部 occurrence",
+    short_event_window_gemini_low_level: "固定窗 + Gemini 粗边界 + 低层声学事件",
+  },
+  boundarySource: {
+    clap_extent_supported_by_gemini_window: "CLAP 持续区间",
+    clap_occurrence_supported_by_gemini_window: "CLAP 局部 occurrence",
+    gemini_full_audio_unconfirmed_by_clap_extent: "Gemini 全音频粗边界",
+    gemini_full_audio_unconfirmed_by_clap_occurrence: "Gemini 全音频粗边界",
+    gemini_boundary_supported_by_fixed_window: "固定窗支持的 Gemini 边界",
+    low_level_change_near_fixed_window_onset: "固定窗起点附近声学变化",
+    low_level_event_inside_fixed_window: "固定窗内低层声学事件",
+    fixed_window_only: "Gemini 固定窗",
+    gemini_full_audio_only: "Gemini 全音频粗边界",
   },
   reviewChoice: {
     keep_current: "保留当前 gold",
-    accept_model: "采用 Gemini 首选",
+    accept_candidate: "采用声学候选",
+    exclude_acoustic: "确认非声学排除",
     needs_manual: "需要人工精修",
   },
 };
 
 const reviewPriority = {
-  model_disagrees_with_accepted_review: 0,
-  needs_human_confirmation: 1,
-  pilot_recommendation: 2,
+  needs_human_review: 0,
+  boundary_shift_candidate: 1,
+  new_acoustic_candidate: 2,
+  acoustically_consistent: 3,
+  excluded_non_acoustic: 4,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,6 +95,7 @@ async function loadBenchmark() {
     const data = await response.json();
     state.demos = data.demos || [];
     hydrateSummary(data);
+    renderMethodology(data);
     updateReviewProgress();
     renderDemos();
   } catch (error) {
@@ -65,6 +112,101 @@ function hydrateSummary(data) {
   setText('[data-stat="event-types"]', formatNumber(Object.keys(dataset.event_types || {}).length));
   setText('[data-stat="max-duration"]', `≤${formatNumber(dataset.max_audio_seconds)}s`);
   setText('[data-stat="demo-records"]', formatNumber(demo.records));
+}
+
+function renderMethodology(data) {
+  const pilot = data.acoustic_pilot || {};
+  const eligibility = pilot.eligibility || {};
+  const temporal = pilot.temporal_forms || {};
+  const eligible = Number(eligibility.eligible || 0);
+  const excluded = Math.max(0, Number(pilot.records || 0) - eligible);
+  setText('[data-acoustic-stat="records"]', formatNumber(pilot.records));
+  setText('[data-acoustic-stat="eligible"]', formatNumber(eligible));
+  setText('[data-acoustic-stat="excluded"]', formatNumber(excluded));
+  setText(
+    '[data-temporal-total="sustained"]',
+    formatNumber(Number(temporal.continuous || 0) + Number(temporal.intermittent || 0)),
+  );
+  setText(
+    '[data-temporal-total="short"]',
+    formatNumber(
+      Number(temporal.transient || 0)
+      + Number(temporal.transition || 0)
+      + Number(temporal.composite || 0),
+    ),
+  );
+
+  const outcomes = pilot.decision_status || {};
+  const outcomeOrder = [
+    "acoustically_consistent",
+    "boundary_shift_candidate",
+    "new_acoustic_candidate",
+    "needs_human_review",
+    "excluded_non_acoustic",
+  ];
+  const maximum = Math.max(1, ...Object.values(outcomes).map(Number));
+  const outcomeContainer = document.querySelector("#outcome-bars");
+  if (outcomeContainer) {
+    outcomeContainer.innerHTML = outcomeOrder.map((status) => {
+      const count = Number(outcomes[status] || 0);
+      const width = `${Math.max(2, (count / maximum) * 100)}%`;
+      return `
+        <div class="outcome-row status-${escapeHtml(status)}">
+          <span>${escapeHtml(labels.acousticStatus[status] || status)}</span>
+          <i><b style="width:${width}"></b></i>
+          <strong>${count}</strong>
+        </div>
+      `;
+    }).join("");
+  }
+
+  const example = state.demos.find((demo) => demo.id === data.methodology_example_id);
+  const container = document.querySelector("#method-example");
+  if (!container || !example?.acoustic) return;
+  const acoustic = example.acoustic;
+  const lowLevel = acoustic.low_level_boundary_anchor;
+  container.innerHTML = `
+    <div class="method-example-head">
+      <div>
+        <span>REAL TRACE · ${escapeHtml(example.id)}</span>
+        <strong>一次错误直报如何被固定窗与声学变化纠正</strong>
+      </div>
+      <button type="button" data-open-acoustic-review="${escapeHtml(example.id)}">打开该样本审核</button>
+    </div>
+    <div class="query-transform">
+      <div><span>LAT ORIGINAL QUERY</span><p>${escapeHtml(example.query)}</p></div>
+      <i aria-hidden="true">→</i>
+      <div><span>ACOUSTIC QUERY</span><p>${escapeHtml(acoustic.acoustic_query)}</p></div>
+    </div>
+    <div class="method-timeline">
+      <div class="method-track">
+        ${methodInterval(acoustic.current_gold, example.duration, "method-current", "当前 gold")}
+        ${methodInterval(acoustic.proposed, example.duration, "method-proposed", "声学候选")}
+        ${methodInterval(acoustic.window_candidate, example.duration, "method-window", "固定窗")}
+        ${methodInterval(acoustic.clap_candidate, example.duration, "method-clap", "CLAP 诊断")}
+        ${lowLevel ? `<span class="method-onset" style="left:${clamp(Number(lowLevel.time) / example.duration, 0, 1) * 100}%" title="低层声学变化 ${formatTime(lowLevel.time)}"></span>` : ""}
+      </div>
+      <div class="method-track-axis"><span>00:00</span><span>00:30</span><span>01:00</span></div>
+      <div class="method-track-legend">
+        <span><i class="method-window"></i>固定窗 ${formatInterval(acoustic.window_candidate)}</span>
+        <span><i class="method-clap"></i>CLAP ${formatInterval(acoustic.clap_candidate)}</span>
+        <span><i class="method-onset-key"></i>声学变化 ${lowLevel ? formatTime(lowLevel.time) : "—"}</span>
+        <span><i class="method-proposed"></i>候选 ${formatInterval(acoustic.proposed)}</span>
+      </div>
+    </div>
+  `;
+  container.querySelector("[data-open-acoustic-review]")?.addEventListener("click", () => {
+    setReviewMode(true);
+    const card = document.querySelector(`[data-demo-id="${example.id}"]`);
+    card?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function methodInterval(value, duration, className, title) {
+  if (!value) return "";
+  const left = clamp(value.start / duration, 0, 1) * 100;
+  const width = Math.max(0.5, clamp((value.end - value.start) / duration, 0, 1) * 100);
+  return `<span class="method-interval ${className}" title="${escapeHtml(title)} ${formatInterval(value)}" style="left:${left}%;width:${width}%"></span>`;
 }
 
 function setText(selector, value) {
@@ -127,7 +269,7 @@ function applyReviewModeState() {
   const toggle = document.querySelector("#review-mode-toggle");
   if (!toggle) return;
   toggle.setAttribute("aria-pressed", String(state.reviewMode));
-  toggle.textContent = state.reviewMode ? "退出审核模式" : "进入审核模式";
+  toggle.textContent = state.reviewMode ? "退出声学审核" : "进入声学审核";
 }
 
 function renderDemos() {
@@ -136,12 +278,12 @@ function renderDemos() {
   const demos = state.demos
     .filter((demo) => Object.entries(state.filters).every(([key, value]) => {
       if (value === "all") return true;
-      if (key === "review_status") return !state.reviewMode || demo.review?.status === value;
+      if (key === "review_status") return !state.reviewMode || demo.acoustic?.status === value;
       return demo[key] === value;
     }))
     .sort((left, right) => {
       if (!state.reviewMode) return 0;
-      return (reviewPriority[left.review?.status] ?? 9) - (reviewPriority[right.review?.status] ?? 9);
+      return (reviewPriority[left.acoustic?.status] ?? 9) - (reviewPriority[right.acoustic?.status] ?? 9);
     });
 
   setText("#demo-count", demos.length);
@@ -162,7 +304,14 @@ function renderDemoCard(demo) {
   const difficulty = labels.difficulty[demo.difficulty] || demo.difficulty;
   const occurrenceFlag = demo.query_flags?.has_occurrence_constraint;
   const timestampReviewed = demo.timestamp_review?.status === "boundary_adjustment";
-  const status = demo.review?.status;
+  const acoustic = demo.acoustic || {};
+  const status = acoustic.status;
+  const acousticTags = state.reviewMode
+    ? `
+      <span class="tag tag-acoustic">${escapeHtml(labels.soundFamily[acoustic.sound_family] || acoustic.sound_family)}</span>
+      <span class="tag">${escapeHtml(labels.temporalForm[acoustic.temporal_form] || acoustic.temporal_form)}</span>
+    `
+    : "";
   const output = JSON.stringify({ start: round(demo.start), end: round(demo.end) });
   return `
     <article class="demo-card${demo.featured ? " featured" : ""}${state.reviewMode ? " audit-card" : ""}" data-demo-id="${escapeHtml(demo.id)}">
@@ -172,16 +321,18 @@ function renderDemoCard(demo) {
           <span class="tag">${escapeHtml(language)}</span>
           <span class="tag${demo.difficulty === "hard" ? " tag-hard" : ""}">${escapeHtml(difficulty)}</span>
           <span class="tag">${formatDuration(demo.target_duration)} target</span>
+          ${acousticTags}
           ${timestampReviewed ? '<span class="tag flag">人工复核时间戳</span>' : ""}
-          ${state.reviewMode && status ? `<span class="tag review-status status-${escapeHtml(status)}">${escapeHtml(labels.reviewStatus[status] || status)}</span>` : ""}
+          ${state.reviewMode && status ? `<span class="tag review-status status-${escapeHtml(status)}">${escapeHtml(labels.acousticStatus[status] || status)}</span>` : ""}
         </div>
         <h3>${escapeHtml(demo.title)}</h3>
         <p class="demo-note">${escapeHtml(demo.note)}</p>
       </header>
 
       <div class="query-box">
-        <span class="micro-label">NATURAL-LANGUAGE EVENT QUERY</span>
+        <span class="micro-label">${state.reviewMode ? "LAT SOURCE QUERY" : "NATURAL-LANGUAGE EVENT QUERY"}</span>
         <p>${escapeHtml(demo.query)}</p>
+        ${state.reviewMode ? renderAcousticQuery(acoustic) : ""}
       </div>
 
       <div class="audio-workbench">
@@ -191,7 +342,7 @@ function renderDemoCard(demo) {
         </div>
         ${renderWaveform(demo)}
         ${renderAxis(demo.duration, demo.start, demo.end)}
-        <audio class="native-audio" controls preload="metadata" src="${escapeHtml(demo.audio.path)}"></audio>
+        <audio class="native-audio" controls preload="none" src="${escapeHtml(demo.audio.path)}"></audio>
       </div>
 
       <div class="answer-panel">
@@ -213,6 +364,23 @@ function renderDemoCard(demo) {
         <span class="${timestampReviewed || occurrenceFlag ? "flag" : ""}">${timestampReviewed ? "reviewed timestamp" : occurrenceFlag ? "occurrence constraint" : "LAT timestamp"}</span>
       </footer>
     </article>
+  `;
+}
+
+function renderAcousticQuery(acoustic) {
+  if (acoustic.eligibility !== "eligible") {
+    return `
+      <div class="acoustic-query excluded-query">
+        <span>${escapeHtml(labels.eligibility[acoustic.eligibility] || acoustic.eligibility)}</span>
+        <p>${escapeHtml(acoustic.classification_reason || "该目标不能脱离词义或叙事独立定位。")}</p>
+      </div>
+    `;
+  }
+  return `
+    <div class="acoustic-query">
+      <span>ACOUSTIC-ONLY QUERY</span>
+      <p>${escapeHtml(acoustic.acoustic_query)}</p>
+    </div>
   `;
 }
 
@@ -239,18 +407,20 @@ function renderWaveform(demo) {
 }
 
 function renderReviewWindows(demo, duration) {
-  const review = demo.review || {};
+  const acoustic = demo.acoustic || {};
   const windows = [];
-  if (review.lat && !sameInterval(review.lat, review.current_gold)) {
-    windows.push(intervalWindow(review.lat, duration, "lat-window", "LAT 原始"));
+  if (acoustic.lat && !sameInterval(acoustic.lat, acoustic.current_gold)) {
+    windows.push(intervalWindow(acoustic.lat, duration, "lat-window", "LAT 原始"));
   }
-  if (review.model_recommended && !sameInterval(review.model_recommended, review.current_gold)) {
-    windows.push(intervalWindow(review.model_recommended, duration, "model-window", "Gemini 首选"));
+  if (acoustic.proposed && !sameInterval(acoustic.proposed, acoustic.current_gold)) {
+    windows.push(intervalWindow(acoustic.proposed, duration, "model-window", "声学候选"));
   }
-  (review.alternatives || []).forEach((candidate) => {
-    if (sameInterval(candidate, review.current_gold) || sameInterval(candidate, review.lat) || sameInterval(candidate, review.model_recommended)) return;
-    windows.push(intervalWindow(candidate, duration, "alternative-window", candidate.candidate_id));
-  });
+  if (acoustic.window_candidate) {
+    windows.push(intervalWindow(acoustic.window_candidate, duration, "fixed-window", "Gemini 固定窗"));
+  }
+  if (acoustic.clap_candidate) {
+    windows.push(intervalWindow(acoustic.clap_candidate, duration, "clap-window", "CLAP 诊断"));
+  }
   return windows.join("");
 }
 
@@ -280,60 +450,116 @@ function renderAxis(duration, start, end) {
 }
 
 function renderReviewPanel(demo) {
-  const review = demo.review;
-  if (!review) return '<section class="review-panel"><p>该样例暂无 Pilot 审核数据。</p></section>';
+  const acoustic = demo.acoustic;
+  if (!acoustic) return '<section class="review-panel"><p>该样例暂无声学 Pilot 数据。</p></section>';
   const stored = state.reviewDecisions[demo.id] || {};
-  const requiredCues = review.query_spec?.required_cues || [];
-  const modelInterval = review.model_recommended || review.recommended;
-  const alternatives = (review.alternatives || []).map((candidate, index) => `
-    <article class="candidate-row">
-      <div>
-        <span class="candidate-rank">#${index + 1} · ${escapeHtml(candidate.candidate_id)}</span>
-        <strong>${formatInterval(candidate)}</strong>
-        <small>score ${formatScore(candidate.score)} · query ${formatScore(candidate.query_match)} · cue ${formatScore(candidate.cue_completeness)}</small>
-      </div>
-      <div class="interval-actions">
-        ${intervalButton("播放候选", candidate.start, candidate.end)}
-        ${contextButton("±2s", candidate, demo.duration)}
-      </div>
-      ${candidate.summary ? `<p>${escapeHtml(candidate.summary)}</p>` : ""}
-    </article>
-  `).join("");
+  const eligible = acoustic.eligibility === "eligible";
+  const policy = labels.evidencePolicy[acoustic.evidence_policy] || acoustic.evidence_policy || "未进入证据融合";
+  const boundarySource = labels.boundarySource[acoustic.boundary_source] || acoustic.boundary_source || "无候选边界";
+  const lowLevelEvidence = acoustic.low_level_acoustic_evidence || [];
+  const evidenceRows = [
+    evidenceCandidateRow("Gemini 全音频粗边界", acoustic.gemini_candidate, demo.duration),
+    evidenceCandidateRow("Gemini 固定窗", acoustic.window_candidate, demo.duration),
+    evidenceCandidateRow("CLAP 诊断", acoustic.clap_candidate, demo.duration),
+  ].filter(Boolean).join("");
+  const decisionChoices = eligible
+    ? [
+      reviewChoiceButton("keep_current", stored.choice),
+      reviewChoiceButton("accept_candidate", stored.choice),
+      reviewChoiceButton("needs_manual", stored.choice),
+    ].join("")
+    : [
+      reviewChoiceButton("exclude_acoustic", stored.choice),
+      reviewChoiceButton("needs_manual", stored.choice),
+    ].join("");
 
   return `
     <section class="review-panel">
       <div class="review-panel-head">
         <div>
-          <span class="micro-label">GEMINI 3 FLASH PILOT REVIEW</span>
-          <h4>${escapeHtml(labels.reviewStatus[review.status] || review.status)}</h4>
+          <span class="micro-label">ACOUSTIC GROUNDING PILOT · GEMINI 3 FLASH + CLAP</span>
+          <h4>${escapeHtml(labels.acousticStatus[acoustic.status] || acoustic.status)}</h4>
         </div>
-        <span>模型结果仅供回检，不会自动写入 gold</span>
+        <span>${escapeHtml(acoustic.reason || "候选仅供回检，不会自动写入 gold。")}</span>
       </div>
 
-      <div class="interval-comparison">
-        ${reviewIntervalRow("LAT 原始", review.lat, "lat", demo.duration)}
-        ${reviewIntervalRow("当前 gold", review.current_gold, "current", demo.duration)}
-        ${reviewIntervalRow("Gemini 首选", modelInterval, "model", demo.duration, review.model_recommended?.candidate_id)}
+      <div class="sample-manufacture-flow">
+        ${sampleFlowStep(
+          "01 · ACOUSTIC GATE",
+          labels.eligibility[acoustic.eligibility] || acoustic.eligibility,
+          eligible ? "pass" : "stop",
+        )}
+        ${sampleFlowStep(
+          "02 · EVENT SPEC",
+          eligible
+            ? `${labels.soundFamily[acoustic.sound_family] || acoustic.sound_family} · ${labels.temporalForm[acoustic.temporal_form] || acoustic.temporal_form}`
+            : "不生成声学 query",
+          eligible ? "pass" : "muted",
+        )}
+        ${sampleFlowStep(
+          "03 · FIXED WINDOW",
+          acoustic.window_candidate ? formatInterval(acoustic.window_candidate) : "未进入固定窗回检",
+          acoustic.window_candidate ? "pass" : "muted",
+        )}
+        ${sampleFlowStep(
+          "04 · BOUNDARY",
+          boundarySource,
+          acoustic.proposed ? "decision" : "muted",
+        )}
       </div>
 
-      <div class="boundary-listen">
-        <span>Gemini 首选边界听测</span>
-        <div class="interval-actions">
-          ${intervalButton("PRE 2s", Math.max(0, modelInterval.start - 2), modelInterval.start)}
-          ${intervalButton("TARGET", modelInterval.start, modelInterval.end)}
-          ${intervalButton("POST 2s", modelInterval.end, Math.min(demo.duration, modelInterval.end + 2))}
+      ${eligible ? `
+        <div class="acoustic-policy">
+          <span>EVIDENCE POLICY</span>
+          <strong>${escapeHtml(policy)}</strong>
+          <small>Gemini 直报时间只作辅助；固定窗与形态匹配的声学证据必须参与。</small>
         </div>
-      </div>
 
-      <details class="review-details">
-        <summary>查看 Top-${review.alternatives.length} 候选与 Gemini 理由</summary>
-        <div class="candidate-list">${alternatives}</div>
-        <div class="model-notes">
-          ${review.comparison?.reason ? `<p><strong>候选比较：</strong>${escapeHtml(review.comparison.reason)}</p>` : ""}
-          ${review.boundary_validation?.reason ? `<p><strong>边界回检：</strong>${escapeHtml(review.boundary_validation.reason)}</p>` : ""}
-          ${requiredCues.length ? `<div><strong>必需线索：</strong><ul>${requiredCues.map((cue) => `<li>${escapeHtml(cue.description)} <small>${escapeHtml(cue.type)}</small></li>`).join("")}</ul></div>` : ""}
+        <div class="interval-comparison acoustic-intervals">
+          ${reviewIntervalRow("LAT 原始", acoustic.lat, "lat", demo.duration)}
+          ${reviewIntervalRow("当前 gold", acoustic.current_gold, "current", demo.duration)}
+          ${reviewIntervalRow("声学候选", acoustic.proposed, "model", demo.duration, acoustic.boundary_source)}
         </div>
-      </details>
+
+        ${acoustic.proposed ? `
+          <div class="boundary-listen">
+            <span>声学候选边界听测</span>
+            <div class="interval-actions">
+              ${intervalButton("PRE 2s", Math.max(0, acoustic.proposed.start - 2), acoustic.proposed.start)}
+              ${intervalButton("TARGET", acoustic.proposed.start, acoustic.proposed.end)}
+              ${intervalButton("POST 2s", acoustic.proposed.end, Math.min(demo.duration, acoustic.proposed.end + 2))}
+            </div>
+          </div>
+        ` : ""}
+
+        <details class="review-details">
+          <summary>查看固定窗、独立证据与支持分数</summary>
+          <div class="evidence-candidate-list">${evidenceRows}</div>
+          <div class="support-matrix">
+            ${supportMetric("Gemini ↔ fixed window", acoustic.support?.gemini_window)}
+            ${supportMetric("CLAP ↔ fixed window", acoustic.support?.clap_window)}
+            ${supportMetric("CLAP extent ratio", acoustic.support?.clap_extent_ratio)}
+            ${supportMetric("Gemini ↔ CLAP IoU", acoustic.support?.model_iou)}
+          </div>
+          <div class="model-notes">
+            ${acoustic.window_reason ? `<p><strong>固定窗回检：</strong>${escapeHtml(acoustic.window_reason)}</p>` : ""}
+            ${acoustic.gemini_reason ? `<p><strong>Gemini 粗定位：</strong>${escapeHtml(acoustic.gemini_reason)}</p>` : ""}
+            ${lowLevelEvidence.length ? `
+              <div>
+                <strong>邻近低层事件：</strong>
+                <ul>${lowLevelEvidence.map((event) => `
+                  <li>${escapeHtml(event.type)} · ${formatTime(event.time)} · score ${formatScore(event.score)}</li>
+                `).join("")}</ul>
+              </div>
+            ` : ""}
+          </div>
+        </details>
+      ` : `
+        <div class="excluded-acoustic-detail">
+          <span>EXCLUSION REASON</span>
+          <p>${escapeHtml(acoustic.classification_reason || acoustic.reason)}</p>
+        </div>
+      `}
 
       <div class="human-review" data-review-id="${escapeHtml(demo.id)}">
         <div class="human-review-head">
@@ -341,13 +567,45 @@ function renderReviewPanel(demo) {
           <small>仅保存在当前浏览器，可导出 JSONL</small>
         </div>
         <div class="review-choice-group">
-          ${reviewChoiceButton("keep_current", stored.choice)}
-          ${reviewChoiceButton("accept_model", stored.choice)}
-          ${reviewChoiceButton("needs_manual", stored.choice)}
+          ${decisionChoices}
         </div>
         <textarea class="review-note" rows="2" placeholder="可选：记录边界、声学线索或需要精修的位置">${escapeHtml(stored.note || "")}</textarea>
       </div>
     </section>
+  `;
+}
+
+function sampleFlowStep(label, value, stateName) {
+  return `
+    <div class="sample-flow-step flow-${escapeHtml(stateName)}">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+    </div>
+  `;
+}
+
+function evidenceCandidateRow(label, value, duration) {
+  if (!value) return "";
+  return `
+    <article class="evidence-candidate-row">
+      <div><span>${escapeHtml(label)}</span><strong>${formatInterval(value)}</strong></div>
+      <div class="interval-actions">
+        ${intervalButton("播放", value.start, value.end)}
+        ${contextButton("上下文 ±2s", value, duration)}
+      </div>
+    </article>
+  `;
+}
+
+function supportMetric(label, value) {
+  const score = Number(value);
+  const normalized = Number.isFinite(score) ? clamp(score, 0, 1) : 0;
+  return `
+    <div class="support-metric">
+      <span>${escapeHtml(label)}</span>
+      <i><b style="width:${normalized * 100}%"></b></i>
+      <strong>${formatScore(value)}</strong>
+    </div>
   `;
 }
 
@@ -411,11 +669,13 @@ function bindAudioInteractions(container) {
         const end = Number(button.dataset.end);
         intervalPlaybackEnd = end;
         activeButton = button;
-        audio.currentTime = start;
         button.classList.add("is-playing");
-        button.textContent = "■ 正在播放";
+        button.textContent = "■ 正在加载";
         try {
+          await ensureAudioMetadata(audio);
+          await seekAudio(audio, start);
           await audio.play();
+          button.textContent = "■ 正在播放";
         } catch (error) {
           intervalPlaybackEnd = null;
           resetIntervalButton(activeButton);
@@ -453,6 +713,53 @@ function bindAudioInteractions(container) {
         activeButton = null;
       }
     });
+  });
+}
+
+function seekAudio(audio, targetTime) {
+  return new Promise((resolve, reject) => {
+    let timeoutId;
+    const cleanup = () => {
+      window.clearTimeout(timeoutId);
+      audio.removeEventListener("seeked", handleSeeked);
+      audio.removeEventListener("error", handleError);
+    };
+    const handleSeeked = () => {
+      cleanup();
+      resolve();
+    };
+    const handleError = () => {
+      cleanup();
+      reject(audio.error || new Error("Audio seek failed"));
+    };
+    audio.addEventListener("seeked", handleSeeked, { once: true });
+    audio.addEventListener("error", handleError, { once: true });
+    timeoutId = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("Audio seek timed out"));
+    }, 10000);
+    audio.currentTime = targetTime;
+    if (!audio.seeking && Math.abs(audio.currentTime - targetTime) < 0.05) {
+      cleanup();
+      resolve();
+    }
+  });
+}
+
+function ensureAudioMetadata(audio) {
+  if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const handleLoaded = () => {
+      audio.removeEventListener("error", handleError);
+      resolve();
+    };
+    const handleError = () => {
+      audio.removeEventListener("loadedmetadata", handleLoaded);
+      reject(audio.error || new Error("Audio metadata failed to load"));
+    };
+    audio.addEventListener("loadedmetadata", handleLoaded, { once: true });
+    audio.addEventListener("error", handleError, { once: true });
+    audio.load();
   });
 }
 
@@ -519,10 +826,14 @@ function exportReviewDecisions() {
       choice: decision.choice,
       choice_label: labels.reviewChoice[decision.choice] || decision.choice,
       note: decision.note,
-      review_status: demo.review?.status,
-      lat: demo.review?.lat,
-      current_gold: demo.review?.current_gold,
-      model_recommended: demo.review?.model_recommended,
+      acoustic_status: demo.acoustic?.status,
+      acoustic_eligibility: demo.acoustic?.eligibility,
+      acoustic_query: demo.acoustic?.acoustic_query,
+      evidence_policy: demo.acoustic?.evidence_policy,
+      boundary_source: demo.acoustic?.boundary_source,
+      lat: demo.acoustic?.lat,
+      current_gold: demo.acoustic?.current_gold,
+      acoustic_candidate: demo.acoustic?.proposed,
       updated_at: decision.updated_at,
     }];
   });
@@ -576,6 +887,7 @@ function sameInterval(left, right, tolerance = 0.001) {
 }
 
 function formatInterval(value) {
+  if (!value) return "—";
   return `${formatTime(value.start)} – ${formatTime(value.end)}`;
 }
 

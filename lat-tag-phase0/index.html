@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An interactive benchmark explorer for locating naturally described sound events in mixed audio.">
-  <title>LAT TAG Phase 0 — Temporal Audio Grounding</title>
+  <meta name="description" content="An interactive benchmark explorer for acoustic event temporal grounding in mixed audio.">
+  <title>LAT TAG Phase 0 — Acoustic Event Grounding</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -24,6 +25,7 @@
           <div class="nav-links" id="nav-links">
             <a href="#overview">任务</a>
             <a href="#protocol">协议</a>
+            <a href="#pipeline">制造流程</a>
             <a href="#demo">样例</a>
             <a href="#notes">说明</a>
           </div>
@@ -56,7 +58,7 @@
             </div>
             <div class="console-query">
               <small>EVENT QUERY</small>
-              <p>“定位出音乐转折、音效与人物独白共同出现的瞬间。”</p>
+              <p>“背景音乐从温馨转为悬疑，并伴随一声清脆的叮音效。”</p>
             </div>
             <div class="console-wave" aria-hidden="true">
               <i style="height: 34%"></i>
@@ -105,8 +107,8 @@
             <div class="console-axis"><span>00:00</span><span>00:30</span><span>01:00</span></div>
             <div class="console-output">
               <span class="output-icon" aria-hidden="true">↔</span>
-              <div><small>PREDICTED INTERVAL</small><strong>{"start": 18.29, "end": 21.29}</strong></div>
-              <span class="output-duration">3.00s</span>
+              <div><small>ACOUSTIC CANDIDATE</small><strong>{"start": 54.00, "end": 55.00}</strong></div>
+              <span class="output-duration">1.00s</span>
             </div>
           </div>
         </div>
@@ -130,8 +132,8 @@
               <h2>不是识别全部内容，<br>而是找到描述中的声音事件。</h2>
             </div>
             <div class="overview-copy">
-              <p>目标事件是广义声音事件：可以是一句话、一段对话、人声情绪、音乐变化、环境声音、物体声，或多种听觉线索共同构成的片段。</p>
-              <p>Phase 0 直接继承 LAT TAG 时间戳，只做确定性的 60 秒内裁剪与相对时间平移，不引入负例，也不重写事件语义。</p>
+              <p>目标只保留无需理解词义即可直接听见的声音：音乐与乐器、非语言人声、环境与机械声、冲击与信号，以及边界明确的复合声学事件。</p>
+              <p>对白内容、剧情和叙事推断交给 TS-ASR。本阶段以 LAT 时间戳为来源，先做声学投影与非破坏性回检；所有模型结果都是候选，不自动覆盖 gold。</p>
             </div>
           </div>
         </section>
@@ -173,6 +175,88 @@
           </div>
         </section>
 
+        <section class="section pipeline-section" id="pipeline">
+          <div class="shell">
+            <div class="pipeline-heading">
+              <div>
+                <p class="section-kicker">Data manufacturing</p>
+                <h2>从 LAT caption 到<br>可审核的声学时间边界</h2>
+              </div>
+              <p>先判断“能否只靠听觉定位”，再根据事件的时间形态选择独立证据。Gemini 负责理解 caption 与固定窗回检，不单独决定 gold。</p>
+            </div>
+
+            <div class="pilot-ledger" aria-label="声学 Pilot 数据流统计">
+              <div><span>INPUT</span><strong data-acoustic-stat="records">20</strong><small>LAT Demo captions</small></div>
+              <div><span>KEEP</span><strong data-acoustic-stat="eligible">12</strong><small>directly audible targets</small></div>
+              <div><span>DROP</span><strong data-acoustic-stat="excluded">8</strong><small>lexical / narrative</small></div>
+              <div><span>WRITE GOLD</span><strong>0</strong><small>candidate-only pipeline</small></div>
+            </div>
+
+            <div class="manufacture-flow" aria-label="数据制造流程">
+              <div class="flow-step">
+                <span class="flow-index">01</span>
+                <small>INGEST</small>
+                <strong>Mix audio + LAT caption</strong>
+                <p>保留 60 秒音频、原始 query 与 LAT 时间戳作为来源记录。</p>
+              </div>
+              <div class="flow-connector" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <span class="flow-index">02</span>
+                <small>ACOUSTIC GATE</small>
+                <strong>排除词义与剧情</strong>
+                <p>只有脱离对白词义后仍能直接听见的目标进入声学 benchmark。</p>
+              </div>
+              <div class="flow-connector" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <span class="flow-index">03</span>
+                <small>SPECIFICATION</small>
+                <strong>重写纯声学 query</strong>
+                <p>记录声源、时间形态、起止规则与 occurrence 约束。</p>
+              </div>
+              <div class="flow-connector" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <span class="flow-index">04</span>
+                <small>VERIFY</small>
+                <strong>固定 5 秒窗回检</strong>
+                <p>Gemini 只选择窗口 ID，时间由程序映射，避免自由报秒偏移。</p>
+              </div>
+            </div>
+
+            <div class="evidence-branch">
+              <div class="branch-origin">
+                <span>按时间形态分流</span>
+                <strong>固定窗只确认“在哪里”</strong>
+                <p>精确边界由与事件形态匹配的独立声学证据提供。</p>
+              </div>
+              <div class="branch-routes">
+                <div class="branch-route">
+                  <div><span>SUSTAINED / REPEATED</span><strong>持续 · 间歇</strong></div>
+                  <p><b data-temporal-total="sustained">5</b> 条 · 固定窗 + Gemini 粗边界 + CLAP 滑窗覆盖</p>
+                  <div class="route-signal clap-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="branch-route">
+                  <div><span>SHORT / CHANGE</span><strong>瞬态 · 转折 · 复合</strong></div>
+                  <p><b data-temporal-total="short">7</b> 条 · 固定窗 + Gemini 粗边界 + onset / acoustic change</p>
+                  <div class="route-signal onset-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-board">
+              <div class="decision-copy">
+                <span>05 · DECISION QUEUE</span>
+                <strong>输出候选与证据，不修改 gold</strong>
+                <p>一致样本可保留；边界移动、新声学投影与证据冲突样本进入人工听测。</p>
+              </div>
+              <div class="outcome-bars" id="outcome-bars" aria-label="Pilot 决策分布"></div>
+            </div>
+
+            <div class="method-example" id="method-example">
+              <div class="method-example-loading">正在加载实际样本轨迹…</div>
+            </div>
+          </div>
+        </section>
+
         <section class="section demo-section" id="demo">
           <div class="shell">
             <div class="demo-heading">
@@ -181,8 +265,8 @@
                 <h2>戴上耳机，检查时间边界</h2>
               </div>
               <div class="demo-heading-actions">
-                <p>普通模式展示当前 gold；审核模式可对比 LAT 原始区间、当前 gold 与 Gemini 3 Flash 回检候选。</p>
-                <button class="review-mode-toggle" id="review-mode-toggle" type="button" aria-pressed="false">进入审核模式</button>
+                <p>普通模式展示当前 gold；声学审核模式展示纯声学 query、固定窗、独立证据与最终候选。</p>
+                <button class="review-mode-toggle" id="review-mode-toggle" type="button" aria-pressed="false">进入声学审核</button>
               </div>
             </div>
 
@@ -220,9 +304,11 @@
                 <span>审核状态</span>
                 <div class="filter-group" data-filter="review_status">
                   <button class="filter-button active" type="button" data-value="all">全部</button>
-                  <button class="filter-button" type="button" data-value="model_disagrees_with_accepted_review">模型与人工冲突</button>
-                  <button class="filter-button" type="button" data-value="needs_human_confirmation">需要人工确认</button>
-                  <button class="filter-button" type="button" data-value="pilot_recommendation">稳定建议</button>
+                  <button class="filter-button" type="button" data-value="needs_human_review">待人工复核</button>
+                  <button class="filter-button" type="button" data-value="boundary_shift_candidate">边界移动</button>
+                  <button class="filter-button" type="button" data-value="acoustically_consistent">声学一致</button>
+                  <button class="filter-button" type="button" data-value="new_acoustic_candidate">新声学候选</button>
+                  <button class="filter-button" type="button" data-value="excluded_non_acoustic">非声学排除</button>
                 </div>
               </div>
               <div class="review-actions">
@@ -237,8 +323,9 @@
               <div class="legend" aria-label="时间区间图例">
                 <span><i class="legend-current"></i>当前 gold</span>
                 <span class="review-only"><i class="legend-lat"></i>LAT 原始</span>
-                <span class="review-only"><i class="legend-model"></i>Gemini 首选</span>
-                <span class="review-only"><i class="legend-alternative"></i>其他候选</span>
+                <span class="review-only"><i class="legend-model"></i>声学候选</span>
+                <span class="review-only"><i class="legend-window"></i>Gemini 固定窗</span>
+                <span class="review-only"><i class="legend-clap"></i>CLAP 诊断</span>
               </div>
             </div>
 
@@ -256,9 +343,9 @@
               <h2>如何理解当前 Demo</h2>
             </div>
             <div class="note-list">
-              <article><span>01</span><div><h3>它展示金标，不展示模型能力</h3><p>当前网页用于审阅任务、音频与标注边界；尚未接入任何 baseline 预测。</p></div></article>
-              <article><span>02</span><div><h3>事件类型是 provisional metadata</h3><p>Speech、Mixed、Non-speech 来自确定性关键词规则，仅用于浏览和切片分析，可继续人工校正。</p></div></article>
-              <article><span>03</span><div><h3>原始时间戳保持不变</h3><p>审核结论只保存在浏览器并导出为 JSONL；网页不会覆盖 LAT 原始标注或人工复核 manifest。</p></div></article>
+              <article><span>01</span><div><h3>只审核直接可听见的事件</h3><p>对白词义、剧情和人物关系不进入本任务；非语言人声、乐器、BGM、环境声、冲击与复合声音可以进入。</p></div></article>
+              <article><span>02</span><div><h3>证据随时间形态变化</h3><p>CLAP 主要服务持续与间歇声音；瞬态、转折和复合事件依赖固定窗与低层 onset / acoustic change。</p></div></article>
+              <article><span>03</span><div><h3>原始时间戳始终可追溯</h3><p>模型输出只生成候选。审核结论保存在浏览器并导出 JSONL，网页不会覆盖 LAT 或人工复核 manifest。</p></div></article>
             </div>
           </div>
         </section>
