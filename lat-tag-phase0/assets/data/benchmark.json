@@ -32,6 +32,11 @@
       "easy": 4,
       "hard": 8,
       "medium": 8
+    },
+    "review_status": {
+      "model_disagrees_with_accepted_review": 1,
+      "needs_human_confirmation": 16,
+      "pilot_recommendation": 3
     }
   },
   "demos": [
@@ -50,7 +55,7 @@
       "duration": 60.0,
       "target_duration": 2.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000436.ogg",
+        "path": "assets/audio/lat_tag_zh_000436.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -196,6 +201,121 @@
         "source_start": 1140.0,
         "source_end": 1142.0,
         "crop_start": 1108.9595
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 31.0405,
+          "end": 33.0405
+        },
+        "current_gold": {
+          "start": 31.0405,
+          "end": 33.0405
+        },
+        "recommended": {
+          "start": 31.0405,
+          "end": 33.0405,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "model_recommended": {
+          "start": 31.0405,
+          "end": 33.0405,
+          "candidate_id": "candidate_01",
+          "score": 0.986735,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 31.0405,
+            "end": 33.0405,
+            "score": 0.986735,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "A male voice shouts '我要报仇！' (I want revenge!) with high intensity and emotion, accompanied by background sounds of clashing and simulated battle."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 30.74,
+            "end": 33.68,
+            "score": 0.933424,
+            "sources": [
+              "gemini_selected_speech_union",
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "A male voice shouts '我要报仇！' (I want revenge!) with high intensity and emotion, accompanied by background sounds of clashing and simulated battle."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 26.666,
+            "end": 30.666,
+            "score": 0.9,
+            "sources": [
+              "acoustic_spectral_onset"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The clip begins with simulated battle sounds (clashing), followed by a male voice shouting '我要报仇！' (I want revenge!) with high emotion."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_001"
+          ],
+          "occurrence_constraint": "unique",
+          "reason": "The ASR segment 'speech_001' contains '我要爆炒', which is a phonetic mis-transcription of the requested phrase '我要报仇' (revenge) in the context of a battle. This segment occurs just before the video's closing remarks, matching the 'end of the battle' description.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "high_frequency_transient"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The phrase '我要报仇！' (I want revenge!)",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "Excited shouting or yelling",
+              "required": true,
+              "type": "emotion"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "Simulated battle sounds in the background",
+              "required": false,
+              "type": "non_speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_02",
+          "reason": "Candidates 01 and 02 perfectly capture the trigger moment where the male voice shouts the required phrase with the correct emotion and background battle sounds. Candidates 03 and 04 also contain the phrase but include more preceding battle noise. Candidates 05-07 contain no speech."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The target clip uniquely contains the specific phrase '我要报仇！' shouted by a male voice, while the surrounding clips only contain general battle shouting.",
+          "target_observed_caption": "A male voice shouts '我要报仇！' (I want revenge!) with high intensity against a backdrop of simulated battle noises."
+        }
       }
     },
     {
@@ -213,7 +333,7 @@
       "duration": 60.0,
       "target_duration": 19.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000012.ogg",
+        "path": "assets/audio/lat_tag_zh_000012.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -360,6 +480,116 @@
         "source_start": 0.0,
         "source_end": 19.0,
         "crop_start": 0.0
+      },
+      "review": {
+        "status": "pilot_recommendation",
+        "lat": {
+          "start": 0.0,
+          "end": 19.0
+        },
+        "current_gold": {
+          "start": 0.0,
+          "end": 19.0
+        },
+        "recommended": {
+          "start": 0.0,
+          "end": 19.0,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "model_recommended": {
+          "start": 0.0,
+          "end": 19.0,
+          "candidate_id": "candidate_01",
+          "score": 0.969323,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 0.0,
+            "end": 19.0,
+            "score": 0.969323,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The blogger mentions arriving in Changchun and eating Malatang, specifically describing the taste as having a 'Chinese medicine' flavor (speech_008)."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 5.32,
+            "end": 8.94,
+            "score": 0.386767,
+            "sources": [
+              "gemini_selected_speech_union",
+              "gemini_selected_speech",
+              "acoustic_spectral_onset"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.5,
+            "summary": "The blogger mentions eating Malatang in Changchun, but the clip ends after speech_006, missing the required taste description."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 5.386,
+            "end": 9.386,
+            "score": 0.372923,
+            "sources": [
+              "acoustic_spectral_onset"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.5,
+            "summary": "The blogger mentions eating Malatang in Changchun, but the clip ends after speech_006, missing the required taste description."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_004",
+            "speech_008"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The query specifically asks for the first description of the 'Chinese medicine' taste of the Malatang in Changchun. Segment speech_004 establishes the meal (Malatang), and speech_008 contains the specific taste description requested.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The blogger mentions eating Malatang in Changchun.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The blogger describes the taste as having a 'Chinese medicine' flavor.",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": null,
+          "reason": "Candidate 01 is the only clip that contains the complete sequence required by the query, including the specific description of the 'Chinese medicine' flavor (speech_008). All other candidates (02-07) are truncated and do not include the trigger description."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip contains both required cues: the mention of eating Malatang in Changchun and the specific description of the 'Chinese medicine' taste. The POST clip shows the blogger moving on to the next food item, confirming the event is complete.",
+          "target_observed_caption": "The male blogger begins his 'Changchun one-day trip' vlog, stating that his first meal after arriving is Malatang. He then describes the flavor of the Malatang, noting that it does not contain sesame paste and has a distinct 'Chinese medicine flavor' (中药味)."
+        }
       }
     },
     {
@@ -377,7 +607,7 @@
       "duration": 60.0,
       "target_duration": 30.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000065.ogg",
+        "path": "assets/audio/lat_tag_zh_000065.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -524,6 +754,122 @@
         "source_start": 98.0,
         "source_end": 128.0,
         "crop_start": 86.193062
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 11.806938,
+          "end": 41.806938
+        },
+        "current_gold": {
+          "start": 11.806938,
+          "end": 41.806938
+        },
+        "recommended": {
+          "start": 11.806938,
+          "end": 41.806938,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "model_recommended": {
+          "start": 11.806938,
+          "end": 41.806938,
+          "candidate_id": "candidate_01",
+          "score": 1.095789,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 11.806938,
+            "end": 41.806938,
+            "score": 1.095789,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip features a male representative of the program team describing the search process. He mentions searching on the 'Baby Back Home' website (speech_007), finding a post from 2010 (speech_010, matching the query's 2015 context), and confirming that the requester's name, Zhou Wenqiang (speech_011), and the incident location in Nanping, Fujian (speech_014, speech_015), match the guest's clues."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 17.48,
+            "end": 37.08,
+            "score": 1.092226,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the required speech about the website search, the post, the name match, and the location match, but it is slightly shorter than candidate_01, ending earlier."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 17.48,
+            "end": 41.806938,
+            "score": 1.067423,
+            "sources": [
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the required speech about the website search, the post, the name match, and the location match, but starts slightly later than candidate_01."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_007",
+            "speech_008",
+            "speech_009",
+            "speech_010",
+            "speech_011",
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_015"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The male representative begins detailing the search process on the 'Baby Back Home' website in speech_007. He mentions finding a post (speech_010, where ASR '2010' likely corresponds to the query's '2015') and confirms that the requester's name (speech_011) and the incident location (speech_014, speech_015) match the guest's clues.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "A male representative of the program team describing the search process on a website.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "Mention of finding a specific help post and matching the details with the guest's description.",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidate 01 is the most complete segment, capturing the entire detailed introduction of the search process, including the website mention, the specific post, the name match, and the location match, providing full context for the turning point."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip captures the complete explanation from the male representative regarding the discovery of the 2015 post on the 'Baby Back Home' website, including the specific matching details of the name and location as specified in the query. PRE and POST confirm this is the correct and first instance of this detailed explanation.",
+          "target_observed_caption": "A male representative of the program team details the search process, explaining that they searched the 'Baby Back Home' website based on the guest's clues. He mentions finding a help post from 2015 (transcribed as 2010 in ASR) where the requester's name, Zhong Wenqiang, and the location of the incident, Nanping in Fujian Province, perfectly match the guest's description of her missing brother."
+        }
       }
     },
     {
@@ -541,7 +887,7 @@
       "duration": 60.0,
       "target_duration": 50.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000569.ogg",
+        "path": "assets/audio/lat_tag_zh_000569.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -686,6 +1032,120 @@
         "source_start": 64.0,
         "source_end": 114.0,
         "crop_start": 55.563125
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 8.436875,
+          "end": 58.436875
+        },
+        "current_gold": {
+          "start": 8.436875,
+          "end": 58.436875
+        },
+        "recommended": {
+          "start": 38.72,
+          "end": 55.08,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "model_recommended": {
+          "start": 38.72,
+          "end": 55.08,
+          "candidate_id": "candidate_02",
+          "score": 1.140657,
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 38.72,
+            "end": 55.08,
+            "score": 1.140657,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The audio captures the complete discourse starting from the transition in speech_013 through the core statements about his duty (speech_014-015) and being a competent teacher (speech_018), concluding with his consistent thoughts on the matter (speech_020)."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 38.72,
+            "end": 58.436875,
+            "score": 1.119215,
+            "sources": [
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This clip is identical in content to candidate_02, providing the full discourse regarding Teacher Luo's duty and his emphasis on being a competent teacher, including all necessary context and concluding remarks."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 8.436875,
+            "end": 58.436875,
+            "score": 1.037659,
+            "sources": [
+              "lat_original",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The audio contains the full discourse where Teacher Luo discusses his duty as a teacher and his goal to be a competent teacher, starting from his thoughts on writing books and transitioning into his professional identity. It includes all required speech segments from speech_014 to speech_020."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "deterministic_complete_marker",
+          "likely_speech_segment_ids": [
+            "speech_014",
+            "speech_015",
+            "speech_016",
+            "speech_017",
+            "speech_018",
+            "speech_019",
+            "speech_020"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The query asks for the complete discourse where the speaker emphasizes his core duty as being a 'competent teacher'. Segments speech_014 through speech_020 directly contain the keywords '本分' (duty) and '称职的老师' (competent teacher) in the context of his professional identity.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "罗老师提到自己的本分是做老师",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "罗老师强调做一个称职的老师",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_02",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidates 01, 02, and 03 all contain the full discourse required by the query. Candidates 02 and 03 are superior to 01 as they are more precisely trimmed to the relevant response without excessive preceding context about writing books. Candidates 04-07 are rejected for being incomplete or missing required cues."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip contains the complete discourse where Luo Laoshi explicitly mentions his '本分' (duty) is to be a teacher and his goal to be a '称职的老师' (competent teacher). The boundaries are well-defined, with the PRE and POST clips showing the surrounding context without overlapping the core statement.",
+          "target_observed_caption": "Luo Laoshi discusses his professional identity, stating that his fundamental duty is to be a teacher. He emphasizes his goal of being a competent teacher who takes his profession seriously, regardless of external circumstances, noting that this has always been his perspective."
+        }
       }
     },
     {
@@ -703,7 +1163,7 @@
       "duration": 60.0,
       "target_duration": 1.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000021.ogg",
+        "path": "assets/audio/lat_tag_en_000021.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -848,6 +1308,114 @@
         "source_start": 46.0,
         "source_end": 47.0,
         "crop_start": 21.878438
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 24.121562,
+          "end": 25.121562
+        },
+        "current_gold": {
+          "start": 24.121562,
+          "end": 25.121562
+        },
+        "recommended": {
+          "start": 14.0,
+          "end": 19.58,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "model_recommended": null,
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 14.0,
+            "end": 19.58,
+            "score": 0.315546,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.66,
+            "summary": "A trolley lady offers snacks and a boy declines, providing the context of the friend's inability to buy, but the boy's decision to purchase is missing."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 16.24,
+            "end": 19.58,
+            "score": 0.297415,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.66,
+            "summary": "A trolley lady offers snacks and a boy declines, providing the context of the friend's inability to buy, but the boy's decision to purchase is missing."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 14.0,
+            "end": 17.06,
+            "score": 0.292484,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.66,
+            "summary": "A trolley lady offers snacks and a boy declines, providing the context of the friend's inability to buy, but the boy's decision to purchase is missing."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_003",
+            "speech_004",
+            "speech_005"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The transcript captures the interaction where a trolley lady offers snacks, one boy declines, and the other boy decisively offers to buy the entire selection ('We'll take the lot').",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The trolley lady offering snacks",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The friend declining the offer",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "The boy stating he will take the lot",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": null,
+          "runner_up_candidate_id": null,
+          "reason": "None of the candidates meet the requirement of supporting all three mandatory speech cues. Candidates 01, 05, and 06 contain the trigger phrase 'We'll take the lot' but lack the trolley lady's offer and the friend's refusal. Candidates 02, 03, 04, and 07 contain the offer and refusal but lack the trigger phrase where the boy decides to purchase the selection."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip includes all three required speech cues: the trolley lady's offer, the friend's refusal, and the boy's decisive purchase of the entire selection, satisfying the query's conditions.",
+          "target_observed_caption": "A trolley lady asks two teenage boys on a train if they want anything from the snack trolley. One boy declines, showing a squashed sandwich, while the other boy pulls out a handful of gold coins and decisively states, 'We'll take the lot.'"
+        }
       }
     },
     {
@@ -865,7 +1433,7 @@
       "duration": 60.0,
       "target_duration": 18.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000337.ogg",
+        "path": "assets/audio/lat_tag_en_000337.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1011,6 +1579,108 @@
         "source_start": 1279.0,
         "source_end": 1297.0,
         "crop_start": 1260.583375
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 18.416625,
+          "end": 36.416625
+        },
+        "current_gold": {
+          "start": 18.416625,
+          "end": 36.416625
+        },
+        "recommended": {
+          "start": 21.32,
+          "end": 27.52,
+          "candidate_id": "candidate_04",
+          "sources": [
+            "gemini_selected_speech"
+          ]
+        },
+        "model_recommended": {
+          "start": 21.32,
+          "end": 27.52,
+          "candidate_id": "candidate_04",
+          "score": 1.052596,
+          "sources": [
+            "gemini_selected_speech"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_04",
+            "start": 21.32,
+            "end": 27.52,
+            "score": 1.052596,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip starts exactly at the onset of the male host saying 'Do not compare your beginning to someone else's middle.' It captures the full delivery and the subsequent repetition by the female host."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 15.84,
+            "end": 27.52,
+            "score": 0.967771,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 0.8,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the male host's delivery of the quote but includes several seconds of preceding discussion about seeing results versus the time and work involved."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 18.416625,
+            "end": 36.416625,
+            "score": 0.959535,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The male host introduces the quote with 'There's a great quote about this' and then delivers the full quote 'Do not compare your beginning to someone else's middle.' The clip also includes the female host's repetition."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_004",
+            "speech_005"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The host introduces the quote at the end of speech_004 and completes the first delivery in speech_005. The query asks for the exact moment of delivery.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The male host saying 'Do not compare your beginning to someone else's middle.'",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_04",
+          "runner_up_candidate_id": "candidate_01",
+          "reason": "Candidate 04 is the most precise match for the 'exact moment' requested, as the audio begins exactly at the start of the male host's delivery of the quote. Candidate 01 is also a complete match but includes a brief introductory sentence. Candidate 03 is rejected because it cuts off before the quote is finished."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_04",
+          "confidence": 1.0,
+          "start_boundary_complete": false,
+          "end_boundary_complete": true,
+          "target_contains_full_event": false,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The male host's delivery of the quote is split between the PRE and TARGET clips. The PRE clip contains the start of the sentence ('Do not compare your'), meaning the TARGET clip does not contain the full event as delivered by the specified speaker.",
+          "target_observed_caption": "The male host completes the sentence 'compare your beginning to someone else's middle', followed by a female speaker repeating the full quote 'Do not compare your beginning to someone else's middle.'"
+        }
       }
     },
     {
@@ -1028,7 +1698,7 @@
       "duration": 60.0,
       "target_duration": 32.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000197.ogg",
+        "path": "assets/audio/lat_tag_en_000197.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1176,6 +1846,124 @@
         "source_start": 334.0,
         "source_end": 366.0,
         "crop_start": 320.178437
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 13.821563,
+          "end": 45.821563
+        },
+        "current_gold": {
+          "start": 13.821563,
+          "end": 45.821563
+        },
+        "recommended": {
+          "start": 13.821563,
+          "end": 45.821563,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original",
+            "hybrid_reviewed_start_lat_end"
+          ]
+        },
+        "model_recommended": {
+          "start": 13.821563,
+          "end": 45.821563,
+          "candidate_id": "candidate_01",
+          "score": 1.119895,
+          "sources": [
+            "lat_original",
+            "hybrid_reviewed_start_lat_end"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 13.821563,
+            "end": 45.821563,
+            "score": 1.119895,
+            "sources": [
+              "lat_original",
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The audio clip begins exactly when the guest says 'No, I don't' and concludes immediately after the receptionist says 'Enjoy your stay.' It captures the full check-in process for the first guest as requested."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 11.13,
+            "end": 50.4,
+            "score": 1.038933,
+            "sources": [
+              "gemini_selected_speech_union",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 0.8,
+            "cue_completeness": 1.0,
+            "summary": "This clip contains the requested interaction but extends beyond the specified end point, including the start of a second guest's interaction."
+          },
+          {
+            "candidate_id": "candidate_07",
+            "start": 29.05,
+            "end": 37.09,
+            "score": 0.299609,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.5,
+            "summary": "The clip contains the end of the interaction but lacks the starting confirmation of no reservation."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "deterministic_complete_marker",
+          "likely_speech_segment_ids": [
+            "speech_003",
+            "speech_004",
+            "speech_005",
+            "speech_006",
+            "speech_007",
+            "speech_008",
+            "speech_009"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The interaction starts in speech_003 where the guest confirms he has no reservation and ends in speech_009 with the receptionist's closing remark. A second instance of the dialogue begins at speech_010, so the first occurrence is targeted.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "high_frequency_transient"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "Guest confirms he has no reservation by saying 'No, I don't.'",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "Receptionist wishes the guest an enjoyable stay after providing the room key.",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_02",
+          "reason": "Candidate 01 perfectly adheres to the boundary constraints, starting exactly at the guest's confirmation of no reservation and ending precisely after the receptionist's well-wishes. Candidate 02 contains the same interaction but includes unnecessary audio from the subsequent occurrence."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The segment starts exactly when the guest confirms he has no reservation and ends when the receptionist wishes him an enjoyable stay after handing over the key, satisfying all query requirements.",
+          "target_observed_caption": "A middle-aged male guest confirms he does not have a reservation. The receptionist checks availability, asks for his name and ID, and discusses the room rate. The guest provides his ID and decides to pay later. The receptionist then provides the room key and wishes him an enjoyable stay."
+        }
       }
     },
     {
@@ -1193,7 +1981,7 @@
       "duration": 60.0,
       "target_duration": 50.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000266.ogg",
+        "path": "assets/audio/lat_tag_en_000266.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1341,6 +2129,137 @@
         "source_start": 424.0,
         "source_end": 474.0,
         "crop_start": 421.907938
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 2.092062,
+          "end": 52.092062
+        },
+        "current_gold": {
+          "start": 2.092062,
+          "end": 52.092062
+        },
+        "recommended": {
+          "start": 2.092062,
+          "end": 52.092062,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original",
+            "hybrid_lat_start_reviewed_end"
+          ]
+        },
+        "model_recommended": {
+          "start": 2.092062,
+          "end": 52.092062,
+          "candidate_id": "candidate_01",
+          "score": 1.08989,
+          "sources": [
+            "lat_original",
+            "hybrid_lat_start_reviewed_end"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 2.092062,
+            "end": 52.092062,
+            "score": 1.08989,
+            "sources": [
+              "lat_original",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip features a female guest (Scarlett Johansson) being asked by a male host about the plot of 'Jurassic World Rebirth'. She explains in an explanatory tone that she plays Zora Bennett, a special ops person at a crossroads who takes a life-changing opportunity to collect DNA from the biggest dinosaurs."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 14.08,
+            "end": 53.52,
+            "score": 1.069775,
+            "sources": [
+              "gemini_selected_speech_union",
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "This clip starts mid-sentence with the guest introducing her character Zora Bennett and describing her as special ops, then detailing the mission to collect dinosaur DNA as a life-changing opportunity."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 15.78,
+            "end": 19.6,
+            "score": 0.277372,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.3,
+            "cue_completeness": 0.4,
+            "summary": "The guest introduces Zora Bennett and mentions special ops, but the clip ends before the plot details about collecting DNA are mentioned."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_006",
+            "speech_007",
+            "speech_008",
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_015",
+            "speech_016",
+            "speech_017",
+            "speech_018",
+            "speech_019",
+            "speech_020",
+            "speech_021",
+            "speech_022",
+            "speech_023"
+          ],
+          "occurrence_constraint": "unique",
+          "reason": "The guest introduces her character Zora Bennett in speech_006, identifies her as a special ops person in speech_007, and explains the plot involving collecting dinosaur DNA as a life-changing opportunity in speech_018 and speech_020, concluding the summary by speech_023.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "female guest",
+              "required": true,
+              "type": "speaker"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "mentions character name 'Zora Bennett', 'special ops', 'collect DNA', and 'life-changing opportunity'",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "explanatory tone",
+              "required": true,
+              "type": "emotion"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_02",
+          "reason": "Candidate 01 provides the most complete segment, including the host's prompt and the guest's full explanatory summary covering all required keywords: Zora Bennett, special ops, collecting DNA, and life-changing opportunity. Candidate 02 is also a strong match but starts slightly later."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The target clip captures the complete explanation from the guest, including the character name 'Zora Bennett', her background in special ops, and the plot point regarding the life-changing mission to collect dinosaur DNA. The boundaries are well-defined, starting with the host's question and ending as the guest finishes her summary.",
+          "target_observed_caption": "The female guest provides a summary of the movie 'Jurassic World Rebirth', identifying her character as Zora Bennett, a special ops veteran. She explains that her character is at a crossroads and accepts a life-changing opportunity to collect DNA from the largest dinosaurs, though things do not go as planned."
+        }
       }
     },
     {
@@ -1353,12 +2272,12 @@
       "event_type": "mixed",
       "event_type_source": "deterministic_keyword_rules_v1",
       "query": "定位出当背景音乐从温馨转为悬疑，并伴随一声清脆的“叮”音效时，女主角在内心独白中首次震惊地发现孩子脖子上有痣的那个瞬间。",
-      "start": 51.207375,
-      "end": 52.207375,
+      "start": 54.207375,
+      "end": 55.207375,
       "duration": 60.0,
       "target_duration": 1.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000019.ogg",
+        "path": "assets/audio/lat_tag_zh_000019.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1509,6 +2428,137 @@
         "source_start": 52.0,
         "source_end": 53.0,
         "crop_start": 0.792625
+      },
+      "review": {
+        "status": "model_disagrees_with_accepted_review",
+        "lat": {
+          "start": 51.207375,
+          "end": 52.207375
+        },
+        "current_gold": {
+          "start": 54.207375,
+          "end": 55.207375
+        },
+        "recommended": {
+          "start": 54.207375,
+          "end": 55.207375,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "accepted_human_review"
+          ]
+        },
+        "model_recommended": {
+          "start": 51.207375,
+          "end": 52.207375,
+          "candidate_id": "candidate_01",
+          "score": 1.035568,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 51.207375,
+            "end": 52.207375,
+            "score": 1.035568,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip begins exactly with a crisp 'ding' sound effect. Simultaneously, the background music shifts from a warm, playful tone to a low, suspenseful drone. The female protagonist then delivers the inner monologue '脖子上的痣' (mole on the neck) with a tone of shock."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 50.71,
+            "end": 52.89,
+            "score": 0.946039,
+            "sources": [
+              "gemini_selected_speech_union",
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This clip is identical to candidate_01, capturing the 'ding' sound, the music transition to suspense, and the specific inner monologue about the mole."
+          },
+          {
+            "candidate_id": "candidate_07",
+            "start": 52.5,
+            "end": 56.5,
+            "score": 0.848974,
+            "sources": [
+              "acoustic_music_or_scene_change"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This clip is identical to candidate_01 and 03, perfectly capturing the 'ding' sound, the music shift, and the discovery of the mole."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_033"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The query seeks the specific moment of discovery, which corresponds to ASR segment speech_033 ('脖子上的痴', likely a transcription error for '痣' meaning mole). This discovery is triggered by a music change and a 'ding' sound effect, which are reflected in the high-confidence music change and high-frequency transient detector proposals near the end of the sequence.",
+          "relevant_acoustic_detector_types": [
+            "music_or_scene_change",
+            "high_frequency_transient"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "Background music transition from warm to suspenseful",
+              "required": true,
+              "type": "music"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "A crisp 'ding' sound effect",
+              "required": true,
+              "type": "non_speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "Female protagonist's inner monologue discovering the mole on the child's neck",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidates 01, 03, and 07 are identical and perfectly match all query requirements: they start with the 'ding' sound effect, capture the music transition to suspense, and include the specific inner monologue discovering the mole on the child's neck."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip precisely captures the transition in music, the 'ding' sound effect, and the specific inner monologue phrase '脖子上的痣' as requested in the query.",
+          "target_observed_caption": "The background music shifts from a gentle tone to a tense, suspenseful one, accompanied by a sharp 'ding' sound effect. A female voiceover (inner monologue) says '脖子上的痣' (the mole on the neck) in a tone of realization and shock."
+        }
+      },
+      "timestamp_review": {
+        "evidence": [
+          "manual_demo_listening",
+          "query_semantics",
+          "high_frequency_transients_at_demo_54.400_and_54.608_seconds",
+          "whisper_semantic_context"
+        ],
+        "lat_source_end": 53.0,
+        "lat_source_start": 52.0,
+        "notes": "The LAT interval covers the literal phrase about the neck mole, but misses the suspense transition and clear ding that define the queried composite event. Preserve the one-second LAT granularity and move the source interval to [00:55, 00:56], which maps to demo-relative [54.207375, 55.207375].",
+        "reviewed_source_end": 56.0,
+        "reviewed_source_start": 55.0,
+        "reviewer": "user_manual_check_plus_acoustic_audit",
+        "status": "boundary_adjustment",
+        "version": "v1"
       }
     },
     {
@@ -1526,7 +2576,7 @@
       "duration": 60.0,
       "target_duration": 20.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000083.ogg",
+        "path": "assets/audio/lat_tag_zh_000083.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1675,6 +2725,122 @@
         "source_start": 112.0,
         "source_end": 132.0,
         "crop_start": 109.106313
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 2.893687,
+          "end": 22.893687
+        },
+        "current_gold": {
+          "start": 2.893687,
+          "end": 22.893687
+        },
+        "recommended": {
+          "start": 2.893687,
+          "end": 22.893687,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "model_recommended": {
+          "start": 2.893687,
+          "end": 22.893687,
+          "candidate_id": "candidate_01",
+          "score": 1.037386,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 2.893687,
+            "end": 22.893687,
+            "score": 1.037386,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip features a male debater speaking at a very high speed with intense emotion. It begins with his rebuttal about drug dealers, followed by a burst of thunderous applause from the audience. Amidst the applause, he introduces the 'rapist' metaphor ('按照这种逻辑，那么一个强奸犯...') to challenge the opponent's logic. This is the first instance of this metaphor in the provided context."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 2.893687,
+            "end": 16.21,
+            "score": 0.993371,
+            "sources": [
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 0.9,
+            "summary": "This clip is very similar to candidate_01, including the start of the rebuttal, the applause, and the metaphor, but it cuts off slightly earlier."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 8.97,
+            "end": 22.893687,
+            "score": 0.989658,
+            "sources": [
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 0.9,
+            "summary": "This clip captures the applause and the full 'rapist' metaphor, starting from the middle of the preceding argument. It is quite complete but slightly shorter than candidate_01."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_006",
+            "speech_007",
+            "speech_008"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The speaker first introduces the 'rapist' metaphor in segments speech_006 through speech_008 to challenge the opponent's logic. This matches the query's requirement for the first use of this specific analogy amidst high emotion and audience applause.",
+          "relevant_acoustic_detector_types": [
+            "high_frequency_transient",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The speaker uses the 'rapist' (强奸犯) metaphor to refute logic.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The speaker is extremely excited and emotional with a very fast speech rate.",
+              "required": true,
+              "type": "emotion"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "Thunderous applause from the audience in the background.",
+              "required": true,
+              "type": "non_speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidate_01 is the most complete segment, capturing the full transition from the speaker's previous point, through the peak of the thunderous applause, to the first use of the 'rapist' metaphor. It perfectly matches the speed, emotion, and specific acoustic cues required by the query."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip contains the exact speech content ('强奸犯' metaphor), the required emotional intensity, fast speech rate, and the background audience applause specified in the query. The PRE and POST clips show the surrounding context, confirming the TARGET captures the complete span of this specific argument.",
+          "target_observed_caption": "A male debater speaks with extreme intensity and a very fast speech rate, using the 'rapist' (强奸犯) metaphor to refute the opponent's logic regarding drug dealers and money. The audience responds with thunderous applause and laughter throughout the segment."
+        }
       }
     },
     {
@@ -1692,7 +2858,7 @@
       "duration": 60.0,
       "target_duration": 46.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000293.ogg",
+        "path": "assets/audio/lat_tag_zh_000293.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -1840,6 +3006,131 @@
         "source_start": 428.0,
         "source_end": 474.0,
         "crop_start": 424.682
+      },
+      "review": {
+        "status": "pilot_recommendation",
+        "lat": {
+          "start": 3.318,
+          "end": 49.318
+        },
+        "current_gold": {
+          "start": 3.318,
+          "end": 49.318
+        },
+        "recommended": {
+          "start": 3.318,
+          "end": 49.318,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "model_recommended": {
+          "start": 3.318,
+          "end": 49.318,
+          "candidate_id": "candidate_01",
+          "score": 1.055427,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 3.318,
+            "end": 49.318,
+            "score": 1.055427,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The speaker recounts an anecdote about her child calling her a 'big star' at school, expressing feelings of 'social death' followed by pride. The tone is gentle and warm throughout. A faint, high-frequency flash sound effect occurs around the middle of the clip (near the mention of 'social death'). The segment covers the full narrative from the initial setup to the concluding reflection."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 3.318,
+            "end": 32.2,
+            "score": 0.896152,
+            "sources": [
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 0.7,
+            "cue_completeness": 0.8,
+            "summary": "This clip starts at the beginning of the story and includes the flash sound, but it cuts off before the speaker completes her full reflection on the pride she feels."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 11.12,
+            "end": 49.318,
+            "score": 0.870563,
+            "sources": [
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.7,
+            "cue_completeness": 0.8,
+            "summary": "This clip includes the flash sound and the end of the story, but it begins mid-sentence, missing the start of the anecdote."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "deterministic_complete_marker",
+          "likely_speech_segment_ids": [
+            "speech_006",
+            "speech_007",
+            "speech_008",
+            "speech_009",
+            "speech_010",
+            "speech_011",
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_015",
+            "speech_016",
+            "speech_017"
+          ],
+          "occurrence_constraint": "unique",
+          "reason": "The story begins at speech_006 where the speaker mentions what her child says to others, specifically 'big star' in speech_007 and the school setting in speech_008. It includes the 'social death' (mis-transcribed as '射死' in speech_012) and the pride in her child's reaction through speech_017. Acoustic proposals like acoustic_013 or acoustic_015 likely correspond to the flash sound effect mentioned.",
+          "relevant_acoustic_detector_types": [
+            "high_frequency_transient",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The speaker describes her child calling her a 'big star' at school dismissal, mentioning feelings of 'social death' and pride.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "A faint flash or transition sound effect occurring during the story.",
+              "required": true,
+              "type": "non_speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "A gentle and warm tone of voice while recounting the anecdote.",
+              "required": true,
+              "type": "emotion"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_04",
+          "reason": "Candidate 01 is the only clip that provides the complete narrative span as requested, including the setup, the 'big star' comment at school, the 'social death' reaction, the flash sound effect, and the full emotional reflection on pride. Other candidates are either truncated at the beginning or end."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip captures the entire anecdote from the mention of the 'big star' comment to the reflection on pride. It includes the specific 'social death' mention, the school dismissal context, the gentle tone, and the required flash sound effect.",
+          "target_observed_caption": "The speaker recounts an anecdote where her son proudly calls her a 'big star' in front of other parents during school dismissal. She describes feeling embarrassed ('social death') yet proud of his admiration. The tone is gentle, and a faint flash/shimmer sound effect occurs during the narration."
+        }
       }
     },
     {
@@ -1857,7 +3148,7 @@
       "duration": 60.0,
       "target_duration": 3.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000018.ogg",
+        "path": "assets/audio/lat_tag_en_000018.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2005,6 +3296,120 @@
         "source_start": 84.0,
         "source_end": 87.0,
         "crop_start": 65.712812
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 18.287188,
+          "end": 21.287188
+        },
+        "current_gold": {
+          "start": 18.287188,
+          "end": 21.287188
+        },
+        "recommended": {
+          "start": 36.5,
+          "end": 40.5,
+          "candidate_id": "candidate_04",
+          "sources": [
+            "acoustic_music_or_scene_change"
+          ]
+        },
+        "model_recommended": {
+          "start": 38.5,
+          "end": 42.5,
+          "candidate_id": "candidate_05",
+          "score": 1.042455,
+          "sources": [
+            "acoustic_music_or_scene_change"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_04",
+            "start": 36.5,
+            "end": 40.5,
+            "score": 1.060582,
+            "sources": [
+              "acoustic_music_or_scene_change"
+            ],
+            "query_match": 0.95,
+            "cue_completeness": 1.0,
+            "summary": "The speaker delivers the statement 'Civilization is fragile. You shouldn't be.' against contemplative music, with a short lead-in regarding navigation and awareness."
+          },
+          {
+            "candidate_id": "candidate_05",
+            "start": 38.5,
+            "end": 42.5,
+            "score": 1.042455,
+            "sources": [
+              "acoustic_music_or_scene_change"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The speaker delivers the impactful statement 'Civilization is fragile. You shouldn't be.' at the very start of the clip, perfectly capturing the requested moment with the required music and speaker tone."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 32.98,
+            "end": 41.54,
+            "score": 1.024136,
+            "sources": [
+              "gemini_selected_speech_union",
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The speaker delivers the statement 'Civilization is fragile. You shouldn't be.' against contemplative music, but the clip includes significant preceding and following context about writing and photography."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_019"
+          ],
+          "occurrence_constraint": "unique",
+          "reason": "The transcript segment speech_019 contains the specific phrase 'Civilization is fragile. You shouldn't be,' which directly matches the query's description of the impactful statement regarding fragility and resilience. The acoustic detector proposals also suggest the presence of music throughout the recording.",
+          "relevant_acoustic_detector_types": [
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The speaker says 'Civilization is fragile. You shouldn't be.'",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "Contemplative ambient music in the background",
+              "required": true,
+              "type": "music"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "Calm, decisive male speaker",
+              "required": true,
+              "type": "speaker"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_05",
+          "runner_up_candidate_id": "candidate_04",
+          "reason": "Candidate 05 is the most precise match, starting exactly at the beginning of the impactful statement 'Civilization is fragile. You shouldn't be.' It satisfies all acoustic and speech requirements. Candidate 04 is a close runner-up with slightly more lead-in context."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_04",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": false,
+          "target_contains_full_event": false,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip fails to include the full impactful statement required by the query, cutting off after 'You' and leaving the concluding part of the resilience contrast ('shouldn't be') in the POST clip.",
+          "target_observed_caption": "A calm male speaker mentions navigation and awareness before stating 'Civilization is fragile. You' against a background of contemplative ambient music."
+        }
       }
     },
     {
@@ -2022,7 +3427,7 @@
       "duration": 60.0,
       "target_duration": 24.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000120.ogg",
+        "path": "assets/audio/lat_tag_en_000120.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2170,6 +3575,116 @@
         "source_start": 360.0,
         "source_end": 384.0,
         "crop_start": 333.183562
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 26.816438,
+          "end": 50.816438
+        },
+        "current_gold": {
+          "start": 26.816438,
+          "end": 50.816438
+        },
+        "recommended": {
+          "start": 43.11,
+          "end": 52.21,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "model_recommended": {
+          "start": 43.11,
+          "end": 52.21,
+          "candidate_id": "candidate_02",
+          "score": 1.064714,
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 43.11,
+            "end": 52.21,
+            "score": 1.064714,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The narrator mentions food being provided nearing 8 p.m. (mini burgers and fries) and explicitly states that the fries and the song got her 'a bit carried away' with an excited tone."
+          },
+          {
+            "candidate_id": "candidate_07",
+            "start": 47.0,
+            "end": 51.0,
+            "score": 1.063318,
+            "sources": [
+              "acoustic_music_or_scene_change"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The narrator mentions food being provided nearing 8 p.m. (mini burgers and fries) and explicitly states that the fries and the song got her 'a bit carried away'."
+          },
+          {
+            "candidate_id": "candidate_05",
+            "start": 48.47,
+            "end": 52.21,
+            "score": 1.057498,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The narrator mentions food being provided nearing 8 p.m. (mini burgers and fries) and explicitly states that the fries and the song got her 'a bit carried away'."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_007",
+            "speech_008",
+            "speech_009"
+          ],
+          "occurrence_constraint": "unique",
+          "reason": "The narrator describes the late-night snacks (mini burgers and fries) served near 8 p.m. in segments 007 and 008, and specifically mentions the song getting her carried away in segment 009. The ASR 'a big carried away' is likely 'a bit carried away'.",
+          "relevant_acoustic_detector_types": [
+            "music_or_scene_change",
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The narrator mentions food being provided around 8 p.m.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The narrator mentions a song getting her carried away while eating fries.",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_02",
+          "runner_up_candidate_id": "candidate_05",
+          "reason": "Candidates 02, 05, and 07 all successfully capture the full required speech segments where the narrator mentions the 8 p.m. snacks and the song getting her carried away. Candidate 02 is selected as the best as it includes slightly more preceding context in its proposal metadata, while candidates 01, 03, 04, and 06 all cut off before the required trigger phrase is completed."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The target clip captures the entire sequence where the narrator mentions the 8 p.m. snacks and the song getting her carried away, satisfying both required speech cues.",
+          "target_observed_caption": "The narrator describes that more food, specifically mini burgers and fries, was provided as it approached 8 p.m., and she mentions that the fries and the current song caused her to get a bit carried away."
+        }
       }
     },
     {
@@ -2187,7 +3702,7 @@
       "duration": 60.0,
       "target_duration": 48.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000150.ogg",
+        "path": "assets/audio/lat_tag_en_000150.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2336,6 +3851,124 @@
         "source_start": 554.0,
         "source_end": 602.0,
         "crop_start": 550.593375
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 3.406625,
+          "end": 51.406625
+        },
+        "current_gold": {
+          "start": 3.406625,
+          "end": 51.406625
+        },
+        "recommended": {
+          "start": 18.11,
+          "end": 51.87,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union",
+            "hybrid_reviewed_start_lat_end"
+          ]
+        },
+        "model_recommended": {
+          "start": 18.11,
+          "end": 51.87,
+          "candidate_id": "candidate_02",
+          "score": 1.137311,
+          "sources": [
+            "gemini_selected_speech_union",
+            "hybrid_reviewed_start_lat_end"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 18.11,
+            "end": 51.87,
+            "score": 1.137311,
+            "sources": [
+              "gemini_selected_speech_union",
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip features a female speaker describing her method for making a hibiscus sparkling water concentrate by boiling water, adding hibiscus tea, letting it sit for 10 minutes, and then mixing it with sparkling water. It concludes with her saying 'Cheers' to share a toast."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 3.406625,
+            "end": 51.406625,
+            "score": 1.099021,
+            "sources": [
+              "lat_original",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip features a female speaker describing her method for making a hibiscus sparkling water concentrate by boiling water, adding hibiscus tea, letting it sit for 10 minutes, and then mixing it with sparkling water. It concludes with her saying 'Cheers' to share a toast."
+          },
+          {
+            "candidate_id": "candidate_07",
+            "start": 39.33,
+            "end": 47.35,
+            "score": 0.300652,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.5,
+            "summary": "The speaker describes the concentration of the drink but the clip ends before the toast."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_003",
+            "speech_004",
+            "speech_005",
+            "speech_006",
+            "speech_007",
+            "speech_008",
+            "speech_009"
+          ],
+          "occurrence_constraint": "last",
+          "reason": "The query asks for the concluding part of the vlog where the method for the hibiscus drink is explained and a toast is shared. The ASR transcript shows the drink description starting at speech_003 and concluding with 'Cheers' in speech_009.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "high_frequency_transient"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "The speaker describing the process of making hibiscus sparkling water concentrate.",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The speaker saying 'Cheers' to share a toast.",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_02",
+          "runner_up_candidate_id": "candidate_01",
+          "reason": "Candidates 01 and 02 both contain the full description of the hibiscus drink method and the concluding toast. Candidate 02 is slightly more concise, starting closer to the relevant drink description while still maintaining the flow of the speaker's thoughts."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip contains the complete description of the hibiscus sparkling water preparation method and the concluding toast as specified in the query. The PRE clip only contains the introductory sentence, and the POST clip is empty, confirming this is the concluding part of the vlog.",
+          "target_observed_caption": "A female speaker describes her method for making a hibiscus sparkling water concentrate, explaining that she boils water, steeps hibiscus tea for 10 minutes to create a concentrate, and then mixes a small amount with sparkling water. She concludes the segment by saying 'Cheers' and taking a sip."
+        }
       }
     },
     {
@@ -2353,7 +3986,7 @@
       "duration": 60.0,
       "target_duration": 3.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000378.ogg",
+        "path": "assets/audio/lat_tag_zh_000378.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2500,6 +4133,118 @@
         "source_start": 118.0,
         "source_end": 121.0,
         "crop_start": 73.919062
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 44.080938,
+          "end": 47.080938
+        },
+        "current_gold": {
+          "start": 44.080938,
+          "end": 47.080938
+        },
+        "recommended": {
+          "start": 0.54,
+          "end": 18.86,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "model_recommended": {
+          "start": 44.080938,
+          "end": 47.080938,
+          "candidate_id": "candidate_01",
+          "score": 0.919996,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 0.54,
+            "end": 18.86,
+            "score": 1.058384,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This longer clip contains the energetic Cantopop music and the first instance of the metal clattering sound at the beginning, followed by subsequent instances and lyrics."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 4.16,
+            "end": 9.28,
+            "score": 1.042354,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the energetic music and the first instance of the metal clattering sound at the start, as well as a second instance later in the clip."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 0.54,
+            "end": 5.36,
+            "score": 1.033394,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the energetic music and the first instance of the metal clattering sound at the start, along with the first line of lyrics."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_001",
+            "speech_002",
+            "speech_003",
+            "speech_004",
+            "speech_005"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The ASR segments appear to be lyrics from the energetic Cantopop music mentioned in the query. The specific acoustic event of metal parts rattling is a high-frequency transient sound occurring within this musical context. We are looking for the first instance of this sound.",
+          "relevant_acoustic_detector_types": [
+            "high_frequency_transient",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "Energetic Cantopop music playing in the background",
+              "required": true,
+              "type": "music"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "The distinct clattering sound of small metal parts like bolts being shaken in a metal container",
+              "required": true,
+              "type": "non_speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidate 01 is the most precise clip capturing the first occurrence of the metal clattering sound immediately after the music starts. Candidates 02, 03, and 04 also contain the first instance but include more unnecessary context. Candidates 05, 06, and 07 fail the occurrence constraint as they start after the first instance has already occurred."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The target clip accurately captures the first occurrence of the specific clattering sound of metal parts within the energetic Cantopop music montage. The PRE clip contains only the music without the clattering, and the POST clip shows the music continuing after the clattering sound has ceased, confirming the boundaries.",
+          "target_observed_caption": "The target clip features energetic Cantopop music playing in the background. Simultaneously, a distinct clattering sound of small metal parts, such as bolts, being shaken inside a metal container is clearly audible at the beginning of the segment."
+        }
       }
     },
     {
@@ -2517,7 +4262,7 @@
       "duration": 60.0,
       "target_duration": 18.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000121.ogg",
+        "path": "assets/audio/lat_tag_zh_000121.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2665,6 +4410,127 @@
         "source_start": 286.0,
         "source_end": 304.0,
         "crop_start": 245.810875
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 40.189125,
+          "end": 58.189125
+        },
+        "current_gold": {
+          "start": 40.189125,
+          "end": 58.189125
+        },
+        "recommended": {
+          "start": 42.39,
+          "end": 59.47,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union",
+            "hybrid_reviewed_start_lat_end"
+          ]
+        },
+        "model_recommended": {
+          "start": 40.189125,
+          "end": 58.189125,
+          "candidate_id": "candidate_01",
+          "score": 1.124749,
+          "sources": [
+            "lat_original",
+            "hybrid_lat_start_reviewed_end"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 42.39,
+            "end": 59.47,
+            "score": 1.140848,
+            "sources": [
+              "gemini_selected_speech_union",
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This clip is identical to candidate_01, containing the full poetic description of the food's taste accompanied by soothing background music, including the specific metaphors required by the query."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 40.189125,
+            "end": 58.189125,
+            "score": 1.124749,
+            "sources": [
+              "lat_original",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The audio features a transition to soothing, warm piano music as the blogger describes the taste of the food. He uses poetic language including metaphors like '燃烧的木栅' (burning wooden fence) and '摇曳的火花' (flickering sparks), describing a progression of sensory experiences from texture to aroma to a burst of flavor."
+          },
+          {
+            "candidate_id": "candidate_07",
+            "start": 49.67,
+            "end": 52.81,
+            "score": 0.365084,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.7,
+            "cue_completeness": 0.8,
+            "summary": "This clip includes the '木栅' metaphor but cuts off before the '摇曳的火花' metaphor, failing the completeness requirement."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_015",
+            "speech_016",
+            "speech_017",
+            "speech_018",
+            "speech_019",
+            "speech_020",
+            "speech_021",
+            "speech_022"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The blogger transitions from cooking instructions to a poetic, metaphorical description of the tasting experience starting at speech_012. This section includes the specific metaphors mentioned in the query, such as '木栅' (misheard as '木杖' in speech_018) and '摇曳的火花' (misheard as '搖液' in speech_021), and describes the sensory progression of the taste as the music changes style.",
+          "relevant_acoustic_detector_types": [
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "background music becomes soothing and warm",
+              "required": true,
+              "type": "music"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "literary and metaphorical description of the food's taste and sensory experience",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_02",
+          "reason": "Candidates 01 and 02 provide the complete span of the blogger's poetic description, including the specific metaphors '木栅' and '摇曳的火花' set against the required soothing background music. Other candidates are truncated and miss one or both of the key metaphors."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The candidate correctly identifies the first and only instance where the blogger uses the specific literary metaphors '木栅' and '摇曳的火花' to describe the food's taste, coinciding with the shift to soothing background music.",
+          "target_observed_caption": "The blogger provides a poetic and sensory description of tasting the 'meat stir-fried with meat'. As the background music shifts to a soothing and warm tone, he describes the lean meat as tender and chewy, the garlic aroma clearing his thoughts, and the chili's spiciness causing a dizzying sensation. He uses specific metaphors, comparing the fresh spiciness to a 'burning wooden fence' (燃烧的木栅) and the salty spiciness to 'flickering sparks' (摇曳的火花), illustrating a layered and explosive taste experience."
+        }
       }
     },
     {
@@ -2682,7 +4548,7 @@
       "duration": 60.0,
       "target_duration": 34.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000255.ogg",
+        "path": "assets/audio/lat_tag_zh_000255.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2829,6 +4695,141 @@
         "source_start": 474.0,
         "source_end": 508.0,
         "crop_start": 468.281687
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 5.718313,
+          "end": 39.718313
+        },
+        "current_gold": {
+          "start": 5.718313,
+          "end": 39.718313
+        },
+        "recommended": {
+          "start": 5.718313,
+          "end": 39.718313,
+          "candidate_id": "candidate_01",
+          "sources": [
+            "lat_original",
+            "hybrid_lat_start_reviewed_end"
+          ]
+        },
+        "model_recommended": {
+          "start": 5.718313,
+          "end": 39.718313,
+          "candidate_id": "candidate_01",
+          "score": 0.998893,
+          "sources": [
+            "lat_original",
+            "hybrid_lat_start_reviewed_end"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_01",
+            "start": 5.718313,
+            "end": 39.718313,
+            "score": 0.998893,
+            "sources": [
+              "lat_original",
+              "hybrid_lat_start_reviewed_end"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 0.66,
+            "summary": "The target audio begins with the narrator describing the aftermath of the explosion ('After Lao Fan woke up...'). It then clearly depicts the delivery guy stabbing Lao Fan with a wooden stake (around 00:08) and the revelation of his true nature. Finally, it includes the full confession about murdering his ex-girlfriend and her husband (starting around 00:38). The required explosion sound effect (cue_001) is heard in the context audio immediately preceding the target, which aligns with the query's instruction to locate the segment 'after' the explosion."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 9.34,
+            "end": 40.3,
+            "score": 0.478232,
+            "sources": [
+              "gemini_selected_speech_union",
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.5,
+            "cue_completeness": 0.33,
+            "summary": "The target audio starts too late, beginning with the revelation of the delivery guy's nature ('Who would have thought...'). The stabbing incident mentioned in the query is relegated to the context audio, meaning the target clip fails to include one of the primary required speech events."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 10.7,
+            "end": 13.08,
+            "score": 0.254414,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.3,
+            "cue_completeness": 0.33,
+            "summary": "Similar to candidate_03, this clip is truncated and does not contain the confession regarding the murder of the ex-girlfriend and her husband."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "deterministic_complete_marker",
+          "likely_speech_segment_ids": [
+            "speech_009",
+            "speech_010",
+            "speech_011",
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_015",
+            "speech_016",
+            "speech_017",
+            "speech_018",
+            "speech_019",
+            "speech_020",
+            "speech_021",
+            "speech_022",
+            "speech_023",
+            "speech_024",
+            "speech_025",
+            "speech_026"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The query asks for the entire confession segment following an explosion. The explosion is mentioned in speech_003. The stabbing and revelation of the delivery guy's true nature occur in speech_009 to speech_012. The specific confession regarding the murder of his ex-girlfriend and her husband is detailed in speech_020 to speech_024, concluding the motive in speech_026.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "巨大爆炸声",
+              "required": true,
+              "type": "non_speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "外卖小哥用木桩刺伤老范并揭露真面目",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "外卖小哥坦白杀害前女友夫妇的经过",
+              "required": true,
+              "type": "speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_02",
+          "reason": "Candidate_01 is the only clip that contains the full sequence requested: the stabbing of Lao Fan, the revelation of the delivery guy's true nature, and the complete confession about murdering his ex-girlfriend and her husband. While the explosion sound (cue_001) is in the context rather than the target, the query specifically asks for the segment 'after' the explosion, and candidate_01 starts exactly at that point. All other candidates are either truncated or start too late."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_01",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip captures the entire sequence requested: the stabbing of Lao Fan, the revelation of the delivery guy's true identity, and his confession regarding the murder of his ex-girlfriend and her husband, following the explosion.",
+          "target_observed_caption": "The segment begins with the delivery guy stabbing Lao Fan with a wooden stake after an explosion (mentioned in PRE). The narrator explains the delivery guy's true nature and his plan to frame Lao Fan. The delivery guy then confesses to Lao Fan that he murdered his ex-girlfriend and her husband after finding out she had married someone else, stating he needs money to flee."
+        }
       }
     },
     {
@@ -2846,7 +4847,7 @@
       "duration": 60.0,
       "target_duration": 45.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_zh_000316.ogg",
+        "path": "assets/audio/lat_tag_zh_000316.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -2995,6 +4996,114 @@
         "source_start": 578.0,
         "source_end": 623.0,
         "crop_start": 570.79275
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 7.20725,
+          "end": 52.20725
+        },
+        "current_gold": {
+          "start": 7.20725,
+          "end": 52.20725
+        },
+        "recommended": {
+          "start": 4.5,
+          "end": 8.5,
+          "candidate_id": "candidate_07",
+          "sources": [
+            "acoustic_music_or_scene_change"
+          ]
+        },
+        "model_recommended": {
+          "start": 7.20725,
+          "end": 52.20725,
+          "candidate_id": "candidate_01",
+          "score": 0.9,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_07",
+            "start": 4.5,
+            "end": 8.5,
+            "score": 0.917337,
+            "sources": [
+              "acoustic_music_or_scene_change"
+            ],
+            "query_match": 0.8,
+            "cue_completeness": 1.0,
+            "summary": "The target clip includes the shouting exchange followed by the melancholic background music, similar to candidate_03."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 7.20725,
+            "end": 52.20725,
+            "score": 0.9,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The target clip begins with the final part of an intense, high-pitched shouting exchange (trash talk) and then transitions into a melodic, calm, and melancholic lo-fi instrumental background music featuring piano and strings. The context clip provides the full preceding intense game-related shouting."
+          },
+          {
+            "candidate_id": "candidate_03",
+            "start": 0.0,
+            "end": 52.20725,
+            "score": 0.891412,
+            "sources": [
+              "hybrid_reviewed_start_lat_end"
+            ],
+            "query_match": 0.8,
+            "cue_completeness": 1.0,
+            "summary": "The target clip includes both the intense shouting exchange and the subsequent melancholic background music. While it contains the required cues, it is less precise than candidate_01 as it includes the entire speech segment rather than focusing on the music that follows it."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "complete_span",
+          "boundary_policy_source": "gemini",
+          "likely_speech_segment_ids": [
+            "speech_001",
+            "speech_002"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "用户寻找的是在特定语音对话（游戏交流）之后出现的首段背景音乐。ASR文本显示了重复的、带有情绪的口语表达，符合‘激烈游戏交流’的描述。定位目标是该交流结束后的第一段完整音乐片段。",
+          "relevant_acoustic_detector_types": [
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "激烈的游戏交流（如垃圾话或高声喊叫）",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "旋律优美、氛围平静且略带感伤的纯背景音乐",
+              "required": true,
+              "type": "music"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_03",
+          "reason": "Candidate 01 is the best match because its target clip starts precisely at the transition from the intense shouting exchange to the first occurrence of the calm, melancholic background music, satisfying the 'after the exchange' and 'first occurrence' constraints most accurately. Candidates 03 and 07 also contain the music but include the entire preceding speech segment in the target, making them less precise for locating the music itself."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_07",
+          "confidence": 0.9,
+          "start_boundary_complete": true,
+          "end_boundary_complete": false,
+          "target_contains_full_event": false,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip correctly identifies the first occurrence of the calm music immediately following the intense shouting. However, the music continues into the POST clip, so the TARGET does not represent the complete span of the music segment as required by the boundary policy.",
+          "target_observed_caption": "The clip begins with a final aggressive shout ('你他妈的个逼的'), marking the end of the intense game communication, and immediately transitions into a calm, melodic, and slightly melancholic piano-led background music."
+        }
       }
     },
     {
@@ -3012,7 +5121,7 @@
       "duration": 60.0,
       "target_duration": 3.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000358.ogg",
+        "path": "assets/audio/lat_tag_en_000358.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -3157,6 +5266,122 @@
         "source_start": 1002.0,
         "source_end": 1005.0,
         "crop_start": 965.433813
+      },
+      "review": {
+        "status": "pilot_recommendation",
+        "lat": {
+          "start": 36.566187,
+          "end": 39.566187
+        },
+        "current_gold": {
+          "start": 36.566187,
+          "end": 39.566187
+        },
+        "recommended": {
+          "start": 33.736,
+          "end": 37.736,
+          "candidate_id": "candidate_07",
+          "sources": [
+            "acoustic_high_frequency_transient"
+          ]
+        },
+        "model_recommended": {
+          "start": 36.566187,
+          "end": 39.566187,
+          "candidate_id": "candidate_01",
+          "score": 0.85,
+          "sources": [
+            "lat_original"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_07",
+            "start": 33.736,
+            "end": 37.736,
+            "score": 0.975,
+            "sources": [
+              "acoustic_high_frequency_transient"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the request 'Maybe just a little privacy?' followed immediately by a loud gunshot and the heavy thud of a body hitting the floor."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 36.566187,
+            "end": 39.566187,
+            "score": 0.85,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "The clip contains the request 'Maybe just a little privacy?' followed immediately by a loud gunshot and the heavy thud of a body hitting the floor."
+          },
+          {
+            "candidate_id": "candidate_02",
+            "start": 29.14,
+            "end": 31.06,
+            "score": 0.326481,
+            "sources": [
+              "gemini_selected_speech_union",
+              "gemini_selected_speech"
+            ],
+            "query_match": 0.0,
+            "cue_completeness": 0.33,
+            "summary": "The clip contains the line 'Any last requests?' followed by the sound of a gun being cocked, but it does not contain the required request for privacy, the gunshot, or the body falling."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_008",
+            "speech_009"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The query seeks the exact moment of a gunshot and body fall following a specific line of dialogue. Speech segment 009 contains the trigger phrase, and the subsequent acoustic events (gunshot and impact) are best captured by transient and onset detectors.",
+          "relevant_acoustic_detector_types": [
+            "high_frequency_transient",
+            "spectral_onset"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "a request for 'a little privacy'",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "the sound of a gunshot",
+              "required": true,
+              "type": "non_speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "the sound of a body falling heavily to the floor",
+              "required": true,
+              "type": "non_speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_01",
+          "runner_up_candidate_id": "candidate_07",
+          "reason": "Candidate 01 and 07 both perfectly capture the sequence of the specific request for privacy, the gunshot, and the body falling. Candidate 01 is selected as the primary match as it begins precisely with the relevant dialogue."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_07",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip contains the specific dialogue requested, the gunshot, and the sound of the body falling, all in the correct sequence. The PRE and POST clips confirm that the event is contained entirely within the TARGET.",
+          "target_observed_caption": "A man says, 'Maybe just a little privacy,' followed immediately by a single gunshot and the heavy thud of a body hitting the floor."
+        }
       }
     },
     {
@@ -3174,7 +5399,7 @@
       "duration": 60.0,
       "target_duration": 13.0,
       "audio": {
-        "path": "./assets/audio/lat_tag_en_000114.ogg",
+        "path": "assets/audio/lat_tag_en_000114.ogg",
         "duration": 60.0,
         "sample_rate": 16000,
         "waveform": [
@@ -3319,6 +5544,124 @@
         "source_start": 185.0,
         "source_end": 198.0,
         "crop_start": 143.970562
+      },
+      "review": {
+        "status": "needs_human_confirmation",
+        "lat": {
+          "start": 41.029438,
+          "end": 54.029438
+        },
+        "current_gold": {
+          "start": 41.029438,
+          "end": 54.029438
+        },
+        "recommended": {
+          "start": 41.03,
+          "end": 47.35,
+          "candidate_id": "candidate_02",
+          "sources": [
+            "gemini_selected_speech_union"
+          ]
+        },
+        "model_recommended": {
+          "start": 43.47,
+          "end": 45.65,
+          "candidate_id": "candidate_04",
+          "score": 0.884436,
+          "sources": [
+            "gemini_selected_speech"
+          ]
+        },
+        "alternatives": [
+          {
+            "candidate_id": "candidate_02",
+            "start": 41.03,
+            "end": 47.35,
+            "score": 0.961305,
+            "sources": [
+              "gemini_selected_speech_union"
+            ],
+            "query_match": 0.8,
+            "cue_completeness": 1.0,
+            "summary": "This clip includes the bakery introduction and the initial discovery exclamations up to the mention of the billboard, set against city street noise."
+          },
+          {
+            "candidate_id": "candidate_01",
+            "start": 41.029438,
+            "end": 54.029438,
+            "score": 0.952449,
+            "sources": [
+              "lat_original"
+            ],
+            "query_match": 0.9,
+            "cue_completeness": 1.0,
+            "summary": "The clip begins with the vlogger talking about a bakery, then captures the sudden discovery of the friend on the billboard with multiple exclamations of surprise, laughter, and the ambient noise of a busy NYC street, continuing through further reactions."
+          },
+          {
+            "candidate_id": "candidate_04",
+            "start": 43.47,
+            "end": 45.65,
+            "score": 0.884436,
+            "sources": [
+              "gemini_selected_speech"
+            ],
+            "query_match": 1.0,
+            "cue_completeness": 1.0,
+            "summary": "This clip captures the precise moment of discovery, starting with the initial exclamation of surprise, the excitement of seeing the friend on the billboard, and the clear ambient sounds of New York City traffic and sirens."
+          }
+        ],
+        "query_spec": {
+          "boundary_policy": "trigger_moment",
+          "boundary_policy_source": "deterministic_moment_marker",
+          "likely_speech_segment_ids": [
+            "speech_012",
+            "speech_013",
+            "speech_014",
+            "speech_016",
+            "speech_018"
+          ],
+          "occurrence_constraint": "first",
+          "reason": "The segments speech_012 through speech_018 contain the specific exclamations of surprise and the explicit mention of a friend on a billboard, matching the query's description of the discovery moment in NYC.",
+          "relevant_acoustic_detector_types": [
+            "spectral_onset",
+            "music_or_scene_change"
+          ],
+          "required_cues": [
+            {
+              "cue_id": "cue_001",
+              "description": "exclamations of surprise and excitement",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_002",
+              "description": "mention of the friend on the billboard",
+              "required": true,
+              "type": "speech"
+            },
+            {
+              "cue_id": "cue_003",
+              "description": "ambient sound of a busy New York City street",
+              "required": true,
+              "type": "non_speech"
+            }
+          ]
+        },
+        "comparison": {
+          "best_candidate_id": "candidate_04",
+          "runner_up_candidate_id": "candidate_01",
+          "reason": "Candidate 04 is the most precise match for the 'moment of sudden surprise', starting exactly at the first exclamation of discovery and including all required speech and ambient cues. Candidate 01 is also complete but includes unnecessary pre-discovery context about a bakery."
+        },
+        "boundary_validation": {
+          "candidate_id": "candidate_02",
+          "confidence": 1.0,
+          "start_boundary_complete": true,
+          "end_boundary_complete": true,
+          "target_contains_full_event": true,
+          "occurrence_constraint_satisfied": true,
+          "reason": "The TARGET clip captures the exact moment of discovery, including the specific exclamations of surprise, the explicit mention of the friend on the billboard, and the required ambient city sounds, satisfying all query requirements.",
+          "target_observed_caption": "The vlogger and her friends react with excitement as she sings 'Who that in the back?' and exclaims 'My friend's on a billboard!' against a backdrop of busy New York City street noise including traffic and sirens."
+        }
       }
     }
   ]

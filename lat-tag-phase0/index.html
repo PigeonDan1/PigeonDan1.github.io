@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="An interactive benchmark explorer for locating naturally described sound events in mixed audio.">
   <title>LAT TAG Phase 0 — Temporal Audio Grounding</title>
-  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
       <a class="skip-link" href="#main">跳到主要内容</a>
@@ -180,7 +180,10 @@
                 <p class="section-kicker">Interactive gold set</p>
                 <h2>戴上耳机，检查时间边界</h2>
               </div>
-              <p>波形中的亮色区域是 LAT 金标区间。点击波形可跳转，或使用“只播目标”检查起止点。</p>
+              <div class="demo-heading-actions">
+                <p>普通模式展示当前 gold；审核模式可对比 LAT 原始区间、当前 gold 与 Gemini 3 Flash 回检候选。</p>
+                <button class="review-mode-toggle" id="review-mode-toggle" type="button" aria-pressed="false">进入审核模式</button>
+              </div>
             </div>
 
             <div class="demo-toolbar" aria-label="样例筛选">
@@ -212,9 +215,31 @@
               </div>
             </div>
 
+            <div class="review-toolbar review-only" aria-label="审核筛选与导出">
+              <div class="filter-block">
+                <span>审核状态</span>
+                <div class="filter-group" data-filter="review_status">
+                  <button class="filter-button active" type="button" data-value="all">全部</button>
+                  <button class="filter-button" type="button" data-value="model_disagrees_with_accepted_review">模型与人工冲突</button>
+                  <button class="filter-button" type="button" data-value="needs_human_confirmation">需要人工确认</button>
+                  <button class="filter-button" type="button" data-value="pilot_recommendation">稳定建议</button>
+                </div>
+              </div>
+              <div class="review-actions">
+                <p><strong id="review-progress">0 / 20</strong> 条已记录听测结论</p>
+                <button id="review-export" type="button">导出审核 JSONL</button>
+                <button id="review-clear" class="secondary" type="button">清空本地记录</button>
+              </div>
+            </div>
+
             <div class="demo-meta">
               <p><strong id="demo-count">20</strong> 个精选样例</p>
-              <p class="legend"><span class="legend-target"></span> LAT target interval</p>
+              <div class="legend" aria-label="时间区间图例">
+                <span><i class="legend-current"></i>当前 gold</span>
+                <span class="review-only"><i class="legend-lat"></i>LAT 原始</span>
+                <span class="review-only"><i class="legend-model"></i>Gemini 首选</span>
+                <span class="review-only"><i class="legend-alternative"></i>其他候选</span>
+              </div>
             </div>
 
             <div class="demo-grid" id="demo-container">
@@ -233,7 +258,7 @@
             <div class="note-list">
               <article><span>01</span><div><h3>它展示金标，不展示模型能力</h3><p>当前网页用于审阅任务、音频与标注边界；尚未接入任何 baseline 预测。</p></div></article>
               <article><span>02</span><div><h3>事件类型是 provisional metadata</h3><p>Speech、Mixed、Non-speech 来自确定性关键词规则，仅用于浏览和切片分析，可继续人工校正。</p></div></article>
-              <article><span>03</span><div><h3>原始时间戳保持不变</h3><p>网页中的时间是裁剪后音频坐标，由 LAT 原始时间戳做同量平移得到。</p></div></article>
+              <article><span>03</span><div><h3>原始时间戳保持不变</h3><p>审核结论只保存在浏览器并导出为 JSONL；网页不会覆盖 LAT 原始标注或人工复核 manifest。</p></div></article>
             </div>
           </div>
         </section>
@@ -246,6 +271,6 @@
         </div>
       </footer>
 
-      <script src="./assets/app.js" defer></script>
+      <script src="assets/app.js" defer></script>
 </body>
 </html>
