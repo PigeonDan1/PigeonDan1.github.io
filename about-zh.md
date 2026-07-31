@@ -213,6 +213,53 @@ lang: zh
 
 <div class="section-spacer"></div>
 
+## 开源项目
+
+<div class="oss-section">
+  <div class="oss-role">
+    <div class="oss-role-title">🚀 主导项目</div>
+    <div class="oss-grid">
+      <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">SURE-Eval</div>
+        <div class="oss-card-desc">面向语音理解的统一、可复现评测平台与基准。</div>
+        <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">paper_claw</div>
+        <div class="oss-card-desc">轻量级论文爬取与管理工具。</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">ps-slm</div>
+        <div class="oss-card-desc">面向语音与语言建模的个人工具与提示词集合。</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="oss-role">
+    <div class="oss-role-title">🔧 核心贡献者</div>
+    <div class="oss-grid">
+      <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">Qwen-Audio-Agent</div>
+        <div class="oss-card-desc">负责架构优化与后端模型扩充的音频智能体系统。</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="oss-role">
+    <div class="oss-role-title">🤝 贡献者</div>
+    <div class="oss-grid">
+      <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">SLAM-LLM</div>
+        <div class="oss-card-desc">为统一的语音与语言大模型训练框架提供 NPU 支持。</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
 ## 发表论文 (精选)
 
 > * 表示同等贡献。<a href="/publications/">查看完整列表 →</a>

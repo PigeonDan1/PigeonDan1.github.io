@@ -211,6 +211,53 @@ My research centers on building robust and practical speech understanding system
 
 <div class="section-spacer"></div>
 
+## Open Source Projects
+
+<div class="oss-section">
+  <div class="oss-role">
+    <div class="oss-role-title">🚀 Lead</div>
+    <div class="oss-grid">
+      <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">SURE-Eval</div>
+        <div class="oss-card-desc">A unified and reproducible evaluation platform and benchmark for speech understanding.</div>
+        <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">paper_claw</div>
+        <div class="oss-card-desc">Lightweight paper crawling and management utilities.</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">ps-slm</div>
+        <div class="oss-card-desc">Personal utilities and prompts for speech and language modeling.</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="oss-role">
+    <div class="oss-role-title">🔧 Core Contributor</div>
+    <div class="oss-grid">
+      <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">Qwen-Audio-Agent</div>
+        <div class="oss-card-desc">Architecture optimization and backend model expansion for audio agent systems.</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="oss-role">
+    <div class="oss-role-title">🤝 Contributor</div>
+    <div class="oss-grid">
+      <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">SLAM-LLM</div>
+        <div class="oss-card-desc">NPU support for the unified speech and language large model training framework.</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
 ## Publications (Selected)
 
 > * indicates equal contribution. <a href="/publications/">See the full list →</a>
