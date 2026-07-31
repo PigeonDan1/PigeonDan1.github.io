@@ -175,18 +175,24 @@ lang: zh
     <div class="oss-grid">
       <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">SURE-Eval</div>
-        <div class="oss-card-desc">面向语音理解的统一、可复现评测平台与基准。</div>
+        <div class="oss-card-desc">语音理解统一评测平台。</div>
         <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
       </a>
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
-        <div class="oss-card-desc">轻量级论文爬取与管理工具。</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">轻量级论文爬取工具。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/paper_claw?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
       <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">ps-slm</div>
-        <div class="oss-card-desc">面向语音与语言建模的个人工具与提示词集合。</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">语音/语言建模工具。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/ps-slm?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>
@@ -195,8 +201,11 @@ lang: zh
     <div class="oss-grid">
       <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">Qwen-Audio-Agent</div>
-        <div class="oss-card-desc">负责架构优化与后端模型扩充的音频智能体系统。</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">音频智能体框架；核心贡献者负责架构优化与后端模型扩充。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/QwenAudio/qwen-audio-agent?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>
@@ -205,8 +214,11 @@ lang: zh
     <div class="oss-grid">
       <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">SLAM-LLM</div>
-        <div class="oss-card-desc">为统一的语音与语言大模型训练框架提供 NPU 支持。</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">统一 SLM 训练框架；贡献者负责 NPU 支持。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>

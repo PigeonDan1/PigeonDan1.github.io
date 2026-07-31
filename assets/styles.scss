@@ -902,6 +902,17 @@ html {
   text-decoration: underline;
 }
 
+.oss-card-badge {
+  height: 20px;
+  width: auto;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.oss-card:hover .oss-card-badge {
+  transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
   .oss-grid {
     grid-template-columns: 1fr;

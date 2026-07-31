@@ -175,18 +175,24 @@ My research centers on building robust and practical speech understanding system
     <div class="oss-grid">
       <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">SURE-Eval</div>
-        <div class="oss-card-desc">A unified and reproducible evaluation platform and benchmark for speech understanding.</div>
+        <div class="oss-card-desc">Unified evaluation platform for speech understanding.</div>
         <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
       </a>
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
-        <div class="oss-card-desc">Lightweight paper crawling and management utilities.</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">Lightweight paper crawling utilities.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/paper_claw?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
       <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">ps-slm</div>
-        <div class="oss-card-desc">Personal utilities and prompts for speech and language modeling.</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">Speech and language modeling utilities.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/ps-slm?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>
@@ -195,8 +201,11 @@ My research centers on building robust and practical speech understanding system
     <div class="oss-grid">
       <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">Qwen-Audio-Agent</div>
-        <div class="oss-card-desc">Architecture optimization and backend model expansion for audio agent systems.</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">Audio agent framework. Core contributor: architecture & backend models.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/QwenAudio/qwen-audio-agent?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>
@@ -205,8 +214,11 @@ My research centers on building robust and practical speech understanding system
     <div class="oss-grid">
       <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">SLAM-LLM</div>
-        <div class="oss-card-desc">NPU support for the unified speech and language large model training framework.</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
+        <div class="oss-card-desc">Unified SLM training framework. Contributor: NPU support.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
       </a>
     </div>
   </div>
