@@ -21,10 +21,10 @@ lang: zh
     <div class="news-carousel" id="newsCarouselZh">
       <div class="news-card">
         <div class="news-card-date">🚀 2026年7月</div>
-        <div class="news-card-title">成为 <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a> 核心贡献者</div>
+        <div class="news-card-title"><a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a> 开源发布</div>
         <ul class="news-card-list">
-          <li>架构优化</li>
-          <li>后端模型扩充</li>
+          <li>音频智能体框架</li>
+          <li>架构优化与后端模型扩充</li>
         </ul>
       </div>
       <div class="news-card">

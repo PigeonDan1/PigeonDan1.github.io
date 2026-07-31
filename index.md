@@ -21,10 +21,10 @@ lang: en
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
         <div class="news-card-date">🚀 Jul 2026</div>
-        <div class="news-card-title">Core contributor to <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a></div>
+        <div class="news-card-title">Open-sourced <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a></div>
         <ul class="news-card-list">
-          <li>Architecture optimization</li>
-          <li>Backend model expansion</li>
+          <li>Audio agent framework</li>
+          <li>Architecture optimization & backend model expansion</li>
         </ul>
       </div>
       <div class="news-card">
