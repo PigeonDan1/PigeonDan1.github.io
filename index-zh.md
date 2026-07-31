@@ -20,6 +20,14 @@ lang: zh
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarouselZh').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarouselZh">
       <div class="news-card">
+        <div class="news-card-date">🚀 2026年7月</div>
+        <div class="news-card-title">成为 <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a> 核心贡献者</div>
+        <ul class="news-card-list">
+          <li>架构优化</li>
+          <li>后端模型扩充</li>
+        </ul>
+      </div>
+      <div class="news-card">
         <div class="news-card-date">🥳 2026年5月</div>
         <div class="news-card-title">四篇论文被 <strong>Interspeech 2026</strong> 接收！</div>
         <ul class="news-card-list">

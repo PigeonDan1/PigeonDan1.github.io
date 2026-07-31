@@ -20,6 +20,14 @@ lang: en
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
+        <div class="news-card-date">🚀 Jul 2026</div>
+        <div class="news-card-title">Core contributor to <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a></div>
+        <ul class="news-card-list">
+          <li>Architecture optimization</li>
+          <li>Backend model expansion</li>
+        </ul>
+      </div>
+      <div class="news-card">
         <div class="news-card-date">🥳 May 2026</div>
         <div class="news-card-title">Four papers accepted to <strong>Interspeech 2026</strong>!</div>
         <ul class="news-card-list">
