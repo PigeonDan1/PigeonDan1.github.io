@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A phased benchmark for acoustic event grounding, speaker-aware transcription, and target-voice extraction from mixed audio.">
+  <title>TS-ASR Benchmark | Speaker-Aware Text and Audio</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=20260801-1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="TS-ASR Benchmark home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>TS-ASR<span class="brand-dot">.</span>Bench</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#phases">Phases</a>
+        <a href="#phase1">Phase 1</a>
+        <a href="#phase2">Phase 2</a>
+        <a href="#phase0">Phase 0</a>
+        <a href="#evaluation">Evaluation</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="shell hero-copy">
+      <p class="eyebrow"><span></span> Mixed audio · English + Mandarin · Phased evaluation</p>
+      <h1>TS-ASR Benchmark</h1>
+      <p class="hero-lead">
+        A phased benchmark for acoustic event grounding, speaker-aware transcription, and target-voice extraction from mixed audio.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#phase1">Explore text output</a>
+        <a class="button button-quiet" href="#phase2">Explore audio output</a>
+      </div>
+      <div class="hero-note">
+        <span class="pulse-dot"></span>
+        <span>Phase 0 is under development · Phase 1 and Phase 2 demos are reviewable</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="stat-band" aria-label="Benchmark headline statistics">
+      <div class="shell stat-grid">
+        <div class="stat"><strong>3</strong><span>benchmark phases</span></div>
+        <div class="stat"><strong data-stat="questions">10,327</strong><span>active questions</span></div>
+        <div class="stat"><strong data-stat="datasets">7</strong><span>source datasets</span></div>
+        <div class="stat"><strong data-stat="clue_types">10</strong><span>speaker clue types</span></div>
+      </div>
+    </section>
+
+    <section class="section phase-index-section" id="phases">
+      <div class="shell">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="section-kicker">Benchmark structure</p>
+            <h2>Three phases, three explicit outputs</h2>
+          </div>
+          <p>Each phase has its own task definition, output contract, evaluation metrics, and demo surface.</p>
+        </div>
+
+        <div class="phase-index-list">
+          <a class="phase-index-row" href="phase0/">
+            <span class="phase-number">00</span>
+            <span class="phase-index-copy"><strong>Acoustic Event Grounding</strong><small>Locate one described audible event in mixed audio.</small></span>
+            <span class="phase-output">Time interval</span>
+            <span class="phase-status phase-status-development">In development</span>
+          </a>
+          <a class="phase-index-row" href="#phase1">
+            <span class="phase-number">01</span>
+            <span class="phase-index-copy"><strong>Speaker-Aware Transcription</strong><small>Transcribe every speaker or only the speaker resolved from a clue.</small></span>
+            <span class="phase-output">Timestamped text</span>
+            <span class="phase-status phase-status-ready"><span data-phase-count="phase1">21</span> demos</span>
+          </a>
+          <a class="phase-index-row" href="#phase2">
+            <span class="phase-number">02</span>
+            <span class="phase-index-copy"><strong>Target Voice Extraction</strong><small>Return an isolated target waveform under one of two audio contracts.</small></span>
+            <span class="phase-output">Target audio</span>
+            <span class="phase-status phase-status-pilot"><span data-phase-count="phase2">7</span> demos</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section phase-section phase-section-text" id="phase1">
+      <div class="shell">
+        <div class="phase-heading">
+          <div>
+            <p class="section-kicker">Phase 1 · Text output</p>
+            <h2>Speaker-Aware Transcription</h2>
+          </div>
+          <p>Phase 1 separates complete room transcription from clue-conditioned target transcription. Phase 1.3 extends the same text task with stable speaker-timbre descriptions.</p>
+        </div>
+
+        <div class="contract-strip" aria-label="Phase 1 output contract">
+          <div><span>Input</span><strong>Mixed speech, with an optional speaker clue</strong></div>
+          <div><span>Output</span><strong>Speaker-attributed timestamped text</strong></div>
+          <div><span>Evaluation</span><strong>cpWER · DER · temporal validity</strong></div>
+        </div>
+
+        <div class="phase-toolbar" aria-label="Filter Phase 1 demos">
+          <div class="filter-group" data-phase="phase1" data-filter-group="view">
+            <span>View</span>
+            <button class="filter-button active" type="button" data-filter="featured">Featured</button>
+            <button class="filter-button" type="button" data-filter="all">All demos</button>
+          </div>
+          <label class="filter-select">Track
+            <select data-phase="phase1" data-phase-filter="track">
+              <option value="all">All text tracks</option>
+              <option value="sa_asr">All-speaker transcription</option>
+              <option value="target_asr">Target-speaker transcription</option>
+              <option value="speaker_timbre">Speaker-timbre clues</option>
+            </select>
+          </label>
+          <label class="filter-select">Dataset
+            <select data-phase="phase1" data-phase-filter="dataset">
+              <option value="all">All datasets</option>
+              <option value="ami">AMI</option>
+              <option value="alimeeting">AliMeeting</option>
+              <option value="aishell4">AISHELL-4</option>
+              <option value="magicdata">MagicData</option>
+              <option value="aishell3">AISHELL-3</option>
+              <option value="emilia_zh">Emilia-ZH</option>
+              <option value="emilia_en">Emilia-EN</option>
+            </select>
+          </label>
+          <p class="result-count" aria-live="polite"><strong id="phase1-demo-count">0</strong> of <span id="phase1-demo-total">0</span> demos</p>
+        </div>
+
+        <div class="demo-grid" id="phase1-demo-container">
+          <div class="loading-card"><span></span><p>Preparing Phase 1 demos...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section phase-section phase-section-audio" id="phase2">
+      <div class="shell">
+        <div class="phase-heading">
+          <div>
+            <p class="section-kicker">Phase 2 · Audio output</p>
+            <h2>Target Voice Extraction</h2>
+          </div>
+          <p>Phase 2 reuses the speaker-clue vocabulary but changes the model target from text to audio. Timeline-preserved and speech-only outputs are evaluated separately.</p>
+        </div>
+
+        <div class="contract-strip contract-strip-audio" aria-label="Phase 2 output contract">
+          <div><span>Input</span><strong>Full mixed scene with a speaker clue</strong></div>
+          <div><span>Output</span><strong>Timeline-preserved or speech-only target waveform</strong></div>
+          <div><span>Evaluation</span><strong>SI-SDR · SI-SDRi · length error</strong></div>
+        </div>
+
+        <div class="phase-toolbar" aria-label="Filter Phase 2 demos">
+          <div class="filter-group" data-phase="phase2" data-filter-group="view">
+            <span>View</span>
+            <button class="filter-button active" type="button" data-filter="featured">Featured</button>
+            <button class="filter-button" type="button" data-filter="all">All demos</button>
+          </div>
+          <label class="filter-select">Track
+            <select data-phase="phase2" data-phase-filter="track">
+              <option value="all">All audio tracks</option>
+              <option value="all_speaker_extraction">Speaker-order extraction</option>
+              <option value="target_speaker_extraction">Clue-conditioned extraction</option>
+            </select>
+          </label>
+          <label class="filter-select">Contract
+            <select data-phase="phase2" data-phase-filter="contract">
+              <option value="all">Both audio contracts</option>
+              <option value="timeline_preserved">Timeline-preserved</option>
+              <option value="speech_only_concatenation">Speech-only</option>
+            </select>
+          </label>
+          <p class="result-count" aria-live="polite"><strong id="phase2-demo-count">0</strong> of <span id="phase2-demo-total">0</span> demos</p>
+        </div>
+
+        <div class="demo-grid" id="phase2-demo-container">
+          <div class="loading-card"><span></span><p>Preparing Phase 2 demos...</p></div>
+        </div>
+        <noscript><p class="noscript">JavaScript is required for audio timelines and demo filtering.</p></noscript>
+      </div>
+    </section>
+
+    <section class="section phase0-preview-section" id="phase0">
+      <div class="shell phase0-preview">
+        <div class="phase0-preview-index">00</div>
+        <div>
+          <div class="phase0-preview-meta"><span>Phase 0</span><strong>In development</strong></div>
+          <h2>Acoustic Event Grounding</h2>
+          <p>Given mixed audio and a natural-language description of an audible event, return one start/end interval. The task schema, candidate boundaries, and evaluation protocol are still under review.</p>
+        </div>
+        <a class="button phase0-button" href="phase0/">Open Phase 0 preview</a>
+      </div>
+    </section>
+
+    <section class="section evaluation-section" id="evaluation">
+      <div class="shell">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="section-kicker">Evaluation contracts</p>
+            <h2>Outputs are scored within their phase</h2>
+          </div>
+          <p>No metric is shared across incompatible text, timeline, and waveform outputs.</p>
+        </div>
+
+        <div class="evaluation-table" role="table" aria-label="Evaluation contracts by phase">
+          <div class="evaluation-row evaluation-head" role="row"><span>Phase</span><span>Reference output</span><span>Primary metrics</span><span>Status</span></div>
+          <div class="evaluation-row" role="row"><strong>Phase 0</strong><span>One acoustic event interval</span><span>Temporal-F1 · Boundary-Hit@1s</span><em>Draft</em></div>
+          <div class="evaluation-row" role="row"><strong>Phase 1</strong><span>Timestamped speaker turns</span><span>cpWER · DER</span><em>Active</em></div>
+          <div class="evaluation-row" role="row"><strong>Phase 2</strong><span>Isolated target waveform</span><span>SI-SDR · SI-SDRi · duration</span><em>Pilot</em></div>
+        </div>
+
+        <div class="quality-strip">
+          <div><span>1</span><p><strong>Deterministic selection</strong>Every public demo is selected explicitly in versioned configuration.</p></div>
+          <div><span>2</span><p><strong>Audio verification</strong>Referenced audio, target stems, and output contracts are validated before export.</p></div>
+          <div><span>3</span><p><strong>Public-safe metadata</strong>The static bundle contains no private filesystem paths or raw source data.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>TS-ASR<span class="brand-dot">.</span>Bench</span></a>
+        <p>Acoustic grounding, speaker-aware text, and target audio from mixed speech.</p>
+      </div>
+      <div class="footer-meta">
+        <span>Phase 0 preview · Phase 1 text · Phase 2 audio</span>
+        <span>English + Mandarin · no speech resynthesis</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260801-1"></script>
+</body>
+</html>
