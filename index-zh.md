@@ -228,6 +228,14 @@ lang: zh
           <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
       </a>
+      <a href="https://github.com/huggingface/speech-to-speech/pull/430" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">speech-to-speech</div>
+        <div class="oss-card-desc">保留中日韩标点，并为 Qwen3-TTS 中文语料优化 codec token 预算。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 PR #430</span>
+          <img src="https://img.shields.io/github/stars/huggingface/speech-to-speech?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
+      </a>
     </div>
   </div>
 </div>
