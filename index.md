@@ -228,11 +228,11 @@ My research centers on building robust and practical speech understanding system
           <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
       </a>
-      <a href="https://github.com/huggingface/speech-to-speech/pull/430" class="oss-card" target="_blank" rel="noopener">
+      <a href="https://github.com/huggingface/speech-to-speech" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">speech-to-speech</div>
-        <div class="oss-card-desc">CJK punctuation preservation and Qwen3-TTS codec-token budgeting for Chinese utterances.</div>
+        <div class="oss-card-desc">CJK punctuation preservation and codec-token budgeting for Chinese TTS.</div>
         <div class="oss-card-links">
-          <span class="oss-card-link">📂 PR #430</span>
+          <span class="oss-card-link">📂 GitHub</span>
           <img src="https://img.shields.io/github/stars/huggingface/speech-to-speech?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
       </a>
