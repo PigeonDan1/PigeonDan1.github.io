@@ -224,6 +224,27 @@ lang: zh
         <div class="oss-card-desc">语音理解统一评测平台。</div>
         <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
       </a>
+      <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">Open-Bench</div>
+        <div class="oss-card-desc">系统化且统一的可复现实验框架。</div>
+        <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/sure" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">sure</div>
+        <div class="oss-card-desc">SURE-Eval 核心代码仓库。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/sure?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
+      </a>
+      <a href="https://github.com/PigeonDan1/sure-evaluation" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">sure-evaluation</div>
+        <div class="oss-card-desc">SURE-Eval 评测代码仓库。</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
+      </a>
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
         <div class="oss-card-desc">轻量级论文爬取工具。</div>
