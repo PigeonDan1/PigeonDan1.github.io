@@ -175,44 +175,40 @@ My research centers on building robust and practical speech understanding system
 
 <div class="section-spacer"></div>
 
-## Open-Bench
-
-<div class="oss-section">
-  <div class="oss-grid">
-    <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
-      <div class="oss-card-title">Open-Bench</div>
-      <div class="oss-card-desc">Systematic and Unified Reproduible Experimentation Framework.</div>
-      <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
-    </a>
-    <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
-      <div class="oss-card-title">sure demo</div>
-      <div class="oss-card-desc">Interactive demo platform for the Open-Bench evaluation framework.</div>
-      <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
-    </a>
-    <a href="https://github.com/PigeonDan1/sure" class="oss-card" target="_blank" rel="noopener">
-      <div class="oss-card-title">sure-eval</div>
-      <div class="oss-card-desc">Open-source evaluation framework.</div>
-      <div class="oss-card-links">
-        <span class="oss-card-link">📂 GitHub</span>
-        <img src="https://img.shields.io/github/stars/PigeonDan1/sure?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-      </div>
-    </a>
-    <a href="https://github.com/PigeonDan1/sure-evaluation" class="oss-card" target="_blank" rel="noopener">
-      <div class="oss-card-title">sure-evaluation</div>
-      <div class="oss-card-desc">Integrated open-source evaluation pipeline.</div>
-      <div class="oss-card-links">
-        <span class="oss-card-link">📂 GitHub</span>
-        <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="section-spacer"></div>
-
 ## Open Source Projects
 
 <div class="oss-section">
+  <div class="oss-role">
+    <div class="oss-role-title">🧭 Open-Bench</div>
+    <div class="oss-grid">
+      <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">Open-Bench</div>
+        <div class="oss-card-desc">Systematic and Unified Reproduible Experimentation Framework.</div>
+        <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
+      </a>
+      <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">sure demo</div>
+        <div class="oss-card-desc">Interactive demo platform for the Open-Bench evaluation framework.</div>
+        <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
+      </a>
+      <a href="https://github.com/PigeonDan1/sure" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">sure-eval</div>
+        <div class="oss-card-desc">Open-source evaluation framework.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/sure?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
+      </a>
+      <a href="https://github.com/PigeonDan1/sure-evaluation" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">sure-evaluation</div>
+        <div class="oss-card-desc">Integrated open-source evaluation pipeline.</div>
+        <div class="oss-card-links">
+          <span class="oss-card-link">📂 GitHub</span>
+          <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
+        </div>
+      </a>
+    </div>
+  </div>
   <div class="oss-role">
     <div class="oss-role-title">🚀 Lead</div>
     <div class="oss-grid">
