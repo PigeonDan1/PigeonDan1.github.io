@@ -296,12 +296,12 @@ My research centers on building robust and practical speech understanding system
       <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</div>
         <div class="pub-card-authors">Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2603.10468 · Accepted by EMNLP 2026 (Findings)</div>
+        <div class="pub-card-venue">arXiv:2603.10468 · Accepted by EMNLP 2026</div>
       </a>
       <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
         <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2602.11546 · Accepted by EMNLP 2026 (Findings)</div>
+        <div class="pub-card-venue">arXiv:2602.11546 · Accepted by EMNLP 2026</div>
       </a>
       <a href="https://arxiv.org/abs/2605.30899" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">A Unified and Reproducible Experimentation Framework for Speech Understanding</div>

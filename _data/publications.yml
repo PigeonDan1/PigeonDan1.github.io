@@ -103,7 +103,7 @@
   sub_theme: "Multilingual and Multispeaker"
   title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
   authors: "Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
-  venue: "EMNLP 2026 (Findings, accepted)"
+  venue: "EMNLP 2026 (accepted)"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2603.10468"
@@ -123,7 +123,7 @@
 - theme: "Automatic Speech Recognition (Traditional)"
   title: "TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR"
   authors: "Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu"
-  venue: "EMNLP 2026 (Findings, accepted)"
+  venue: "EMNLP 2026 (accepted)"
   year: 2026
   links:
     arxiv: "https://arxiv.org/abs/2602.11546"
