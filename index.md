@@ -20,8 +20,8 @@ lang: en
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
-        <div class="news-card-date">🎉 Jul 2026</div>
-        <div class="news-card-title">Two papers to <strong>EMNLP 2026</strong> Findings (&lt;29%)</div>
+        <div class="news-card-date">🎉 Sep 2026</div>
+        <div class="news-card-title">Two papers to <strong>EMNLP 2026</strong> (Findings)</div>
         <ul class="news-card-list">
           <li>G-STAR</li>
           <li>TC-BiMamba</li>

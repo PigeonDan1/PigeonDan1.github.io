@@ -20,8 +20,8 @@ lang: zh
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarouselZh').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarouselZh">
       <div class="news-card">
-        <div class="news-card-date">🎉 2026年7月</div>
-        <div class="news-card-title">两篇论文被 <strong>EMNLP 2026</strong> Findings 接收（&lt;29%）</div>
+        <div class="news-card-date">🎉 2026年9月</div>
+        <div class="news-card-title">两篇论文被 <strong>EMNLP 2026</strong>（Findings）接收</div>
         <ul class="news-card-list">
           <li>G-STAR</li>
           <li>TC-BiMamba</li>
