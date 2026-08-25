@@ -326,7 +326,7 @@ lang: zh
       <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
         <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2602.11546 · Submitted to EMNLP 2026</div>
+        <div class="pub-card-venue">arXiv:2602.11546 · Accepted by EMNLP 2026 (Findings)</div>
       </a>
       <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
@@ -346,7 +346,7 @@ lang: zh
       <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</div>
         <div class="pub-card-authors">Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2603.10468 · Submitted to EMNLP 2026</div>
+        <div class="pub-card-venue">arXiv:2603.10468 · Accepted by EMNLP 2026 (Findings)</div>
       </a>
       <a href="https://arxiv.org/abs/2410.18908" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">A Survey on Speech Large Language Models for Understanding</div>
