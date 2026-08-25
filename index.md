@@ -20,6 +20,14 @@ lang: en
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
+        <div class="news-card-date">🎉 Jul 2026</div>
+        <div class="news-card-title">Two papers to <strong>EMNLP 2026</strong> Findings (&lt;29%)</div>
+        <ul class="news-card-list">
+          <li>G-STAR</li>
+          <li>TC-BiMamba</li>
+        </ul>
+      </div>
+      <div class="news-card">
         <div class="news-card-date">🚀 Jul 2026</div>
         <div class="news-card-title">Open-sourced <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank"><strong>Qwen-Audio-Agent</strong></a></div>
         <ul class="news-card-list">
@@ -179,7 +187,7 @@ My research centers on building robust and practical speech understanding system
 
 <div class="oss-section">
   <div class="oss-role">
-    <div class="oss-role-title">🧭 Open-Bench</div>
+    <div class="oss-role-title">🚀 Lead</div>
     <div class="oss-grid">
       <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">Open-Bench</div>
@@ -207,11 +215,6 @@ My research centers on building robust and practical speech understanding system
           <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
       </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🚀 Lead</div>
-    <div class="oss-grid">
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
         <div class="oss-card-desc">Lightweight paper crawling utilities.</div>

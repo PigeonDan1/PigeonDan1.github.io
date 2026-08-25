@@ -215,7 +215,7 @@ My research centers on building robust and practical speech understanding system
 
 <div class="oss-section">
   <div class="oss-role">
-    <div class="oss-role-title">🧭 Open-Bench</div>
+    <div class="oss-role-title">🚀 Lead</div>
     <div class="oss-grid">
       <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">Open-Bench</div>
@@ -243,11 +243,6 @@ My research centers on building robust and practical speech understanding system
           <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
       </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🚀 Lead</div>
-    <div class="oss-grid">
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
         <div class="oss-card-desc">Lightweight paper crawling utilities.</div>
