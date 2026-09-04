@@ -21,15 +21,15 @@ lang: zh
     <div class="news-carousel" id="newsCarouselZh">
       <div class="news-card">
         <div class="news-card-date">🎉 2026年9月</div>
-        <div class="news-card-title">七篇论文被 <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a> 接收！</div>
+        <div class="news-card-title">七篇论文被 <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a> 接收：四篇 Oral、三篇 Poster！</div>
         <ul class="news-card-list">
           <li>SURE-EVAL — <em>Oral</em></li>
           <li>Multilingual TASU — <em>Oral</em></li>
           <li>MoE EEND — <em>Oral</em></li>
+          <li>PA-TSE — <em>Oral</em></li>
           <li>SCORE — <em>Poster</em></li>
           <li>DiS-TSE — <em>Poster</em></li>
           <li>Agentic Data Sample — <em>Poster</em></li>
-          <li>PA-TSE — <em>Poster</em></li>
         </ul>
       </div>
       <div class="news-card">
