@@ -21,6 +21,19 @@ lang: en
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
         <div class="news-card-date">🎉 Sep 2026</div>
+        <div class="news-card-title">Seven papers accepted to <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a>!</div>
+        <ul class="news-card-list">
+          <li>SURE-EVAL — <em>Oral</em></li>
+          <li>Multilingual TASU — <em>Oral</em></li>
+          <li>MoE EEND — <em>Oral</em></li>
+          <li>SCORE — <em>Poster</em></li>
+          <li>DiS-TSE — <em>Poster</em></li>
+          <li>Agentic Data Sample — <em>Poster</em></li>
+          <li>PA-TSE — <em>Poster</em></li>
+        </ul>
+      </div>
+      <div class="news-card">
+        <div class="news-card-date">🎉 Sep 2026</div>
         <div class="news-card-title">Two papers to <strong>EMNLP 2026</strong> (Findings)</div>
         <ul class="news-card-list">
           <li>G-STAR</li>
