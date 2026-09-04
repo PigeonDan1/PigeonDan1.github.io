@@ -50,12 +50,12 @@ lang: en
       </div>
       <div class="news-card">
         <div class="news-card-date">🥳 May 2026</div>
-        <div class="news-card-title">Four papers accepted to <strong>Interspeech 2026</strong>!</div>
+        <div class="news-card-title">Four oral papers accepted to <strong>Interspeech 2026</strong>!</div>
         <ul class="news-card-list">
-          <li>TASU2</li>
-          <li>SURE</li>
-          <li>RAS</li>
-          <li>VISA (Agent Track)</li>
+          <li>TASU2 — <em>Oral</em></li>
+          <li>SURE — <em>Oral</em></li>
+          <li>RAS — <em>Oral</em></li>
+          <li>VISA (Agent Track) — <em>Oral</em></li>
         </ul>
       </div>
       <div class="news-card">

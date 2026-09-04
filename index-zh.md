@@ -50,12 +50,12 @@ lang: zh
       </div>
       <div class="news-card">
         <div class="news-card-date">🥳 2026年5月</div>
-        <div class="news-card-title">四篇论文被 <strong>Interspeech 2026</strong> 接收！</div>
+        <div class="news-card-title">四篇 Oral 论文被 <strong>Interspeech 2026</strong> 接收！</div>
         <ul class="news-card-list">
-          <li>TASU2</li>
-          <li>SURE</li>
-          <li>RAS</li>
-          <li>VISA (Agent Track)</li>
+          <li>TASU2 — <em>Oral</em></li>
+          <li>SURE — <em>Oral</em></li>
+          <li>RAS — <em>Oral</em></li>
+          <li>VISA (Agent Track) — <em>Oral</em></li>
         </ul>
       </div>
       <div class="news-card">
