@@ -108,6 +108,7 @@ lang: zh
       <div class="subtheme-papers">
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">SURE</span>
+        <span class="paper-tag">SURE-EVAL</span>
         <span class="paper-tag">ISA-Bench</span>
         <span class="paper-tag">Survey</span>
       </div>
@@ -119,6 +120,8 @@ lang: zh
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">TASU</span>
         <span class="paper-tag">TASU2</span>
+        <span class="paper-tag">Multilingual TASU</span>
+        <span class="paper-tag">Low-Resource DA</span>
       </div>
     </div>
     <div class="subtheme-card">
@@ -129,6 +132,8 @@ lang: zh
         <span class="paper-tag">Audio-Mind</span>
         <span class="paper-tag">VISA</span>
         <span class="paper-tag">XFlow</span>
+        <span class="paper-tag">Research Harness</span>
+        <span class="paper-tag">Agentic Data Sample</span>
       </div>
     </div>
     <div class="subtheme-card">
@@ -138,6 +143,10 @@ lang: zh
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">G-STAR</span>
         <span class="paper-tag">MOSA</span>
+        <span class="paper-tag">Multilingual TASU</span>
+        <span class="paper-tag">MoE EEND</span>
+        <span class="paper-tag">DiS-TSE</span>
+        <span class="paper-tag">PA-TSE</span>
       </div>
     </div>
   </div>
@@ -170,6 +179,7 @@ lang: zh
       <div class="subtheme-papers">
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">RAS</span>
+        <span class="paper-tag">SCORE</span>
       </div>
     </div>
   </div>
