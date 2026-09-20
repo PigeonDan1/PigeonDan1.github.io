@@ -10,7 +10,7 @@ title: About me
 ## Short Bio
 
 <div class="bio-card">
-I am <strong>Jing Peng (彭景)</strong>, a second-year Zhiyuan Honor Ph.D. Student at <strong>Shanghai Jiao Tong University (SJTU)</strong>, <strong><a href="https://x-lance.sjtu.edu.cn/">X-LANCE Lab</a></strong>, advised by <strong><a href="https://x-lance.sjtu.edu.cn/~kaiyu/">Prof. Kai Yu</a></strong> (and co-advised by <strong><a href="https://sites.google.com/view/shinjiwatanabe">Prof. Shinji Watanabe</a></strong>), closely collaborating with <strong><a href="https://shuaiwang-nju.github.io/">Prof. Shuai Wang</a></strong>.
+I am <strong>Jing Peng (彭景)</strong>, a second-year Zhiyuan Honor Ph.D. Student at <strong>Shanghai Jiao Tong University (SJTU)</strong>, <strong><a href="https://x-lance.sjtu.edu.cn/">X-LANCE Lab</a></strong>, advised by <strong><a href="https://x-lance.sjtu.edu.cn/~kaiyu/">Prof. Kai Yu</a></strong> (and co-advised by <strong><a href="https://sw005320.github.io/">Prof. Shinji Watanabe</a></strong>), closely collaborating with <strong><a href="https://shuaiwang-nju.github.io/">Prof. Shuai Wang</a></strong>.
 <br><br>
 My research focuses on <strong>Speech Large Language Models (Speech LLMs)</strong>, with an emphasis on building <strong>well-aligned speech understanding systems</strong> that are robust to <strong>domain shift</strong> and <strong>multi-speaker conditions</strong>.
 </div>
