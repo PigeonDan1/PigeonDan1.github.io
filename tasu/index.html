@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TASU | Speech-Text Alignment | Jing Peng</title>
+  <meta name="description" content="TASU and TASU2: text-only alignment and controllable CTC simulation for speech language models. Read the papers and download the TASU2 Interspeech 2026 poster.">
+  <link rel="canonical" href="https://pigeondan1.github.io/tasu/">
+  <style>
+    :root { color-scheme: light; --ink: #202b30; --muted: #58666c; --accent: #007c78; --rule: #dce4e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 17px/1.65 Arial, sans-serif; letter-spacing: 0; }
+    .wrap { max-width: 980px; margin: auto; padding: 0 28px; }
+    nav { border-bottom: 1px solid var(--rule); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 18px; padding-bottom: 18px; }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    a:hover { color: #004f4d; }
+    a:focus-visible { outline: 3px solid #a55778; outline-offset: 5px; }
+    .brand { color: var(--ink); font-weight: bold; text-decoration: none; }
+    nav span { color: var(--muted); font-size: 14px; }
+    main { padding-top: 34px; }
+    h1, h2, h3 { font-family: Cambria, Georgia, serif; line-height: 1.25; letter-spacing: 0; }
+    h1 { font-size: 44px; margin: 0 0 8px; }
+    h2 { font-size: 29px; margin: 8px 0 16px; }
+    h3 { font-size: 24px; margin: 0 0 10px; }
+    p { margin: 0 0 18px; }
+    .subtitle { font-size: 21px; color: var(--muted); margin-bottom: 22px; }
+    .vision { max-width: 830px; }
+    section { padding: 28px 0; border-top: 1px solid var(--rule); margin-top: 28px; }
+    .venue { color: #85415e; font-size: 14px; font-weight: bold; margin-bottom: 8px; }
+    .authors { font-size: 16px; }
+    .affiliations, .note, figcaption { font-size: 14px; color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 22px 0 26px; }
+    .download { padding: 9px 18px; color: white; background: var(--accent); border-radius: 4px; text-decoration: none; font-weight: bold; }
+    .download:hover { color: white; background: #005c59; }
+    figure { margin: 0; }
+    figure a { display: block; }
+    img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
+    figcaption { margin-top: 10px; }
+    footer { border-top: 1px solid var(--rule); margin-top: 24px; padding: 24px 0 34px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 600px) { .wrap { padding-left: 20px; padding-right: 20px; } h1 { font-size: 36px; } h2 { font-size: 25px; } main { padding-top: 26px; } .subtitle { font-size: 18px; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation"><div class="wrap"><a class="brand" href="/">Jing Peng</a><span>TASU research project</span></div></nav>
+  <main class="wrap">
+    <h1>TASU</h1>
+    <p class="subtitle">Text-Only Alignment for Speech Understanding</p>
+    <p class="vision">Our long-term goal is to strengthen audio-text alignment so that speech models can benefit from the scale and diversity of text data, with less dependence on paired audio-text supervision.</p>
+
+    <section aria-labelledby="tasu2">
+      <p class="venue">Interspeech 2026 &middot; Post-Training of Speech Foundation Models</p>
+      <h2 id="tasu2">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</h2>
+      <p class="authors"><strong>Jing Peng<sup>1,*</sup></strong>, Chenghao Wang<sup>2,*</sup>, Yi Yang<sup>1</sup>, Lirong Qian<sup>1</sup>, Junjie Li<sup>1</sup>, Yu Xi<sup>1</sup>, Shuai Wang<sup>3</sup>, Kai Yu<sup>1,&dagger;</sup></p>
+      <p class="affiliations"><sup>1</sup>Shanghai Jiao Tong University &nbsp; <sup>2</sup>AISpeech Ltd &nbsp; <sup>3</sup>Nanjing University<br>* Equal contribution. &dagger; Corresponding author.</p>
+      <p>TASU2 generates pseudo CTC posterior sequences from transcripts conditioned on a target word error rate (WER) interval. This brings text-derived supervision closer to the acoustic decoding interface and supports text-only post-training and domain adaptation without TTS.</p>
+      <p class="note">The simulator itself learns from teacher CTC posteriors obtained from an augmented subset of LibriSpeech audio. Text-only refers to the subsequent speech-LLM training and adaptation stages.</p>
+      <div class="links" aria-label="TASU2 resources">
+        <a class="download" href="tasu2-poster.pdf">View poster (PDF)</a>
+        <a href="tasu2-poster.pdf" download="TASU2_Interspeech_2026_Poster.pdf">Download poster</a>
+        <a href="https://arxiv.org/abs/2604.08384">Read paper</a>
+      </div>
+      <figure>
+        <a href="tasu2-poster.pdf" aria-label="Open the full-resolution TASU2 poster PDF"><img src="tasu2-poster.png" alt="TASU2 Interspeech 2026 poster, showing the controllable CTC simulator and alignment and domain-adaptation experiments" width="1273" height="1800"></a>
+        <figcaption>TASU2 poster for Interspeech 2026. The PDF contains the full-resolution figures and experimental results.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="tasu-original">
+      <p class="venue">ICASSP 2026</p>
+      <h3 id="tasu-original">TASU: Text-Only Alignment for Speech Understanding</h3>
+      <p>TASU simulates CTC posteriors from text to align speech and language components, while retaining real-audio inference. TASU2 develops this direction with learned, WER-conditioned simulation.</p>
+      <a href="https://arxiv.org/abs/2511.03310">Read the TASU paper</a>
+    </section>
+  </main>
+  <footer><div class="wrap"><a href="/">Jing Peng's homepage</a> &nbsp;&middot;&nbsp; <a href="mailto:jing.peng@sjtu.edu.cn">jing.peng@sjtu.edu.cn</a></div></footer>
+</body>
+</html>
