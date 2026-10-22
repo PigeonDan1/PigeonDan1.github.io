@@ -125,7 +125,7 @@ lang: zh
       <div class="subtheme-papers">
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">SURE</span>
-        <span class="paper-tag">SURE-EVAL</span>
+        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
         <span class="paper-tag">ISA-Bench</span>
         <span class="paper-tag">Survey</span>
       </div>

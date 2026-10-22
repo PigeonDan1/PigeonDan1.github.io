@@ -23,7 +23,7 @@ lang: en
         <div class="news-card-date">🎉 Sep 2026</div>
         <div class="news-card-title">Seven papers accepted to <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a>: four oral and three poster!</div>
         <ul class="news-card-list">
-          <li>SURE-EVAL — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em> · Paper released on arXiv</li>
           <li>Multilingual TASU — <em>Oral</em></li>
           <li>MoE EEND — <em>Oral</em></li>
           <li>PA-TSE — <em>Oral</em></li>
@@ -108,7 +108,7 @@ My research centers on building robust and practical speech understanding system
       <div class="subtheme-papers">
         <span class="paper-label">Representative:</span>
         <span class="paper-tag">SURE</span>
-        <span class="paper-tag">SURE-EVAL</span>
+        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
         <span class="paper-tag">ISA-Bench</span>
         <span class="paper-tag">Survey</span>
       </div>
@@ -301,6 +301,11 @@ My research centers on building robust and practical speech understanding system
 <div class="pub-scroll-section">
   <div class="pub-scroll-container">
     <div class="pub-scroll-wrapper" id="pubScroll">
+      <a href="https://arxiv.org/abs/2609.39030" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">SURE-EVAL: A Systematic and Unified Agentic Framework for Reproducible Evaluation</div>
+        <div class="pub-card-authors">Jing Peng*, Junhao Du*, Yixuan Wang*, Bowen Wang*, Hanqi Li*, et al.</div>
+        <div class="pub-card-venue">arXiv:2609.39030 · Accepted by NCMMSC 2026 (Oral)</div>
+      </a>
       <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
         <div class="pub-card-authors">Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu</div>

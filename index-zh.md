@@ -23,7 +23,7 @@ lang: zh
         <div class="news-card-date">🎉 2026年9月</div>
         <div class="news-card-title">七篇论文被 <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a> 接收：四篇 Oral、三篇 Poster！</div>
         <ul class="news-card-list">
-          <li>SURE-EVAL — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em> · 论文已在 arXiv 公开</li>
           <li>Multilingual TASU — <em>Oral</em></li>
           <li>MoE EEND — <em>Oral</em></li>
           <li>PA-TSE — <em>Oral</em></li>
@@ -108,7 +108,7 @@ lang: zh
       <div class="subtheme-papers">
         <span class="paper-label">代表工作：</span>
         <span class="paper-tag">SURE</span>
-        <span class="paper-tag">SURE-EVAL</span>
+        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
         <span class="paper-tag">ISA-Bench</span>
         <span class="paper-tag">Survey</span>
       </div>
@@ -301,6 +301,11 @@ lang: zh
 <div class="pub-scroll-section">
   <div class="pub-scroll-container">
     <div class="pub-scroll-wrapper" id="pubScrollZh">
+      <a href="https://arxiv.org/abs/2609.39030" class="pub-card" target="_blank" rel="noopener">
+        <div class="pub-card-title">SURE-EVAL: A Systematic and Unified Agentic Framework for Reproducible Evaluation</div>
+        <div class="pub-card-authors">Jing Peng*, Junhao Du*, Yixuan Wang*, Bowen Wang*, Hanqi Li*, et al.</div>
+        <div class="pub-card-venue">arXiv:2609.39030 · NCMMSC 2026 录用（Oral）</div>
+      </a>
       <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
         <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
         <div class="pub-card-authors">Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu</div>

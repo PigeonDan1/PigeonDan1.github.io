@@ -123,7 +123,7 @@ My research centers on building robust and practical speech understanding system
       <div class="subtheme-papers">
         <span class="paper-label">Representative:</span>
         <span class="paper-tag">SURE</span>
-        <span class="paper-tag">SURE-EVAL</span>
+        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
         <span class="paper-tag">ISA-Bench</span>
         <span class="paper-tag">Survey</span>
       </div>
