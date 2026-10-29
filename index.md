@@ -20,19 +20,10 @@ lang: en
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
-        <div class="news-card-date">📝 Oct 2026</div>
-        <div class="news-card-title">New preprints on speech representations and complex-scenario ASR</div>
-        <ul class="news-card-list">
-          <li><a href="https://arxiv.org/abs/2610.32198" target="_blank" rel="noopener">SURE-Tagger</a> — Semi-structured speech representations</li>
-          <li><a href="https://arxiv.org/abs/2610.36527" target="_blank" rel="noopener">ETC-Bench</a> — Multilingual benchmark & transcript normalization</li>
-          <li><a href="https://arxiv.org/abs/2610.27867" target="_blank" rel="noopener">VISH-ASR</a> — Hotword selection for contextual ASR</li>
-        </ul>
-      </div>
-      <div class="news-card">
         <div class="news-card-date">🎉 Sep 2026</div>
         <div class="news-card-title">Seven papers accepted to <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a>: four oral and three poster!</div>
         <ul class="news-card-list">
-          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em> · Paper released on arXiv</li>
+          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em></li>
           <li>Multilingual TASU — <em>Oral · Spotlight Candidate</em></li>
           <li>MoE EEND — <em>Oral</em></li>
           <li>PA-TSE — <em>Oral</em></li>

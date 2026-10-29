@@ -20,19 +20,10 @@ lang: zh
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarouselZh').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarouselZh">
       <div class="news-card">
-        <div class="news-card-date">📝 2026年10月</div>
-        <div class="news-card-title">语音表征与复杂场景 ASR 新论文</div>
-        <ul class="news-card-list">
-          <li><a href="https://arxiv.org/abs/2610.32198" target="_blank" rel="noopener">SURE-Tagger</a> — 半结构化语音表征</li>
-          <li><a href="https://arxiv.org/abs/2610.36527" target="_blank" rel="noopener">ETC-Bench</a> — 多语种评测基准与转写规范化</li>
-          <li><a href="https://arxiv.org/abs/2610.27867" target="_blank" rel="noopener">VISH-ASR</a> — 上下文 ASR 热词筛选</li>
-        </ul>
-      </div>
-      <div class="news-card">
         <div class="news-card-date">🎉 2026年9月</div>
         <div class="news-card-title">七篇论文被 <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a> 接收：四篇 Oral、三篇 Poster！</div>
         <ul class="news-card-list">
-          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em> · 论文已在 arXiv 公开</li>
+          <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em></li>
           <li>Multilingual TASU — <em>Oral · Spotlight Candidate</em></li>
           <li>MoE EEND — <em>Oral</em></li>
           <li>PA-TSE — <em>Oral</em></li>
