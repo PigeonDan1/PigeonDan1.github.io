@@ -10,7 +10,15 @@
             {% for paper in theme_papers %}
                 {% assign paper_url = paper.links.arxiv | default: paper.links.doi | default: paper.links.project | default: paper.links.code %}
                 {% assign paper_label = paper.short_title | default: paper.title %}
-                {% assign paper_status = paper.highlight %}
+                {% assign paper_status = paper.highlight | default: paper.venue | default: paper.year | append: "" %}
+                {% assign paper_status = paper_status | replace: "IEEE Journal of Selected Topics in Signal Processing", "IEEE JSTSP" | replace: "Findings of EMNLP", "EMNLP Findings" %}
+                {% assign paper_status = paper_status | remove: " (accepted)" | replace: " (accepted, ", " · " | replace: "; ", " · " | remove: ")" %}
+                {% if paper.year %}
+                  {% assign paper_year = paper.year | append: "" %}
+                  {% unless paper_status contains paper_year %}
+                    {% assign paper_status = paper_status | append: " · " | append: paper_year %}
+                  {% endunless %}
+                {% endif %}
               {% capture paper_tooltip %}{{ paper.title }}{% if paper_status %} · {{ paper_status }}{% endif %}{% endcapture %}
               {% if paper_url %}
                 <a href="{{ paper_url | escape }}" class="paper-tag" target="_blank" rel="noopener" title="{{ paper_tooltip | strip | escape }}">{{ paper_label | escape }}{% if paper_status %}<span class="paper-tag-status">{{ paper_status | escape }}</span>{% endif %}</a>
