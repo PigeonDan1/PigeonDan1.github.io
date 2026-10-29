@@ -114,93 +114,9 @@ lang: zh
 
 ## 研究兴趣
 
-我的研究核心是构建鲁棒且实用的语音理解系统，涵盖从基础 ASR 到现代语音大语言模型 (Speech LLMs) 的多个层面。
+我的研究涵盖可复现评测、语音跨模态对齐、语音识别、语言与音频智能体，以及空间音频。
 
-<div class="theme-section">
-  <div class="theme-section-title">🧠 用于语音理解的大语言模型</div>
-  <div class="subtheme-grid">
-    <div class="subtheme-card">
-      <div class="subtheme-title">📊 综述与评测</div>
-      <p class="subtheme-desc">构建可复现的实验框架和评测基准，衡量语音理解系统的能力边界与失效模式。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">SURE</span>
-        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
-        <span class="paper-tag">ISA-Bench</span>
-        <span class="paper-tag">Survey</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🔗 语音-文本对齐</div>
-      <p class="subtheme-desc">通过可控模拟和仅文本自适应等技术，将语音表示与语言模型推理能力对齐。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">TASU</span>
-        <span class="paper-tag">TASU2</span>
-        <span class="paper-tag">Multilingual TASU</span>
-        <span class="paper-tag">Low-Resource DA</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🤖 智能体系统</div>
-      <p class="subtheme-desc">为语音和音频系统赋予智能体推理、多模态证据融合以及可靠的多智能体协作能力。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">Audio-Mind</span>
-        <span class="paper-tag">VISA</span>
-        <span class="paper-tag">XFlow</span>
-        <span class="paper-tag">Research Harness</span>
-        <span class="paper-tag">Agentic Data Sample</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🌍 多语种与多说话人</div>
-      <p class="subtheme-desc">在统一框架下处理多说话人、多语种等复杂真实场景。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">G-STAR</span>
-        <span class="paper-tag">MOSA</span>
-        <span class="paper-tag">Multilingual TASU</span>
-        <span class="paper-tag">MoE EEND</span>
-        <span class="paper-tag">DiS-TSE</span>
-        <span class="paper-tag">PA-TSE</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="theme-section">
-  <div class="theme-section-title">🎙️ 自动语音识别（传统方向延续）</div>
-  <p>在语音大模型研究之外，我也持续关注和推进传统 ASR 方向的研究。</p>
-  <div class="subtheme-grid">
-    <div class="subtheme-card">
-      <div class="subtheme-title">🎙️ 流式与非流式 ASR</div>
-      <p class="subtheme-desc">统一的架构设计，例如连接流式与非流式识别的 TC-BiMamba。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">TC-BiMamba</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">✍️ ASR 纠错与可控性</div>
-      <p class="subtheme-desc">基于大语言模型的错误纠正与可控上下文语音识别。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">Fewer Hallucinations</span>
-        <span class="paper-tag">Joint Decoding</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">📏 可靠性评估</div>
-      <p class="subtheme-desc">超越词错误率的 ASR 可靠性指标，如 RAS。</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">代表工作：</span>
-        <span class="paper-tag">RAS</span>
-        <span class="paper-tag">SCORE</span>
-      </div>
-    </div>
-  </div>
-</div>
+{% include research-interests.html %}
 
 <div class="section-spacer"></div>
 
@@ -313,88 +229,9 @@ lang: zh
 
 ## 发表论文 (精选)
 
-> * 表示同等贡献。<a href="/publications/">查看完整列表 →</a>
+> * 表示同等贡献。<a href="/publications/zh/">查看完整列表 →</a>
 
-<div class="pub-scroll-section">
-  <div class="pub-scroll-container">
-    <div class="pub-scroll-wrapper" id="pubScrollAboutZh">
-      <a href="https://arxiv.org/abs/2605.28480" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">Audio-Mind: An Auditable Agentic Framework for Audio Understanding</div>
-        <div class="pub-card-authors">Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2605.28480 · Submitted to EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2606.07264v1" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track</div>
-        <div class="pub-card-authors">W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng</div>
-        <div class="pub-card-venue">arXiv:2606.07264v1 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2606.14790" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows</div>
-        <div class="pub-card-authors">H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2606.14790</div>
-      </a>
-      <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
-        <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2602.11546 · Accepted by EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
-        <div class="pub-card-authors">Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2604.08384 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2605.30899" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">A Unified and Reproducible Experimentation Framework for Speech Understanding</div>
-        <div class="pub-card-authors">Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, et al.</div>
-        <div class="pub-card-venue">arXiv:2605.30899 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2604.24278" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">RAS: a Reliability Oriented Metric for Automatic Speech Recognition</div>
-        <div class="pub-card-authors">W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2604.24278 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</div>
-        <div class="pub-card-authors">Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2603.10468 · Accepted by EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2410.18908" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">A Survey on Speech Large Language Models for Understanding</div>
-        <div class="pub-card-authors">Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2410.18908 · Accepted by IEEE JSTSP</div>
-      </a>
-      <a href="https://arxiv.org/abs/2511.03310" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TASU: Text-Only Alignment for Speech Understanding</div>
-        <div class="pub-card-authors">Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2511.03310 · Accepted by ICASSP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2506.05671" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning</div>
-        <div class="pub-card-authors">Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2506.05671 · Accepted by ASRU 2025</div>
-      </a>
-      <a href="https://arxiv.org/abs/2508.18998" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR</div>
-        <div class="pub-card-authors">Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu</div>
-        <div class="pub-card-venue">arXiv:2508.18998 · Accepted by ICASSP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2505.24347" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction</div>
-        <div class="pub-card-authors">Y. Fang, B. Cheng, Jing Peng, X. Li, Y. Xi, C. Zhang, G. Zhong</div>
-        <div class="pub-card-venue">arXiv:2505.24347 · Accepted by ASRU 2025</div>
-      </a>
-      <a href="https://arxiv.org/abs/2510.23558" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models</div>
-        <div class="pub-card-authors">B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2510.23558 · Accepted by ICASSP 2026</div>
-      </a>
-    </div>
-    <div class="pub-scroll-nav">
-      <button class="pub-scroll-btn" onclick="document.getElementById('pubScrollAboutZh').scrollBy({top:-150,behavior:'smooth'})" aria-label="向上滑动">▲</button>
-      <button class="pub-scroll-btn" onclick="document.getElementById('pubScrollAboutZh').scrollBy({top:150,behavior:'smooth'})" aria-label="向下滑动">▼</button>
-    </div>
-  </div>
-</div>
+{% include selected-publications.html %}
 
 <div class="section-spacer"></div>
 

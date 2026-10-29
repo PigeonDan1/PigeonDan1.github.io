@@ -1,0 +1,58 @@
+- id: evaluation
+  icon: "📊"
+  title: "Reproducible Research & Reliable Evaluation"
+  title_zh: "可复现研究与可靠评测"
+  description: "The SURE series connects reproducible experimentation, agentic evaluation, and semi-structured speech representations for compositional analysis."
+  description_zh: "以 SURE 系列连接可复现实验、智能体评测与半结构化语音表征，支持可组合的条件分析与可靠评估。"
+
+- id: alignment
+  icon: "🔗"
+  title: "Cross-Modal Speech Alignment"
+  title_zh: "语音跨模态对齐"
+  description: "Aligning speech and language through text-only training, controllable CTC simulation, instruction-conditioned adaptation, and text-guided speech editing."
+  description_zh: "研究仅文本训练、可控 CTC 模拟、指令条件自适应与文本指令驱动的语音编辑，连接语音和语言的跨模态表征与控制。"
+
+- id: survey
+  icon: "📚"
+  title: "Surveys"
+  title_zh: "综述"
+  description: "Systematizing Speech LLM architectures, training strategies, tasks, and evaluation to map the field and its open challenges."
+  description_zh: "系统梳理语音大语言模型的架构、训练方法、任务与评测，厘清研究脉络和开放问题。"
+
+- id: asr
+  icon: "🎙️"
+  title: "Automatic Speech Recognition"
+  title_zh: "自动语音识别"
+  description: "Unified streaming and non-streaming recognition, ASR error correction, and metrics for reliable transcription."
+  description_zh: "研究流式与非流式统一识别、ASR 错误纠正，以及衡量转写可靠性的评测指标。"
+
+- id: complex-asr
+  icon: "🌍"
+  title: "ASR in Complex Scenarios"
+  title_zh: "复杂场景 ASR"
+  description: "Multilingual and multi-speaker ASR, hotword and contextual recognition, multilingual normalization, and adaptive data sampling."
+  description_zh: "面向多语种、多说话人、热词与上下文识别，研究多语种文本规范化和自适应数据采样。"
+
+- id: language-agents
+  icon: "🤖"
+  title: "Agentic Systems for Language & Research"
+  title_zh: "语言与科研智能体系统"
+  description: "Executable protocols, evidence-grounded research, and auditable collaboration for language-based agents."
+  description_zh: "面向语言类智能体，研究可执行协议、基于证据的科研流程与可审计的多智能体协作。"
+
+- id: audio-agents
+  icon: "🎧"
+  title: "Voice & Audio Agents"
+  title_zh: "语音与音频智能体"
+  description: "Building agents that reason over speech and audio evidence, coordinate specialist tools, and make their decisions auditable."
+  description_zh: "构建围绕语音与音频证据进行推理、调用专业工具并提供可审计决策过程的智能体。"
+  projects:
+    - label: "Qwen-Audio-Agent"
+      url: "https://github.com/QwenAudio/qwen-audio-agent"
+
+- id: spatial-audio
+  icon: "🧭"
+  title: "Spatial Audio"
+  title_zh: "空间音频"
+  description: "Exploring spatial audio perception and understanding, connecting acoustic scenes with spatial context."
+  description_zh: "探索空间音频感知与理解，连接声学场景及其空间信息。"

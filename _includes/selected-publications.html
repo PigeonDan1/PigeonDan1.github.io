@@ -1,0 +1,23 @@
+{% assign selected_papers = site.data.publications | where: "selected", true | sort: "home_order" %}
+<div class="pub-scroll-section">
+  <div class="pub-scroll-container">
+    <div class="pub-scroll-wrapper" id="pubScroll">
+      {% for paper in selected_papers %}
+        {% assign paper_url = paper.links.arxiv | default: paper.links.doi | default: paper.links.project | default: paper.links.code %}
+        {% if paper_url %}
+          <a href="{{ paper_url | escape }}" class="pub-card" target="_blank" rel="noopener">
+        {% else %}
+          <div class="pub-card">
+        {% endif %}
+          <div class="pub-card-title">{{ paper.title | escape }}</div>
+          {% if paper.authors %}<div class="pub-card-authors">{{ paper.authors | escape }}</div>{% endif %}
+          <div class="pub-card-venue">{{ paper.venue | escape }}{% if paper.year %} · {{ paper.year }}{% endif %}</div>
+        {% if paper_url %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+    <div class="pub-scroll-nav">
+      <button class="pub-scroll-btn" onclick="document.getElementById('pubScroll').scrollBy({top:-150,behavior:'smooth'})" aria-label="{% if page.lang == 'zh' %}向上滚动{% else %}Scroll up{% endif %}">▲</button>
+      <button class="pub-scroll-btn" onclick="document.getElementById('pubScroll').scrollBy({top:150,behavior:'smooth'})" aria-label="{% if page.lang == 'zh' %}向下滚动{% else %}Scroll down{% endif %}">▼</button>
+    </div>
+  </div>
+</div>

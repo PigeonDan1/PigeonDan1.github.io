@@ -20,24 +20,33 @@ lang: en
     <button class="news-nav news-nav-prev" onclick="document.getElementById('newsCarousel').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&#10094;</button>
     <div class="news-carousel" id="newsCarousel">
       <div class="news-card">
+        <div class="news-card-date">📝 Oct 2026</div>
+        <div class="news-card-title">New preprints on speech representations and complex-scenario ASR</div>
+        <ul class="news-card-list">
+          <li><a href="https://arxiv.org/abs/2610.32198" target="_blank" rel="noopener">SURE-Tagger</a> — Semi-structured speech representations</li>
+          <li><a href="https://arxiv.org/abs/2610.36527" target="_blank" rel="noopener">ETC-Bench</a> — Multilingual benchmark & transcript normalization</li>
+          <li><a href="https://arxiv.org/abs/2610.27867" target="_blank" rel="noopener">VISH-ASR</a> — Hotword selection for contextual ASR</li>
+        </ul>
+      </div>
+      <div class="news-card">
         <div class="news-card-date">🎉 Sep 2026</div>
         <div class="news-card-title">Seven papers accepted to <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a>: four oral and three poster!</div>
         <ul class="news-card-list">
           <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em> · Paper released on arXiv</li>
-          <li>Multilingual TASU — <em>Oral</em></li>
+          <li>Multilingual TASU — <em>Oral · Spotlight Candidate</em></li>
           <li>MoE EEND — <em>Oral</em></li>
           <li>PA-TSE — <em>Oral</em></li>
           <li>SCORE — <em>Poster</em></li>
           <li>DiS-TSE — <em>Poster</em></li>
-          <li>Agentic Data Sample — <em>Poster</em></li>
+          <li><a href="https://arxiv.org/abs/2610.36538" target="_blank" rel="noopener">Agentic Data Sample</a> — <em>Poster</em></li>
         </ul>
       </div>
       <div class="news-card">
         <div class="news-card-date">🎉 Sep 2026</div>
         <div class="news-card-title">Two papers to <strong>EMNLP 2026</strong> (Findings)</div>
         <ul class="news-card-list">
-          <li>G-STAR</li>
-          <li>TC-BiMamba</li>
+          <li><a href="https://arxiv.org/abs/2603.10468" target="_blank" rel="noopener">G-STAR</a></li>
+          <li><a href="https://arxiv.org/abs/2602.11546" target="_blank" rel="noopener">TC-BiMamba</a></li>
         </ul>
       </div>
       <div class="news-card">
@@ -52,34 +61,34 @@ lang: en
         <div class="news-card-date">🥳 May 2026</div>
         <div class="news-card-title">Four oral papers accepted to <strong>Interspeech 2026</strong>!</div>
         <ul class="news-card-list">
-          <li>TASU2 — <em>Oral</em></li>
-          <li>SURE — <em>Oral</em></li>
-          <li>RAS — <em>Oral</em></li>
-          <li>VISA (Agent Track) — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2604.08384" target="_blank" rel="noopener">TASU2</a> — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2605.30899" target="_blank" rel="noopener">SURE</a> — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2604.24278" target="_blank" rel="noopener">RAS</a> — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2606.07264" target="_blank" rel="noopener">VISA (Agent Track)</a> — <em>Oral</em></li>
         </ul>
       </div>
       <div class="news-card">
         <div class="news-card-date">📖 Nov 2025</div>
         <div class="news-card-title">Survey published in <strong>IEEE JSTSP</strong></div>
         <ul class="news-card-list">
-          <li>A Survey on Speech Large Language Models for Understanding</li>
+          <li><a href="https://arxiv.org/abs/2410.18908" target="_blank" rel="noopener">A Survey on Speech Large Language Models for Understanding</a></li>
         </ul>
       </div>
       <div class="news-card">
         <div class="news-card-date">🎊 Oct 2025</div>
         <div class="news-card-title">Three papers accepted to <strong>ICASSP 2026</strong>!</div>
         <ul class="news-card-list">
-          <li>TASU — <em>Oral</em></li>
-          <li>MOSA — <em>Poster</em></li>
-          <li>ISA-Bench — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2511.03310" target="_blank" rel="noopener">TASU</a> — <em>Oral</em></li>
+          <li><a href="https://arxiv.org/abs/2508.18998" target="_blank" rel="noopener">MOSA</a> — <em>Poster</em></li>
+          <li><a href="https://arxiv.org/abs/2510.23558" target="_blank" rel="noopener">ISA-Bench</a> — <em>Oral</em></li>
         </ul>
       </div>
       <div class="news-card">
         <div class="news-card-date">🔥 Aug 2025</div>
         <div class="news-card-title">Two papers accepted to <strong>ASRU 2025</strong>!</div>
         <ul class="news-card-list">
-          <li>Low-Resource Domain Adaptation</li>
-          <li>Fewer Hallucinations, More Verification</li>
+          <li><a href="https://arxiv.org/abs/2506.05671" target="_blank" rel="noopener">Low-Resource Domain Adaptation</a></li>
+          <li><a href="https://arxiv.org/abs/2505.24347" target="_blank" rel="noopener">Fewer Hallucinations, More Verification</a></li>
         </ul>
       </div>
     </div>
@@ -97,93 +106,9 @@ My research focuses on **Speech Large Language Models (Speech LLMs)**, with an e
 
 ## Research Interests
 
-My research centers on building robust and practical speech understanding systems, spanning from foundational ASR to modern Speech Large Language Models.
+My research spans reproducible evaluation, speech-language alignment, speech recognition, language and audio agents, and spatial audio.
 
-<div class="theme-section">
-  <div class="theme-section-title">🧠 Speech Large Language Models for Understanding</div>
-  <div class="subtheme-grid">
-    <div class="subtheme-card">
-      <div class="subtheme-title">📊 Survey & Benchmark</div>
-      <p class="subtheme-desc">Building reproducible experimentation frameworks and benchmarks to measure what speech understanding systems can and cannot do.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">SURE</span>
-        <a href="https://arxiv.org/abs/2609.39030" class="paper-tag" target="_blank" rel="noopener">SURE-EVAL</a>
-        <span class="paper-tag">ISA-Bench</span>
-        <span class="paper-tag">Survey</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🔗 Speech-Text Alignment</div>
-      <p class="subtheme-desc">Aligning speech representations with language models through controllable simulation and text-only adaptation techniques.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">TASU</span>
-        <span class="paper-tag">TASU2</span>
-        <span class="paper-tag">Multilingual TASU</span>
-        <span class="paper-tag">Low-Resource DA</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🤖 Agentic Systems</div>
-      <p class="subtheme-desc">Equipping speech and audio systems with agentic reasoning, multi-modal evidence, and reliable multi-agent collaboration.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">Audio-Mind</span>
-        <span class="paper-tag">VISA</span>
-        <span class="paper-tag">XFlow</span>
-        <span class="paper-tag">Research Harness</span>
-        <span class="paper-tag">Agentic Data Sample</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">🌍 Multilingual and Multispeaker</div>
-      <p class="subtheme-desc">Tackling complex real-world scenarios with multiple speakers and multiple languages under unified frameworks.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">G-STAR</span>
-        <span class="paper-tag">MOSA</span>
-        <span class="paper-tag">Multilingual TASU</span>
-        <span class="paper-tag">MoE EEND</span>
-        <span class="paper-tag">DiS-TSE</span>
-        <span class="paper-tag">PA-TSE</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="theme-section">
-  <div class="theme-section-title">🎙️ Automatic Speech Recognition (Traditional)</div>
-  <p>Alongside Speech LLM research, I continue to work on foundational ASR problems.</p>
-  <div class="subtheme-grid">
-    <div class="subtheme-card">
-      <div class="subtheme-title">🎙️ Streaming & Non-streaming ASR</div>
-      <p class="subtheme-desc">Unified architectures such as TC-BiMamba that bridge streaming and non-streaming recognition.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">TC-BiMamba</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">✍️ ASR Error Correction & Controllability</div>
-      <p class="subtheme-desc">LLM-based error correction and controllable contextual speech recognition.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">Fewer Hallucinations</span>
-        <span class="paper-tag">Joint Decoding</span>
-      </div>
-    </div>
-    <div class="subtheme-card">
-      <div class="subtheme-title">📏 Reliability & Evaluation</div>
-      <p class="subtheme-desc">Metrics like RAS that focus on the reliability of ASR outputs beyond simple word-error rates.</p>
-      <div class="subtheme-papers">
-        <span class="paper-label">Representative:</span>
-        <span class="paper-tag">RAS</span>
-        <span class="paper-tag">SCORE</span>
-      </div>
-    </div>
-  </div>
-</div>
+{% include research-interests.html %}
 
 <div class="section-spacer"></div>
 
@@ -237,6 +162,11 @@ My research centers on building robust and practical speech understanding system
           <span class="oss-card-link">📂 GitHub</span>
           <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
         </div>
+      </a>
+      <a href="https://github.com/PigeonDan1/sure-tagger" class="oss-card" target="_blank" rel="noopener">
+        <div class="oss-card-title">SURE-Tagger</div>
+        <div class="oss-card-desc">Semi-structured speech representations for compositional evaluation and targeted data selection.</div>
+        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
       </a>
       <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
         <div class="oss-card-title">paper_claw</div>
@@ -298,76 +228,7 @@ My research centers on building robust and practical speech understanding system
 
 > * indicates equal contribution. <a href="/publications/">See the full list →</a>
 
-<div class="pub-scroll-section">
-  <div class="pub-scroll-container">
-    <div class="pub-scroll-wrapper" id="pubScroll">
-      <a href="https://arxiv.org/abs/2609.39030" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">SURE-EVAL: A Systematic and Unified Agentic Framework for Reproducible Evaluation</div>
-        <div class="pub-card-authors">Jing Peng*, Junhao Du*, Yixuan Wang*, Bowen Wang*, Hanqi Li*, et al.</div>
-        <div class="pub-card-venue">arXiv:2609.39030 · Accepted by NCMMSC 2026 (Oral)</div>
-      </a>
-      <a href="https://arxiv.org/abs/2604.08384" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs</div>
-        <div class="pub-card-authors">Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2604.08384 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2605.28480" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">Audio-Mind: An Auditable Agentic Framework for Audio Understanding</div>
-        <div class="pub-card-authors">Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2605.28480 · Submitted to EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2606.14790" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows</div>
-        <div class="pub-card-authors">H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2606.14790</div>
-      </a>
-      <a href="https://arxiv.org/abs/2603.10468" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition</div>
-        <div class="pub-card-authors">Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang</div>
-        <div class="pub-card-venue">arXiv:2603.10468 · Accepted by EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2602.11546" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR</div>
-        <div class="pub-card-authors">Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2602.11546 · Accepted by EMNLP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2605.30899" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">A Unified and Reproducible Experimentation Framework for Speech Understanding</div>
-        <div class="pub-card-authors">Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, et al.</div>
-        <div class="pub-card-venue">arXiv:2605.30899 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2604.24278" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">RAS: a Reliability Oriented Metric for Automatic Speech Recognition</div>
-        <div class="pub-card-authors">W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2604.24278 · Accepted by Interspeech 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2410.18908" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">A Survey on Speech Large Language Models for Understanding</div>
-        <div class="pub-card-authors">Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2410.18908 · Accepted by IEEE JSTSP</div>
-      </a>
-      <a href="https://arxiv.org/abs/2511.03310" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">TASU: Text-Only Alignment for Speech Understanding</div>
-        <div class="pub-card-authors">Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2511.03310 · Accepted by ICASSP 2026</div>
-      </a>
-      <a href="https://arxiv.org/abs/2506.05671" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning</div>
-        <div class="pub-card-authors">Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu</div>
-        <div class="pub-card-venue">arXiv:2506.05671 · Accepted by ASRU 2025</div>
-      </a>
-      <a href="https://arxiv.org/abs/2508.18998" class="pub-card" target="_blank" rel="noopener">
-        <div class="pub-card-title">MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR</div>
-        <div class="pub-card-authors">Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu</div>
-        <div class="pub-card-venue">arXiv:2508.18998 · Accepted by ICASSP 2026</div>
-      </a>
-    </div>
-    <div class="pub-scroll-nav">
-      <button class="pub-scroll-btn" onclick="document.getElementById('pubScroll').scrollBy({top:-150,behavior:'smooth'})" aria-label="Scroll up">▲</button>
-      <button class="pub-scroll-btn" onclick="document.getElementById('pubScroll').scrollBy({top:150,behavior:'smooth'})" aria-label="Scroll down">▼</button>
-    </div>
-  </div>
-</div>
+{% include selected-publications.html %}
 
 <div class="section-spacer"></div>
 

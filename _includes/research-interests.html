@@ -1,0 +1,28 @@
+{% assign research_lang = page.lang | default: "en" %}
+<div class="subtheme-grid research-interests">
+  {% for theme in site.data.research %}
+    {% assign theme_papers = site.data.publications | where: "theme", theme.id %}
+      <section class="subtheme-card" aria-labelledby="research-{{ theme.id }}">
+        <h3 class="subtheme-title" id="research-{{ theme.id }}">{{ theme.icon }} {% if research_lang == "zh" %}{{ theme.title_zh }}{% else %}{{ theme.title }}{% endif %}</h3>
+        <p class="subtheme-desc">{% if research_lang == "zh" %}{{ theme.description_zh }}{% else %}{{ theme.description }}{% endif %}</p>
+        {% if theme_papers.size > 0 or theme.projects %}
+          <div class="subtheme-papers">
+            {% for paper in theme_papers %}
+                {% assign paper_url = paper.links.arxiv | default: paper.links.doi | default: paper.links.project | default: paper.links.code %}
+                {% assign paper_label = paper.short_title | default: paper.title %}
+                {% assign paper_status = paper.highlight %}
+              {% capture paper_tooltip %}{{ paper.title }}{% if paper_status %} · {{ paper_status }}{% endif %}{% endcapture %}
+              {% if paper_url %}
+                <a href="{{ paper_url | escape }}" class="paper-tag" target="_blank" rel="noopener" title="{{ paper_tooltip | strip | escape }}">{{ paper_label | escape }}{% if paper_status %}<span class="paper-tag-status">{{ paper_status | escape }}</span>{% endif %}</a>
+              {% else %}
+                <span class="paper-tag paper-tag-static" title="{{ paper_tooltip | strip | escape }}">{{ paper_label | escape }}{% if paper_status %}<span class="paper-tag-status">{{ paper_status | escape }}</span>{% endif %}</span>
+              {% endif %}
+            {% endfor %}
+            {% for project in theme.projects %}
+              <a href="{{ project.url | escape }}" class="paper-tag" target="_blank" rel="noopener">{{ project.label | escape }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </section>
+  {% endfor %}
+</div>

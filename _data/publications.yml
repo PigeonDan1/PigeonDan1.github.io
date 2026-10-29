@@ -1,162 +1,299 @@
-# _data/publications.yml
-# Organized by research theme -> sub-theme
+# Paper metadata shared by both homepages and publication archives.
+# Research categories are defined in research.yml; every paper appears in its category.
+# Public metadata checked against arXiv on 2026-10-29.
+# Acceptance/presentation details also use the author's updates.
+# Entries without public metadata retain their known short titles; no authors or URLs are inferred.
 
-# ============================================================
-# Theme 1: Speech Large Language Models for Understanding
-# ============================================================
-
-## Sub-theme 1.1: Survey & Benchmark
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Survey & Benchmark"
-  title: "SURE-EVAL: A Systematic and Unified Agentic Framework for Reproducible Evaluation"
-  authors: "Jing Peng*, Junhao Du*, Yixuan Wang*, Bowen Wang*, Hanqi Li*, Chaolei Liu, Weihan Chen, Haohui Xie, Ruichen Sun, Chenghao Wang, Wen Wen, Guanyu Chen, Xiaoyu Gu, Haoyu Li, Yiwei Guo, Bohan Li, Tao Liu, Yucheng Wang, Yu Xi, Yihua Zhou, Qiang Zhou, Feng Lu, Shuai Wang, Kai Yu"
-  venue: "NCMMSC 2026 (accepted, Oral)"
+- id: sure-tagger
+  short_title: SURE-Tagger
+  theme: evaluation
+  title: 'SURE-Tagger: Structured Speech Representations for Compositional Evaluation and Targeted Data Selection'
+  authors: Jing Peng, Huifei Wang, Weihan Chen, Shuo Gao, Bicheng Zhang, Junhao Du, Hanqi Li, Chaolei Liu, Wen Wen, Tao Liu, Xu Li, Yu Xi, Shuai Wang, Kai Yu
+  venue: arXiv preprint
+  year: 2026
+  description: Semi-structured speech representations for compositional evaluation and targeted data selection.
+  description_zh: 用于可组合评测与定向数据选择的半结构化语音表征。
+  links:
+    arxiv: https://arxiv.org/abs/2610.32198
+    code: https://github.com/PigeonDan1/sure-tagger
+    project: https://me-chuan.github.io/sure-tagger/
+  selected: true
+  home_order: 1
+- theme: evaluation
+  title: 'SURE-EVAL: A Systematic and Unified Agentic Framework for Reproducible Evaluation'
+  authors: Jing Peng*, Junhao Du*, Yixuan Wang*, Bowen Wang*, Hanqi Li*, Chaolei Liu, Weihan Chen, Haohui Xie, Ruichen Sun, Chenghao Wang, Wen Wen, Guanyu Chen, Xiaoyu Gu, Haoyu Li, Yiwei Guo, Bohan Li, Tao Liu, Yucheng Wang, Yu Xi, Yihua Zhou, Qiang Zhou, Feng Lu, Shuai Wang, Kai Yu
+  venue: NCMMSC 2026 (accepted, Oral)
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2609.39030"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Survey & Benchmark"
-  title: "A Unified and Reproducible Experimentation Framework for Speech Understanding"
-  authors: "Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu"
-  venue: "Interspeech 2026 (accepted)"
+    arxiv: https://arxiv.org/abs/2609.39030
+    code: https://github.com/PigeonDan1/sure
+    project: https://sure-eval.com/
+  id: sure-eval
+  short_title: SURE-EVAL
+  highlight: NCMMSC 2026 · Oral
+  selected: true
+  home_order: 6
+- theme: evaluation
+  title: A Unified and Reproducible Experimentation Framework for Speech Understanding
+  authors: Jing Peng*, J. Du*, C. Wang*, H. Li*, Y. Yang*, Y. Wang, X. Gu, G. Chen, Y. Wang, J. Li, Z. Zhao, H. Wang, W. Tu, H. Li, D. Ma, L. Qian, Y. Xi, W. Wen, J. Guo, H. Zhang, S. Fan, W. Jiang, S. Wang, K. Yu
+  venue: Interspeech 2026 (accepted, Oral)
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2605.30899"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Survey & Benchmark"
-  title: "A Survey on Speech Large Language Models for Understanding"
-  authors: "Jing Peng*, Y. Wang*, Y. Fang, Y. Xi, X. Li, X. Zhang, K. Yu"
-  venue: "IEEE JSTSP (accepted)"
-  year: 2024
-  links:
-    arxiv: "https://arxiv.org/abs/2410.18908"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Survey & Benchmark"
-  title: "ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models"
-  authors: "B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu"
-  venue: "ICASSP 2026 (accepted)"
+    arxiv: https://arxiv.org/abs/2605.30899
+    project: https://www.open-bench.net
+  id: sure
+  short_title: SURE
+  highlight: Interspeech 2026 · Oral
+  selected: true
+  home_order: 13
+- theme: evaluation
+  title: 'ISA-Bench: Benchmarking Instruction Sensitivity for Large Audio Language Models'
+  authors: B. Li, W. Huang, Y. Qiu, Y. Guo, H. Wang, Z. Li, Jing Peng, Z. Ma, X. Chen, K. Yu
+  venue: ICASSP 2026 (accepted, Oral)
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2510.23558"
-
-## Sub-theme 1.2: Speech-Text Alignment
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Speech-Text Alignment"
-  title: "TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs"
-  authors: "Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu"
-  venue: "Interspeech 2026 (accepted)"
+    arxiv: https://arxiv.org/abs/2510.23558
+  id: isa-bench
+  short_title: ISA-Bench
+- id: icag
+  short_title: T2L-ICAG
+  theme: alignment
+  title: In-Context Adapter Generation for Compositional Generalization in Large Audio Language Models
+  authors: Yiwei Guo, Siqi Huang, Bohan Li, Jing Peng, Hankun Wang, Zhihan Li, Kai Yu
+  venue: arXiv preprint
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2604.08384"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Speech-Text Alignment"
-  title: "TASU: Text-Only Alignment for Speech Understanding"
-  authors: "Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu"
-  venue: "ICASSP 2026 (accepted)"
+    arxiv: https://arxiv.org/abs/2610.34413
+  selected: true
+  home_order: 5
+- theme: alignment
+  title: 'TASU2: Controllable CTC Simulation for Alignment and Low-Resource Adaptation of Speech LLMs'
+  authors: Jing Peng*, C. Wang*, Y. Yang, L. Qian, J. Li, Y. Xi, S. Wang, K. Yu
+  venue: Interspeech 2026 (accepted, Oral)
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2511.03310"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Speech-Text Alignment"
-  title: "Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning"
-  authors: "Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu"
-  venue: "ASRU 2025 (accepted)"
+    arxiv: https://arxiv.org/abs/2604.08384
+    project: https://pigeondan1.github.io/tasu/
+  id: tasu2
+  short_title: TASU2
+  highlight: Interspeech 2026 · Oral
+  selected: true
+  home_order: 7
+- theme: alignment
+  title: 'TASU: Text-Only Alignment for Speech Understanding'
+  authors: Jing Peng, Y. Yang, X. Li, Y. Xi, Q. Tang, Y. Fang, J. Li, K. Yu
+  venue: ICASSP 2026 (accepted, Oral)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2511.03310
+    project: https://pigeondan1.github.io/tasu/
+  id: tasu
+  short_title: TASU
+  highlight: ICASSP 2026 · Oral
+  selected: true
+  home_order: 16
+- theme: alignment
+  title: Low-Resource Domain Adaptation for Speech LLMs via Text-Only Fine-Tuning
+  authors: Y. Fang*, Jing Peng*, X. Li, Y. Xi, C. Zhang, G. Zhong, K. Yu
+  venue: ASRU 2025 (accepted)
   year: 2025
   links:
-    arxiv: "https://arxiv.org/abs/2506.05671"
-
-## Sub-theme 1.3: Agentic Systems
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Agentic Systems"
-  title: "Audio-Mind: An Auditable Agentic Framework for Audio Understanding"
-  authors: "Y. Wang*, Jing Peng*, H. Li, C. Wang, W. Tu, Y. Xi, Z. Sun, K. Yu, S. Wang"
-  venue: "submitted to EMNLP 2026"
+    arxiv: https://arxiv.org/abs/2506.05671
+  id: low-resource-da
+  short_title: Low-Resource DA
+  selected: true
+  home_order: 17
+- id: multilingual-tasu
+  short_title: Multilingual TASU
+  theme: alignment
+  title: Multilingual TASU
+  venue: NCMMSC 2026 (accepted, Oral; Spotlight Candidate)
   year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2605.28480"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Agentic Systems"
-  title: "VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track"
-  authors: "W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng"
-  venue: "Interspeech 2026 (accepted)"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2606.07264v1"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Agentic Systems"
-  title: "XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows"
-  authors: "H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu"
-  venue: "arXiv preprint"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2606.14790"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Agentic Systems"
-  title: "Externalizing Research Synthesis and Validation in AI Scientists through a Research Harness"
-  authors: "Z. Wang, H. Li, Z. Yang, Z. Hu, S. Zuo, Y. Zhang, D. Ma, D. Luo, C. Wang, Jing Peng, T. Huang, S. Guo, H. Wang, Z. Zhu, S. Han, Y. Cao, K. Yu, L. Chen"
-  venue: "arXiv preprint"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2606.18874"
-
-## Sub-theme 1.4: Multilingual and Multispeaker
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Multilingual and Multispeaker"
-  title: "G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition"
-  authors: "Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang"
-  venue: "EMNLP 2026 (accepted)"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2603.10468"
-
-- theme: "Speech Large Language Models for Understanding"
-  sub_theme: "Multilingual and Multispeaker"
-  title: "MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR"
-  authors: "Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu"
-  venue: "ICASSP 2026 (accepted)"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2508.18998"
-
-# ============================================================
-# Theme 2: ASR
-# ============================================================
-- theme: "Automatic Speech Recognition (Traditional)"
-  title: "TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR"
-  authors: "Jing Peng*, Q. She*, Y. Fang, Y. Xi, K. Yu"
-  venue: "EMNLP 2026 (accepted)"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2602.11546"
-
-- theme: "Automatic Speech Recognition (Traditional)"
-  title: "Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction"
-  authors: "Y. Fang, B. Cheng, Jing Peng, X. Li, Y. Xi, C. Zhang, G. Zhong"
-  venue: "ASRU 2025 (accepted)"
+  highlight: NCMMSC 2026 · Oral · Spotlight Candidate
+- theme: survey
+  title: A Survey on Speech Large Language Models for Understanding
+  authors: Jing Peng*, Yucheng Wang*, Bohan Li, Yiwei Guo, Hankun Wang, Yangui Fang, Yu Xi, Haoyu Li, Xu Li, Ke Zhang, Shuai Wang, Kai Yu
+  venue: IEEE Journal of Selected Topics in Signal Processing
   year: 2025
   links:
-    arxiv: "https://arxiv.org/abs/2505.24347"
-
-- theme: "Automatic Speech Recognition (Traditional)"
-  title: "Joint Decoding Method for Controllable Contextual Speech Recognition Based on Speech LLM"
-  authors: "Y. Fang*, J. Peng*, Y. Xi, X. Li, H. Li, C. Zhang, G. Zhong, K. Yu"
-  venue: "arXiv preprint"
-  year: 2025
-  links:
-    arxiv: "https://arxiv.org/abs/2508.08585"
-
-- theme: "Automatic Speech Recognition (Traditional)"
-  title: "RAS: a Reliability Oriented Metric for Automatic Speech Recognition"
-  authors: "W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu"
-  venue: "Interspeech 2026 (accepted)"
+    arxiv: https://arxiv.org/abs/2410.18908
+    doi: https://doi.org/10.1109/JSTSP.2025.3640535
+    project: https://github.com/PigeonDan1/speechllm_series
+  id: speech-llm-survey
+  short_title: Speech LLM Survey
+  selected: true
+  home_order: 15
+- theme: asr
+  title: 'TC-BiMamba: Trans-Chunk bidirectionally within BiMamba for unified streaming and non-streaming ASR'
+  authors: Qingshun She*, Jing Peng*, Yangui Fang, Yu Xi, Kai Yu
+  venue: Findings of EMNLP 2026 (accepted)
   year: 2026
   links:
-    arxiv: "https://arxiv.org/abs/2604.24278"
+    arxiv: https://arxiv.org/abs/2602.11546
+  id: tc-bimamba
+  short_title: TC-BiMamba
+  selected: true
+  home_order: 12
+- theme: asr
+  title: 'RAS: a Reliability Oriented Metric for Automatic Speech Recognition'
+  authors: W. Huang, Y. Qiu, B. Li, Y. Guo, Jing Peng, H. Wang, X. Chen, K. Yu
+  venue: Interspeech 2026 (accepted, Oral)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2604.24278
+  id: ras
+  short_title: RAS
+  selected: true
+  home_order: 14
+- theme: asr
+  title: 'Fewer Hallucinations, More Verification: A Three-Stage LLM-Based Framework for ASR Error Correction'
+  authors: Y. Fang, B. Cheng, Jing Peng, X. Li, Y. Xi, C. Zhang, G. Zhong
+  venue: ASRU 2025 (accepted)
+  year: 2025
+  links:
+    arxiv: https://arxiv.org/abs/2505.24347
+  id: fewer-hallucinations
+  short_title: Fewer Hallucinations
+- id: score
+  short_title: SCORE
+  theme: asr
+  title: SCORE
+  venue: NCMMSC 2026 (accepted, Poster)
+  year: 2026
+- id: etc-bench
+  short_title: ETC-Bench
+  theme: complex-asr
+  title: 'ETC-Bench: A Multilingual Benchmark for Evaluation-Side Transcript Canonicalization'
+  authors: Zhiheng Qian, Junhao Du, Jing Peng, Hanqi Li, Kunyang Peng, Feng Xue, Kai Yu
+  venue: arXiv preprint
+  year: 2026
+  description: Multilingual evaluation-side transcript canonicalization and normalization.
+  description_zh: 多语种评测侧转写规范化基准与 normalizer。
+  links:
+    arxiv: https://arxiv.org/abs/2610.36527
+  selected: true
+  home_order: 2
+- id: vish-asr
+  short_title: VISH-ASR
+  theme: complex-asr
+  title: 'VISH-ASR: Viterbi-Guided Selection of Hotwords for Speech-LLM Contextual ASR'
+  authors: Xiaoyu Gu, Yu Xi, Chencheng Wang, Zonghan Zhou, Haoyu Li, Jing Peng, Kai Yu
+  venue: arXiv preprint
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2610.27867
+  selected: true
+  home_order: 3
+- id: agentic-data-sampling
+  short_title: Agentic Data Sampling
+  theme: complex-asr
+  title: Agentic Data Sampling Framework for Multilingual ASR via Linguistic-Aware Error-Driven Optimization
+  authors: Zhiheng Qian, Junhao Du, Jing Peng, Hanqi Li, Kunyang Peng, Feng Xue, Lu Chen, Shuai Wang, Kai Yu
+  venue: NCMMSC 2026 (accepted, Poster)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2610.36538
+  selected: true
+  home_order: 4
+- theme: complex-asr
+  title: 'G-STAR: End-to-End Global Speaker-Tracking Attributed Recognition'
+  authors: Jing Peng*, Z. Chen*, H. Li*, Y. Wang, D. Ma, M. Li, Y. Du, D. Xu, K. Yu, S. Wang
+  venue: Findings of EMNLP 2026 (accepted)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2603.10468
+  id: g-star
+  short_title: G-STAR
+  selected: true
+  home_order: 11
+- theme: complex-asr
+  title: 'MOSA: Mixtures of Simple Adapters Outperform Monolithic Approaches in LLM-based Multilingual ASR'
+  authors: Junjie Li, Jing Peng, Yangui Fang, Shuai Wang, Kai Yu
+  venue: ICASSP 2026 (accepted, Poster)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2508.18998
+  id: mosa
+  short_title: MOSA
+  selected: true
+  home_order: 18
+- theme: complex-asr
+  title: Joint Decoding Method for Controllable Contextual Speech Recognition Based on Speech LLM
+  authors: Y. Fang*, J. Peng*, Y. Xi, X. Li, H. Li, C. Zhang, G. Zhong, K. Yu
+  venue: arXiv preprint
+  year: 2025
+  links:
+    arxiv: https://arxiv.org/abs/2508.08585
+  id: joint-decoding
+  short_title: Joint Decoding
+- id: moe-eend
+  short_title: MoE EEND
+  theme: complex-asr
+  title: MoE EEND
+  venue: NCMMSC 2026 (accepted, Oral)
+  year: 2026
+- id: pa-tse
+  short_title: PA-TSE
+  theme: complex-asr
+  title: PA-TSE
+  venue: NCMMSC 2026 (accepted, Oral)
+  year: 2026
+- id: dis-tse
+  short_title: DiS-TSE
+  theme: complex-asr
+  title: DiS-TSE
+  venue: NCMMSC 2026 (accepted, Poster)
+  year: 2026
+- theme: language-agents
+  title: 'XFlow: An Executable Protocol Programming System for Reliable Multi-Agent Workflows'
+  authors: H. Li*, Jing Peng*, Z. Wang, L. Chen, K. Yu
+  venue: arXiv preprint
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2606.14790
+  id: xflow
+  short_title: XFlow
+  selected: true
+  home_order: 9
+- theme: language-agents
+  title: Making AI Scientists Auditable from Evidence to Claim
+  authors: Zijian Wang, Hanqi Li, Ziyue Yang, Zijian Hu, Shenghan Zuo, Yunzhe Zhang, Da Ma, Danyu Luo, Chenrun Wang, Jing Peng, Tiancheng Huang, Sijia Guo, Huayang Wang, Zichen Zhu, Senyu Han, Yilu Cao, Bo Chen, Xin Chen, Kai Yu, Lu Chen
+  venue: arXiv preprint
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2606.18874
+  id: research-harness
+  short_title: Xcientist / Research Harness
+  selected: true
+  home_order: 10
+- theme: audio-agents
+  title: 'Audio-Mind: An Auditable Agentic Framework for Audio Understanding'
+  authors: Yucheng Wang*, Jing Peng*, Hanqi Li, Chenghao Wang, Wenming Tu, Yu Xi, Zhaokai Sun, Kai Yu, Shuai Wang
+  venue: submitted to EMNLP 2026
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2605.28480
+  id: audio-mind
+  short_title: Audio-Mind
+  selected: true
+  home_order: 8
+- theme: audio-agents
+  title: 'VISA: A Visual Information Strengthened Audio-Reasoning System for the Interspeech 2026 ARC Agent Track'
+  authors: W. Tu, J. Gao, Y. Huo, Y. Wang, Jing Peng, B. Li, Z. Ma, T. Liu, S. Fan, K. Yu, X. Chen, Z. Zheng
+  venue: Interspeech 2026 (accepted, Oral)
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2606.07264
+  id: visa
+  short_title: VISA
+- id: dots-tts-edit
+  short_title: dots.tts.edit
+  theme: alignment
+  title: 'dots.tts.edit: Precisely Controlled Speech Editing with a Continuous Autoregressive Model'
+  authors: Hankun Wang, Bohan Li, Shi Lian, Xiaoyu Gu, Jing Peng, Da Zheng, Yiwei Guo, Colin Zhang, Shuai Wang, Kai Yu
+  venue: arXiv preprint
+  year: 2026
+  links:
+    arxiv: https://arxiv.org/abs/2608.02673
+  selected: true
+  home_order: 19

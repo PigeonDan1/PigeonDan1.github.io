@@ -5,52 +5,49 @@ layout: default
 <div class="page pub-archive">
   <h1 class="page-title">{{ page.title }}</h1>
 
-  <p><small>* indicates equal contribution.</small></p>
+  {{ content }}
+  <p><small>{% if page.lang == "zh" %}* 表示同等贡献。{% else %}* indicates equal contribution.{% endif %}</small></p>
 
-  {% assign pubs = site.data.publications %}
-  {% assign themes = pubs | group_by: "theme" %}
-
-  {% for t in themes %}
-    <h2>{{ t.name }}</h2>
-    {% assign sub_themes = t.items | group_by: "sub_theme" %}
-
-    {% for st in sub_themes %}
-      {% if st.name != "" %}
-        <h3>{{ st.name }}</h3>
-      {% endif %}
-
-      {% assign items = st.items | sort: "year" | reverse %}
+  {% for theme in site.data.research %}
+    {% assign theme_papers = site.data.publications | where: "theme", theme.id %}
+    {% if theme_papers.size > 0 %}
+      <h2>{% if page.lang == "zh" %}{{ theme.title_zh }}{% else %}{{ theme.title }}{% endif %}</h2>
+      {% assign publication_years = theme_papers | group_by: "year" | sort: "name" | reverse %}
       <ul class="pub-list">
-        {% for p in items %}
+        {% for publication_year in publication_years %}
+        {% for p in publication_year.items %}
           <li class="pub-item">
-            <div><strong>{{ p.title }}</strong></div>
-            <div>{{ p.authors }}</div>
+            {% assign paper_url = p.links.arxiv | default: p.links.doi | default: p.links.project | default: p.links.code %}
+            <div><strong>{% if paper_url %}<a href="{{ paper_url | escape }}" target="_blank" rel="noopener">{{ p.title | escape }}</a>{% else %}{{ p.title | escape }}{% endif %}</strong></div>
+            {% if p.authors %}<div>{{ p.authors | escape }}</div>{% endif %}
             <div>
-              <em>{{ p.venue }}</em>{% if p.year %}, {{ p.year }}{% endif %}
+              <em>{{ p.venue | escape }}</em>{% if p.year %}, {{ p.year }}{% endif %}
             </div>
+            {% if p.description %}<p class="pub-description">{% if page.lang == "zh" %}{{ p.description_zh | default: p.description | escape }}{% else %}{{ p.description | escape }}{% endif %}</p>{% endif %}
 
             {% if p.links %}
               <div class="pub-links">
                 {% if p.links.arxiv %}
-                  <a href="{{ p.links.arxiv }}" target="_blank" rel="noopener">arXiv</a>
+                  <a href="{{ p.links.arxiv | escape }}" target="_blank" rel="noopener">arXiv</a>
                 {% endif %}
                 {% if p.links.doi %}
                   {% if p.links.arxiv %} · {% endif %}
-                  <a href="{{ p.links.doi }}" target="_blank" rel="noopener">DOI</a>
+                  <a href="{{ p.links.doi | escape }}" target="_blank" rel="noopener">DOI</a>
                 {% endif %}
                 {% if p.links.code %}
                   {% if p.links.arxiv or p.links.doi %} · {% endif %}
-                  <a href="{{ p.links.code }}" target="_blank" rel="noopener">Code</a>
+                  <a href="{{ p.links.code | escape }}" target="_blank" rel="noopener">{% if page.lang == "zh" %}代码{% else %}Code{% endif %}</a>
                 {% endif %}
                 {% if p.links.project %}
                   {% if p.links.arxiv or p.links.doi or p.links.code %} · {% endif %}
-                  <a href="{{ p.links.project }}" target="_blank" rel="noopener">Project</a>
+                  <a href="{{ p.links.project | escape }}" target="_blank" rel="noopener">{% if page.lang == "zh" %}项目{% else %}Project{% endif %}</a>
                 {% endif %}
               </div>
             {% endif %}
           </li>
         {% endfor %}
+        {% endfor %}
       </ul>
-    {% endfor %}
+    {% endif %}
   {% endfor %}
 </div>
