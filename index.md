@@ -91,8 +91,6 @@ lang: en
 
 I am now a second-year Zhiyuan Honor Ph.D. Student at **Shanghai Jiao Tong University (SJTU)**, **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)**, advised by **[Prof. Kai Yu](https://x-lance.sjtu.edu.cn/~kaiyu/)** (and co-advised by **[Prof. Shinji Watanabe](https://sw005320.github.io/)**), closely collaborating with **[Prof. Shuai Wang](https://shuaiwang-nju.github.io/)**.
 
-My research focuses on **Speech Large Language Models (Speech LLMs)**, with an emphasis on building **well-aligned speech understanding systems** that are robust to **domain shift** and **multi-speaker conditions**.
-
 <div class="section-spacer"></div>
 
 ## Research Interests
@@ -124,94 +122,7 @@ My research spans reproducible evaluation, speech-language alignment, speech rec
 
 ## Open Source Projects
 
-<div class="oss-section">
-  <div class="oss-role">
-    <div class="oss-role-title">🚀 Lead</div>
-    <div class="oss-grid">
-      <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">Open-Bench</div>
-        <div class="oss-card-desc">Systematic and Unified Reproduible Experimentation Framework.</div>
-        <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
-      </a>
-      <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure demo</div>
-        <div class="oss-card-desc">Interactive demo platform for the Open-Bench evaluation framework.</div>
-        <div class="oss-card-links"><span class="oss-card-link">🌐 Website</span></div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure-eval</div>
-        <div class="oss-card-desc">Open-source evaluation framework.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/sure?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure-evaluation" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure-evaluation</div>
-        <div class="oss-card-desc">Integrated open-source evaluation pipeline.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure-tagger" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">SURE-Tagger</div>
-        <div class="oss-card-desc">Semi-structured speech representations for compositional evaluation and targeted data selection.</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
-      </a>
-      <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">paper_claw</div>
-        <div class="oss-card-desc">Lightweight paper crawling utilities.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/paper_claw?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">ps-slm</div>
-        <div class="oss-card-desc">Speech and language modeling utilities.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/ps-slm?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🔧 Core Contributor</div>
-    <div class="oss-grid">
-      <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">Qwen-Audio-Agent</div>
-        <div class="oss-card-desc">Audio agent framework. Core contributor: architecture & backend models.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/QwenAudio/qwen-audio-agent?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🤝 Contributor</div>
-    <div class="oss-grid">
-      <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">SLAM-LLM</div>
-        <div class="oss-card-desc">Unified SLM training framework. Contributor: NPU support.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/huggingface/speech-to-speech" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">speech-to-speech</div>
-        <div class="oss-card-desc">CJK punctuation preservation and codec-token budgeting for Chinese TTS.</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/huggingface/speech-to-speech?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
+{% include open-source-projects.html %}
 
 <div class="section-spacer"></div>
 

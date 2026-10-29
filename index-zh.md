@@ -91,8 +91,6 @@ lang: zh
 
 我是 **上海交通大学 (SJTU)** **[X-LANCE Lab](https://x-lance.sjtu.edu.cn/)** 的致远荣誉博士生，目前为博士二年级。导师是 **[俞凯教授](https://x-lance.sjtu.edu.cn/~kaiyu/)**（联合导师是 **[Shinji Watanabe 教授](https://sw005320.github.io/)**），并与 **[王帅教授](https://shuaiwang-nju.github.io/)** 紧密合作。
 
-我的研究专注于**语音大语言模型 (Speech LLMs)**，重点是构建对**领域迁移**和**多说话人场景**具有鲁棒性的**良好对齐的语音理解系统**。
-
 <div class="section-spacer"></div>
 
 ## 研究兴趣
@@ -124,94 +122,7 @@ lang: zh
 
 ## 开源项目
 
-<div class="oss-section">
-  <div class="oss-role">
-    <div class="oss-role-title">🚀 主导项目</div>
-    <div class="oss-grid">
-      <a href="https://www.open-bench.net" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">Open-Bench</div>
-        <div class="oss-card-desc">系统化且统一的可复现实验框架。</div>
-        <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
-      </a>
-      <a href="https://sure-eval.com/" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure demo</div>
-        <div class="oss-card-desc">Open-Bench 评测框架的在线演示平台。</div>
-        <div class="oss-card-links"><span class="oss-card-link">🌐 官方网站</span></div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure-eval</div>
-        <div class="oss-card-desc">开源评测框架。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/sure?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure-evaluation" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">sure-evaluation</div>
-        <div class="oss-card-desc">集成性开源评估链路。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/sure-evaluation?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/sure-tagger" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">SURE-Tagger</div>
-        <div class="oss-card-desc">面向可组合评测与定向数据选择的半结构化语音表征。</div>
-        <div class="oss-card-links"><span class="oss-card-link">📂 GitHub</span></div>
-      </a>
-      <a href="https://github.com/PigeonDan1/paper_claw" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">paper_claw</div>
-        <div class="oss-card-desc">轻量级论文爬取工具。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/paper_claw?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/PigeonDan1/ps-slm" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">ps-slm</div>
-        <div class="oss-card-desc">语音/语言建模工具。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/PigeonDan1/ps-slm?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🔧 核心贡献者</div>
-    <div class="oss-grid">
-      <a href="https://github.com/QwenAudio/qwen-audio-agent" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">Qwen-Audio-Agent</div>
-        <div class="oss-card-desc">音频智能体框架；核心贡献者负责架构优化与后端模型扩充。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/QwenAudio/qwen-audio-agent?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="oss-role">
-    <div class="oss-role-title">🤝 贡献者</div>
-    <div class="oss-grid">
-      <a href="https://github.com/X-LANCE/SLAM-LLM" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">SLAM-LLM</div>
-        <div class="oss-card-desc">统一 SLM 训练框架；贡献者负责 NPU 支持。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/X-LANCE/SLAM-LLM?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-      <a href="https://github.com/huggingface/speech-to-speech" class="oss-card" target="_blank" rel="noopener">
-        <div class="oss-card-title">speech-to-speech</div>
-        <div class="oss-card-desc">保留中日韩标点，并优化中文 TTS 的 codec token 预算。</div>
-        <div class="oss-card-links">
-          <span class="oss-card-link">📂 GitHub</span>
-          <img src="https://img.shields.io/github/stars/huggingface/speech-to-speech?style=social&logo=github" alt="GitHub stars" class="oss-card-badge">
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
+{% include open-source-projects.html %}
 
 <div class="section-spacer"></div>
 

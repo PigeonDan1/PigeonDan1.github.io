@@ -1,0 +1,22 @@
+{% assign oss_lang = page.lang | default: "en" %}
+<div class="oss-section">
+  <section class="oss-group">
+    <h3>SURE / Open-Bench</h3>
+    <p>{% if oss_lang == "zh" %}主导可复现语音评测工具链，整合评测框架、在线演示与半结构化语音标注。{% else %}I lead a reproducible speech evaluation toolkit spanning evaluation frameworks, interactive demos, and semi-structured speech annotation.{% endif %}</p>
+    <div class="oss-links">
+      <a href="https://www.open-bench.net" target="_blank" rel="noopener">Open-Bench</a>
+      <a href="https://sure-eval.com/" target="_blank" rel="noopener">{% if oss_lang == "zh" %}在线演示{% else %}Demo{% endif %}</a>
+      <a href="https://github.com/PigeonDan1/sure" target="_blank" rel="noopener">sure-eval</a>
+      <a href="https://github.com/PigeonDan1/sure-evaluation" target="_blank" rel="noopener">sure-evaluation</a>
+      <a href="https://github.com/PigeonDan1/sure-tagger" target="_blank" rel="noopener">SURE-Tagger</a>
+    </div>
+  </section>
+  <section class="oss-group">
+    <h3>{% if oss_lang == "zh" %}音频智能体与语音系统{% else %}Audio Agents & Speech Systems{% endif %}</h3>
+    <p>{% if oss_lang == "zh" %}<a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank" rel="noopener">Qwen-Audio-Agent</a> 核心贡献者，负责架构与后端模型；为 <a href="https://github.com/X-LANCE/SLAM-LLM" target="_blank" rel="noopener">SLAM-LLM</a> 贡献 NPU 支持，并为 <a href="https://github.com/huggingface/speech-to-speech" target="_blank" rel="noopener">speech-to-speech</a> 优化中日韩标点保留与中文 TTS token 预算。{% else %}Core contributor to <a href="https://github.com/QwenAudio/qwen-audio-agent" target="_blank" rel="noopener">Qwen-Audio-Agent</a> (architecture and backend models); contributor to <a href="https://github.com/X-LANCE/SLAM-LLM" target="_blank" rel="noopener">SLAM-LLM</a> (NPU support) and <a href="https://github.com/huggingface/speech-to-speech" target="_blank" rel="noopener">speech-to-speech</a> (CJK punctuation and Chinese TTS token budgeting).{% endif %}</p>
+  </section>
+  <section class="oss-group">
+    <h3>{% if oss_lang == "zh" %}研究工具{% else %}Research Utilities{% endif %}</h3>
+    <p>{% if oss_lang == "zh" %}主导 <a href="https://github.com/PigeonDan1/paper_claw" target="_blank" rel="noopener">paper_claw</a>（论文爬取）与 <a href="https://github.com/PigeonDan1/ps-slm" target="_blank" rel="noopener">ps-slm</a>（语音与语言建模工具）。{% else %}I lead <a href="https://github.com/PigeonDan1/paper_claw" target="_blank" rel="noopener">paper_claw</a> for paper crawling and <a href="https://github.com/PigeonDan1/ps-slm" target="_blank" rel="noopener">ps-slm</a> for speech and language modeling utilities.{% endif %}</p>
+  </section>
+</div>
