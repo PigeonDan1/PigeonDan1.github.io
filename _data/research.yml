@@ -30,8 +30,8 @@
   icon: "🌍"
   title: "ASR in Complex Scenarios"
   title_zh: "复杂场景 ASR"
-  description: "Multilingual and multi-speaker ASR, hotword and contextual recognition, multilingual normalization, and adaptive data sampling."
-  description_zh: "面向多语种、多说话人、热词与上下文识别，研究多语种文本规范化和自适应数据采样。"
+  description: "Multilingual and multi-speaker ASR, hotword and contextual recognition, multilingual evaluation benchmarks and normalization, and adaptive data sampling."
+  description_zh: "面向多语种、多说话人、热词与上下文识别，研究多语种评测基准、文本规范化和自适应数据采样。"
 
 - id: language-agents
   icon: "🤖"

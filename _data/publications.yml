@@ -164,11 +164,11 @@
   short_title: ETC-Bench
   theme: complex-asr
   title: 'ETC-Bench: A Multilingual Benchmark for Evaluation-Side Transcript Canonicalization'
-  authors: Zhiheng Qian, Junhao Du, Jing Peng, Hanqi Li, Kunyang Peng, Feng Xue, Kai Yu
+  authors: Zhiheng Qian, Junhao Du, Jing Peng, Hanqi Li, Kunyang Peng, Feng Xue, Shuai Wang, Kai Yu
   venue: arXiv preprint
   year: 2026
-  description: Multilingual evaluation-side transcript canonicalization and normalization.
-  description_zh: 多语种评测侧转写规范化基准与 normalizer。
+  description: A multilingual benchmark for evaluation-side transcript canonicalization, covering 181 phenomenon types across 12 languages, with the SENA metric and TACS agent skill for normalization.
+  description_zh: 面向多语种语音识别评测的转写规范化基准，覆盖 12 种语言、181 类现象，并提出 SENA 指标与用于规范化的 TACS 智能体技能。
   links:
     arxiv: https://arxiv.org/abs/2610.36527
   selected: true
