@@ -110,6 +110,8 @@
   venue: NCMMSC 2026 (accepted, Oral; Spotlight Candidate)
   year: 2026
   highlight: NCMMSC 2026 · Oral · Spotlight Candidate
+  links:
+    arxiv: https://arxiv.org/abs/2611.00692
 - theme: survey
   title: A Survey on Speech Large Language Models for Understanding
   authors: Jing Peng*, Yucheng Wang*, Bohan Li, Yiwei Guo, Hankun Wang, Yangui Fang, Yu Xi, Haoyu Li, Xu Li, Ke Zhang, Shuai Wang, Kai Yu
@@ -236,8 +238,9 @@
   short_title: PA-TSE
   theme: complex-asr
   title: PA-TSE
-  venue: NCMMSC 2026 (accepted, Oral)
+  venue: NCMMSC 2026 (accepted, Oral; Spotlight Candidate)
   year: 2026
+  highlight: NCMMSC 2026 · Oral · Spotlight Candidate
 - id: dis-tse
   short_title: DiS-TSE
   theme: spatial-audio
