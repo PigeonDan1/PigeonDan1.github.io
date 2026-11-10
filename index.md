@@ -24,9 +24,9 @@ lang: en
         <div class="news-card-title">Seven papers accepted to <a href="https://www.ncmmsc.org.cn/" target="_blank" rel="noopener"><strong>NCMMSC 2026</strong></a>: four oral and three poster!</div>
         <ul class="news-card-list">
           <li><a href="https://arxiv.org/abs/2609.39030" target="_blank" rel="noopener">SURE-EVAL</a> — <em>Oral</em></li>
-          <li><a href="https://arxiv.org/abs/2611.00692" target="_blank" rel="noopener">Multilingual TASU</a> — <em>Oral · Spotlight Candidate</em></li>
+          <li><a href="https://arxiv.org/abs/2611.00692" target="_blank" rel="noopener">Multilingual TASU</a> — <em>Oral · Spotlight</em></li>
           <li>MoE EEND — <em>Oral</em></li>
-          <li>PA-TSE — <em>Oral · Spotlight Candidate</em></li>
+          <li>PA-TSE — <em>Oral · Spotlight</em></li>
           <li>SCORE — <em>Poster</em></li>
           <li>DiS-TSE — <em>Poster</em></li>
           <li><a href="https://arxiv.org/abs/2610.36538" target="_blank" rel="noopener">Agentic Data Sample</a> — <em>Poster</em></li>

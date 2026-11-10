@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TASU | Speech-Text Alignment | Jing Peng</title>
-  <meta name="description" content="TASU and TASU2: text-only alignment and controllable CTC simulation for speech language models. Read the papers and download the TASU2 Interspeech 2026 poster.">
+  <meta name="description" content="TASU, TASU2, and Multilingual TASU: text-only alignment and simulated CTC posteriors for speech language models. Read the papers and download the TASU2 Interspeech 2026 poster.">
   <link rel="canonical" href="https://pigeondan1.github.io/tasu/">
   <style>
     :root { color-scheme: light; --ink: #202b30; --muted: #58666c; --accent: #007c78; --rule: #dce4e4; }
@@ -47,6 +47,22 @@
     <h1>TASU</h1>
     <p class="subtitle">Text-Only Alignment for Speech Understanding</p>
     <p class="vision">Our long-term goal is to strengthen audio-text alignment so that speech models can benefit from the scale and diversity of text data, with less dependence on paired audio-text supervision.</p>
+    <div class="links" aria-label="TASU papers">
+      <a href="#multilingual-tasu">Multilingual TASU</a>
+      <a href="#tasu2">TASU2</a>
+      <a href="#tasu-original">TASU</a>
+    </div>
+
+    <section aria-labelledby="multilingual-tasu">
+      <p class="venue">NCMMSC 2026 &middot; Oral &middot; Spotlight</p>
+      <h2 id="multilingual-tasu">Multilingual TASU: Extending Text-Only Alignment to Multilingual Speech Recognition via Simulated CTC Posteriors</h2>
+      <p class="authors">Chenghao Wang, Yi Yang, <strong>Jing Peng</strong>, Yu Xi, Shuai Wang, Kai Yu</p>
+      <p>Multilingual TASU extends text-only speech-language alignment to multilingual ASR using simulated CTC posteriors. Across eight Multilingual LibriSpeech languages, it compares real audio-derived posteriors, heuristic simulation, and a learned multilingual simulator, showing how text-first initialization can reduce reliance on paired speech-text data.</p>
+      <div class="links" aria-label="Multilingual TASU resources">
+        <a class="download" href="https://arxiv.org/abs/2611.00692">Read paper</a>
+        <a href="https://arxiv.org/pdf/2611.00692">View paper (PDF)</a>
+      </div>
+    </section>
 
     <section aria-labelledby="tasu2">
       <p class="venue">Interspeech 2026 &middot; Oral &middot; Post-Training of Speech Foundation Models</p>
