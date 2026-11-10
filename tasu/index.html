@@ -84,9 +84,16 @@
 
     <section aria-labelledby="tasu-original">
       <p class="venue">ICASSP 2026 &middot; Oral</p>
-      <h3 id="tasu-original">TASU: Text-Only Alignment for Speech Understanding</h3>
-      <p>TASU simulates CTC posteriors from text to align speech and language components, while retaining real-audio inference. TASU2 develops this direction with learned, WER-conditioned simulation.</p>
-      <a href="https://arxiv.org/abs/2511.03310">Read the TASU paper</a>
+      <h2 id="tasu-original">TASU: Text-Only Alignment for Speech Understanding</h2>
+      <p class="authors"><strong>Jing Peng</strong>, Yi Yang, Xu Li, Yu Xi, Quanwei Tang, Yangui Fang, Junjie Li, Kai Yu</p>
+      <p>TASU asks whether a speech model can learn cross-modal alignment from unpaired text, reducing dependence on large speech-text datasets. Its key idea is to align speech and language through CTC posterior distributions: a structured interface that can be obtained from real speech or simulated directly from text.</p>
+      <p>During training, CTC Posterior Simulation (CPS) converts text tokens into pseudo-posteriors with confidence variation, frame dropping, and repetition to approximate real CTC outputs. These sequences train a lightweight projector while keeping the language model frozen. At inference, a speech encoder produces real CTC posteriors; Label-Synchronous Decoding (LSD) removes blank-dominated frames and redundant repetitions before the projector maps the compact sequence into the LLM. The experiments use SenseVoice-Small and Qwen2.5-1.5B, with only the projector parameters trained.</p>
+      <p>This text-only alignment enables competitive zero-shot speech recognition and generalization to multiple speech understanding tasks on MMSU. It can also serve as the first stage of curriculum learning: text-only initialization followed by paired speech-text fine-tuning improves recognition in new domains while preserving source-domain accuracy.</p>
+      <p class="note">Text-only refers to the alignment stage, using pretrained speech and language models; inference still takes real speech. <a href="#tasu2">TASU2</a> extends the original heuristic CPS approach with a learned, WER-conditioned simulator.</p>
+      <div class="links" aria-label="TASU resources">
+        <a class="download" href="https://arxiv.org/abs/2511.03310">Read paper</a>
+        <a href="https://arxiv.org/pdf/2511.03310">View paper (PDF)</a>
+      </div>
     </section>
   </main>
   <footer><div class="wrap"><a href="/">Jing Peng's homepage</a> &nbsp;&middot;&nbsp; <a href="mailto:jing.peng@sjtu.edu.cn">jing.peng@sjtu.edu.cn</a></div></footer>
