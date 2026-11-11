@@ -11,8 +11,10 @@
                 {% assign paper_url = paper.links.arxiv | default: paper.links.doi | default: paper.links.project | default: paper.links.code %}
                 {% assign paper_label = paper.short_title | default: paper.title %}
                 {% assign paper_status = paper.highlight | default: paper.venue | default: paper.year | append: "" %}
-                {% assign paper_status = paper_status | replace: "IEEE Journal of Selected Topics in Signal Processing", "IEEE JSTSP" | replace: "Findings of EMNLP", "EMNLP Findings" %}
-                {% assign paper_status = paper_status | remove: " (accepted)" | replace: " (accepted, ", " · " | replace: "; ", " · " | remove: ")" %}
+                {% unless paper.highlight %}
+                  {% assign paper_status = paper_status | replace: "IEEE Journal of Selected Topics in Signal Processing", "IEEE JSTSP" | replace: "Findings of EMNLP", "EMNLP Findings" %}
+                  {% assign paper_status = paper_status | remove: " (accepted)" | replace: " (accepted, ", " · " | replace: "; ", " · " | remove: ")" %}
+                {% endunless %}
                 {% if paper.year %}
                   {% assign paper_year = paper.year | append: "" %}
                   {% unless paper_status contains paper_year %}

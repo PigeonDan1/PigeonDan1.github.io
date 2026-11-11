@@ -108,9 +108,9 @@
   theme: alignment
   title: 'Multilingual TASU: Extending Text-Only Alignment to Multilingual Speech Recognition via Simulated CTC Posteriors'
   authors: Chenghao Wang, Yi Yang, Jing Peng, Yu Xi, Shuai Wang, Kai Yu
-  venue: NCMMSC 2026 (accepted, Oral; Spotlight)
+  venue: NCMMSC 2026 (accepted, Oral; Spotlight (only 6 papers))
   year: 2026
-  highlight: NCMMSC 2026 · Oral · Spotlight
+  highlight: NCMMSC 2026 · Oral · Spotlight (only 6 papers)
   links:
     arxiv: https://arxiv.org/abs/2611.00692
     project: https://pigeondan1.github.io/tasu/#multilingual-tasu
@@ -240,9 +240,9 @@
   short_title: PA-TSE
   theme: complex-asr
   title: PA-TSE
-  venue: NCMMSC 2026 (accepted, Oral; Spotlight)
+  venue: NCMMSC 2026 (accepted, Oral; Spotlight (only 6 papers))
   year: 2026
-  highlight: NCMMSC 2026 · Oral · Spotlight
+  highlight: NCMMSC 2026 · Oral · Spotlight (only 6 papers)
 - id: dis-tse
   short_title: DiS-TSE
   theme: spatial-audio
