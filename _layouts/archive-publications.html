@@ -42,6 +42,10 @@ layout: default
                   {% if p.links.arxiv or p.links.doi or p.links.code %} · {% endif %}
                   <a href="{{ p.links.project | escape }}" target="_blank" rel="noopener">{% if page.lang == "zh" %}项目{% else %}Project{% endif %}</a>
                 {% endif %}
+                {% if p.links.dataset %}
+                  {% if p.links.arxiv or p.links.doi or p.links.code or p.links.project %} · {% endif %}
+                  <a href="{{ p.links.dataset | escape }}" target="_blank" rel="noopener">{% if page.lang == "zh" %}数据集{% else %}Dataset{% endif %}</a>
+                {% endif %}
               </div>
             {% endif %}
           </li>

@@ -243,6 +243,21 @@
   venue: NCMMSC 2026 (accepted, Oral; Spotlight (only 6 papers))
   year: 2026
   highlight: NCMMSC 2026 · Oral · Spotlight (only 6 papers)
+- id: mesh
+  short_title: MESH
+  theme: spatial-audio
+  title: 'MESH: Multi-receiver Evaluation of Spatial Hearing across Egocentric and Allocentric Views'
+  authors: Wen Wen*, Bohan Li*, KwanHo Tam, Yu Xi, Jing Peng, Shuai Wang, Kai Yu
+  venue: arXiv preprint
+  year: 2026
+  description: A benchmark for multi-receiver spatial hearing across egocentric and allocentric views, with nearly 40,000 questions across 13 static and dynamic localization and spatial transcription tasks.
+  description_zh: 面向多接收端空间听觉的基准，涵盖自我中心与世界坐标视角，包含近 4 万道问题，覆盖 13 类静态与动态定位及空间转写任务。
+  links:
+    arxiv: https://arxiv.org/abs/2611.16787
+    code: https://github.com/Wenanzhi/MESH-Benchmark
+    dataset: https://huggingface.co/datasets/Heiheihaha17/MESH-Benchmark
+  selected: true
+  home_order: 0
 - id: dis-tse
   short_title: DiS-TSE
   theme: spatial-audio
